@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: Huge IT Portfolio Gallery
+Plugin Name: Huge IT Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
-Description: Huge-IT portfolio is a great plugin for adding specialized portfolios to your site. There are various view options for the images to choose from.
+Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
 Version: 1.0.1
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
