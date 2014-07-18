@@ -12,7 +12,7 @@ Portfolio Gallery is a great plugin for adding specialized portfolios or gallery
 
 == Description ==
 
-## Wordpress Portfolio Gallery
+### Wordpress Portfolio Gallery
 
 Portfolio Gallery is perfect for using for creating various portfolios or gallery within various views. The product allows adding descriptions and titles for each portfolio gallery. It is rather useful whever using with various pages and posts, as well as within custom location.
 
