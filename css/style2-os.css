@@ -1,5 +1,5 @@
-.isotope,
-.isotope .isotope-item {
+.hugeitmicro,
+.hugeitmicro .hugeitmicro-item {
   -webkit-transition-duration: 0.8s;
      -moz-transition-duration: 0.8s;
       -ms-transition-duration: 0.8s;
@@ -7,7 +7,7 @@
           transition-duration: 0.8s;
 }
 
-.isotope {
+.hugeitmicro {
   -webkit-transition-property: height, width;
      -moz-transition-property: height, width;
       -ms-transition-property: height, width;
@@ -15,7 +15,7 @@
           transition-property: height, width;
 }
 
-.isotope .isotope-item {
+.hugeitmicro .hugeitmicro-item {
   -webkit-transition-property: -webkit-transform, opacity;
      -moz-transition-property:    -moz-transform, opacity;
       -ms-transition-property:     -ms-transform, opacity;

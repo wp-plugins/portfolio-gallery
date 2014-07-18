@@ -17,12 +17,13 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 
 ?>
 	<!--Huge IT portfolio START-->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link href="<?php echo plugins_url('../style/colorbox.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	<link href="<?php echo plugins_url('../style/portfolio-all.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	<script src="<?php echo plugins_url('../js/jquery.colorbox-min.js', __FILE__);?>"></script>
 	<script src="<?php echo plugins_url('../js/portfolio-all.js', __FILE__);?>"></script>
 	<link rel="stylesheet" href="<?php echo plugins_url('../css/style2-os.css', __FILE__);?>" />
+	<script src="<?php echo plugins_url('../js/jquery.hugeitmicro.min.js', __FILE__);?>"></script>
 	<link href="<?php echo plugins_url('../style/lightbox.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	
 	
@@ -352,7 +353,7 @@ var $container = $('#huge_it_portfolio_container');
 	}
   });
 
-$container.hugeitmicrobic({
+$container.hugeitmicro({
   itemSelector : '.element',
   masonry : {
 	columnWidth : <?php echo $paramssld['ht_view0_block_width']; ?>+20+<?php echo $paramssld['ht_view0_border_width']*2; ?>
@@ -413,7 +414,7 @@ $container.hugeitmicrobic({
 	  changeLayoutMode( $this, options )
 	} else {
 
-	  $container.hugeitmicrobic( options );
+	  $container.hugeitmicro( options );
 	}
 	
 	return false;
@@ -437,10 +438,10 @@ $container.hugeitmicrobic({
 
 	  $container.addClass('no-transition').css( style );
 	  setTimeout(function(){
-		$container.removeClass('no-transition').hugeitmicrobic( options );
+		$container.removeClass('no-transition').hugeitmicro( options );
 	  }, 700)
 	} else {
-	  $container.hugeitmicrobic( options );
+	  $container.hugeitmicro( options );
 	}
   }
 
@@ -459,7 +460,7 @@ $container.hugeitmicrobic({
 				height: "<?php echo $paramssld['ht_view0_block_height']+45; ?>px"
 			}, 300, function() {
 				jQuery(this).removeClass('large');
-				$container.hugeitmicrobic('reLayout');
+				$container.hugeitmicro('reLayout');
 			});
 			
 			jQuery(this).parents('.element').removeClass("active");
@@ -470,19 +471,19 @@ $container.hugeitmicrobic({
 		jQuery(this).parents('.element').css({height:strheight});
 		jQuery(this).parents('.element').addClass('large');
 
-		$container.hugeitmicrobic('reLayout');
+		$container.hugeitmicro('reLayout');
 		jQuery(this).parents('.element').css({height:"<?php echo $paramssld['ht_view0_block_height']+45; ?>px"});		 
 		 
 		//alert(strheight);
 		 
 		 jQuery(this).parents('.element').animate({
 			height:strheight+"px",
-		  }, 300,function(){	$container.hugeitmicrobic('reLayout');});
+		  }, 300,function(){	$container.hugeitmicro('reLayout');});
 	});
 
 	var $sortBy = $('#sort-by');
 	$('#shuffle a').click(function(){
-	  $container.hugeitmicrobic('shuffle');
+	  $container.hugeitmicro('shuffle');
 	  $sortBy.find('.selected').removeClass('selected');
 	  $sortBy.find('[data-option-value="random"]').addClass('selected');
 	  return false;
@@ -760,7 +761,7 @@ $container.hugeitmicrobic({
         }
       });
     
-    $container.hugeitmicrobic({
+    $container.hugeitmicro({
       itemSelector : '.element',
       masonry : {
         columnWidth : <?php echo $paramssld['ht_view1_block_width']; ?>+20+<?php echo $paramssld['ht_view1_border_width']*2; ?>
@@ -821,7 +822,7 @@ $container.hugeitmicrobic({
           changeLayoutMode( $this, options )
         } else {
 
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
         
         return false;
@@ -845,23 +846,23 @@ $container.hugeitmicrobic({
 
           $container.addClass('no-transition').css( style );
           setTimeout(function(){
-            $container.removeClass('no-transition').hugeitmicrobic( options );
+            $container.removeClass('no-transition').hugeitmicro( options );
           }, 100 )
         } else {
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
       }
      
     var $sortBy = $('#sort-by');
     $('#shuffle a').click(function(){
-      $container.hugeitmicrobic('shuffle');
+      $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
 	
 	  jQuery(window).load(function(){
-		$container.hugeitmicrobic('reLayout');
+		$container.hugeitmicro('reLayout');
 	  });
 
 
@@ -896,7 +897,7 @@ $(function(){
         }
       });
     
-    $container.hugeitmicrobic({
+    $container.hugeitmicro({
       itemSelector : '.element',
       masonry : {
         columnWidth : defaultBlockWidth+20
@@ -957,7 +958,7 @@ $(function(){
 		  changeLayoutMode( $this, options )
 		} else {
 
-		  $container.hugeitmicrobic( options );
+		  $container.hugeitmicro( options );
 		}
 
 		return false;
@@ -978,16 +979,16 @@ $(function(){
 
 		  $container.addClass('no-transition').css( style );
 		  setTimeout(function(){
-			$container.removeClass('no-transition').hugeitmicrobic( options );
+			$container.removeClass('no-transition').hugeitmicro( options );
 		  }, 100 )
 		} else {
-		  $container.hugeitmicrobic( options );
+		  $container.hugeitmicro( options );
 		}
 	}
 
     var $sortBy = $('#sort-by');
     $('#shuffle a').click(function(){
-      $container.hugeitmicrobic('shuffle');
+      $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
@@ -1741,7 +1742,7 @@ jQuery(document).ready(function(){
         }
       });
     
-    $container.hugeitmicrobic({
+    $container.hugeitmicro({
       itemSelector : '.element',
       masonry : {
         columnWidth : 300+20
@@ -1802,7 +1803,7 @@ jQuery(document).ready(function(){
           changeLayoutMode( $this, options )
         } else {
 
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
         
         return false;
@@ -1826,10 +1827,10 @@ jQuery(document).ready(function(){
 
           $container.addClass('no-transition').css( style );
           setTimeout(function(){
-            $container.removeClass('no-transition').hugeitmicrobic( options );
+            $container.removeClass('no-transition').hugeitmicro( options );
           }, 100 )
         } else {
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
       }
 
@@ -1841,7 +1842,7 @@ jQuery(document).ready(function(){
     height: "245px"
   }, 900, function() {
      $(this).toggleClass('large');
-        $container.hugeitmicrobic('reLayout');
+        $container.hugeitmicro('reLayout');
 	
   });
 			 $(this).removeClass("active");
@@ -1849,22 +1850,22 @@ jQuery(document).ready(function(){
 		}
 	
 
-	$container.hugeitmicrobic('reLayout');
+	$container.hugeitmicro('reLayout');
 
 
       });
 
     var $sortBy = $('#sort-by');
     $('#shuffle a').click(function(){
-      $container.hugeitmicrobic('shuffle');
+      $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
 	
 	$(window).load(function(){
-		$container.hugeitmicrobic('reLayout');
-		$(window).resize(function(){$container.hugeitmicrobic('reLayout');});
+		$container.hugeitmicro('reLayout');
+		$(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
 
   });
@@ -2101,7 +2102,7 @@ var $container = $('#huge_it_portfolio_container');
 	}
   });
 
-$container.hugeitmicrobic({
+$container.hugeitmicro({
   itemSelector : '.element',
   masonry : {
 	columnWidth : defaultBlockWidth
@@ -2162,7 +2163,7 @@ $container.hugeitmicrobic({
 	  changeLayoutMode( $this, options )
 	} else {
 
-	  $container.hugeitmicrobic( options );
+	  $container.hugeitmicro( options );
 	}
 	
 	return false;
@@ -2186,10 +2187,10 @@ $container.hugeitmicrobic({
 
 	  $container.addClass('no-transition').css( style );
 	  setTimeout(function(){
-		$container.removeClass('no-transition').hugeitmicrobic( options );
+		$container.removeClass('no-transition').hugeitmicro( options );
 	  }, 700)
 	} else {
-	  $container.hugeitmicrobic( options );
+	  $container.hugeitmicro( options );
 	}
   }
 
@@ -2202,7 +2203,7 @@ $container.hugeitmicrobic({
 				height: "45px"
 			}, 700, function() {
 				jQuery(this).removeClass('large');
-				$container.hugeitmicrobic('reLayout');
+				$container.hugeitmicro('reLayout');
 			});
 			
 			jQuery(this).parents('.element').removeClass("active");
@@ -2213,7 +2214,7 @@ $container.hugeitmicrobic({
 		jQuery(this).parents('.element').css({height:45+jQuery(this).parents('.element').find('.wd-portfolio-panel').height()});
 		jQuery(this).parents('.element').addClass('large');
 
-		$container.hugeitmicrobic('reLayout');
+		$container.hugeitmicro('reLayout');
 		jQuery(this).parents('.element').css({height:"45px"});
 		  
 		 var strheight=(jQuery(this).parents('.element').find('.wd-portfolio-panel').height()+45);
@@ -2221,19 +2222,19 @@ $container.hugeitmicrobic({
 		 
 		 jQuery(this).parents('.element').animate({
 			height:strheight+"px",
-		  }, 700,function(){	$container.hugeitmicrobic('reLayout');});
+		  }, 700,function(){	$container.hugeitmicro('reLayout');});
 	});
 
 	var $sortBy = $('#sort-by');
 	$('#shuffle a').click(function(){
-	  $container.hugeitmicrobic('shuffle');
+	  $container.hugeitmicro('shuffle');
 	  $sortBy.find('.selected').removeClass('selected');
 	  $sortBy.find('[data-option-value="random"]').addClass('selected');
 	  return false;
 	});
 	
 	$(window).load(function(){
-		$(window).resize(function(){$container.hugeitmicrobic('reLayout');});
+		$(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
 });
 </script>
@@ -2266,7 +2267,7 @@ $container.hugeitmicrobic({
 
 
 [class$="-arrow"] {
-	background-image:url(<?php echo plugins_url('../images/arrow.'.$paramssld["ht_view5_icons_style"].'.png', __FILE__);?>);
+	background-image:url(<?php echo plugins_url('images/arrow.'.$paramssld["ht_view5_icons_style"].'.png', __FILE__);?>);
 }
 
 .ls-select-box {
@@ -2605,7 +2606,7 @@ $container.hugeitmicrobic({
         }
       });
     
-$container.hugeitmicrobic({
+$container.hugeitmicro({
   itemSelector : '.element',
   masonry : {
 	columnWidth : <?php echo $paramssld['ht_view6_width']; ?>+10+<?php echo $paramssld['ht_view6_border_width']*2; ?>
@@ -2666,7 +2667,7 @@ $container.hugeitmicrobic({
           changeLayoutMode( $this, options )
         } else {
 
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
         
         return false;
@@ -2690,23 +2691,23 @@ $container.hugeitmicrobic({
 
           $container.addClass('no-transition').css( style );
           setTimeout(function(){
-            $container.removeClass('no-transition').hugeitmicrobic( options );
+            $container.removeClass('no-transition').hugeitmicro( options );
           }, 100 )
         } else {
-          $container.hugeitmicrobic( options );
+          $container.hugeitmicro( options );
         }
       }
      
     var $sortBy = $('#sort-by');
     $('#shuffle a').click(function(){
-      $container.hugeitmicrobic('shuffle');
+      $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
 
 	  $(window).load(function(){
-		$container.hugeitmicrobic('reLayout');
+		$container.hugeitmicro('reLayout');
 	  });
   });
   

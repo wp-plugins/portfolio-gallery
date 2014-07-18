@@ -465,6 +465,7 @@ jQuery(function() {
 						<li>
 							<label for="portfolio_effects_list">Views</label>
 							<select name="portfolio_effects_list" id="portfolio_effects_list">
+									<option <?php if($row->portfolio_list_effects_s == '0'){ echo 'selected'; } ?>  value="0">Blocks Toggle Up/Down</option>
 									<option <?php if($row->portfolio_list_effects_s == '1'){ echo 'selected'; } ?>  value="1">Full-Height Blocks</option>
 									<option <?php if($row->portfolio_list_effects_s == '2'){ echo 'selected'; } ?>  value="2">Gallery/Content-Popup</option>
 									<option <?php if($row->portfolio_list_effects_s == '3'){ echo 'selected'; } ?>  value="3">Full-Width Blocks</option>
