@@ -8,7 +8,7 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Huge-IT Portfolio Gallery is a great plugin for adding specialized portfolios to your site. There are various view options for the images to choose from.
+Portfolio Gallery is a great plugin for adding specialized portfolios to your site. There are various view options for the images to choose from.
 
 == Description ==
 
