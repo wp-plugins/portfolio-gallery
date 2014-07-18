@@ -3,7 +3,7 @@
 function front_end_portfolio($images, $paramssld, $portfolio)
 {
 
- ob_start();
+	ob_start();
 	$portfolioID=$portfolio[0]->id;
 	$portfoliotitle=$portfolio[0]->name;
 	$portfolioheight=$portfolio[0]->sl_height;
@@ -104,15 +104,16 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 
 .default-block .title-block h3 {
 	position:relative;
-	margin:0px;
-	padding:0px 0px 0px 5px;
+	margin:0px !important;
+	padding:0px 0px 0px 5px !important;
 	width:<?php echo $paramssld['ht_view0_block_width']-30; ?>px !important;
 	text-overflow: ellipsis;
 	overflow: hidden; 
 	white-space:nowrap;
 	font-weight:normal;
 	color:#<?php echo $paramssld['ht_view0_title_font_color']; ?>;
-	font-size:<?php echo $paramssld['ht_view0_title_font_size']; ?>;
+	font-size:<?php echo $paramssld['ht_view0_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view0_title_font_size']; ?>px !important;
 }
 
 .element .title-block .open-close-button {
@@ -147,12 +148,12 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 }
 
 
-.wd-portfolio-panel .description-block {
+.wd-portfolio-panel .description-block, .element div.right-block .description-block * {
 	position:relative;
 	clear:both;
 }
 
-.wd-portfolio-panel .description-block p {	
+.wd-portfolio-panel .description-block p,.wd-portfolio-panel .description-block * {	
 	text-align:justify;
 	font-weight:normal;
 	font-size:<?php echo $paramssld['ht_view0_description_font_size']; ?>px;
@@ -160,6 +161,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	margin:0px;
 	padding:0px;
 }
+
 
 
 .wd-portfolio-panel .description-block h1,
@@ -171,8 +173,8 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 .wd-portfolio-panel .description-block p, 
 .wd-portfolio-panel .description-block strong,
 .wd-portfolio-panel .description-block span {
-	padding:2px;
-	margin:0px;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 .wd-portfolio-panel .description-block ul,
@@ -213,8 +215,8 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 .wd-portfolio-panel img {
 	display:table-cell;
 	vertical-align:middle;
-	width:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px;
-	max-height:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px;
+	width:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px !important;
+	max-height:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px !important;
 	width:100%;
 	height:100%;
 }
@@ -541,15 +543,16 @@ $container.hugeitmicro({
 
 .default-block .title-block h3 {
 	position:relative;
-	margin:0px;
-	padding:0px 5px 0px 5px;
+	margin:0px !important;
+	padding:0px 5px 0px 5px !important;
 	width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
 	text-overflow: ellipsis;
 	overflow: hidden; 
 	white-space:nowrap;
 	font-weight:normal;
 	color:#<?php echo $paramssld['ht_view1_title_font_color']; ?>;
-	font-size:<?php echo $paramssld['ht_view1_title_font_size']; ?>;
+	font-size:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
 }
 
 
@@ -562,13 +565,13 @@ $container.hugeitmicro({
 	text-align:left;
 }
 
-.wd-portfolio-panel .description-block p {	
+.wd-portfolio-panel .description-block p,.wd-portfolio-panel .description-block * {	
 	text-align:justify;
 	font-weight:normal;
-	font-size:<?php echo $paramssld['ht_view1_description_font_size']; ?>px;
+	font-size:<?php echo $paramssld['ht_view1_description_font_size']; ?>px !important;
 	color:#<?php echo $paramssld['ht_view1_description_color']; ?>;
-	margin:0px;
-	padding:0px;
+	margin:0px !important;
+	padding:0px !important;
 }
 
 
@@ -581,8 +584,8 @@ $container.hugeitmicro({
 .wd-portfolio-panel .description-block p, 
 .wd-portfolio-panel .description-block strong,
 .wd-portfolio-panel .description-block span {
-	padding:2px;
-	margin:0px;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 .wd-portfolio-panel .description-block ul,
@@ -622,8 +625,8 @@ $container.hugeitmicro({
 .wd-portfolio-panel img {
 	display:table-cell;
 	vertical-align:middle;
-	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
-	max-height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
+	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
+	max-height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
 	width:100%;
 	height:100%;
 }
@@ -1062,8 +1065,8 @@ jQuery(document).ready(function(){
 }
 
 .element .image-block img {
-	width:<?php echo $paramssld['ht_view2_element_width']; ?>px;
-	height:<?php echo $paramssld['ht_view2_element_height']; ?>px;
+	width:<?php echo $paramssld['ht_view2_element_width']; ?>px !important;
+	height:<?php echo $paramssld['ht_view2_element_height']; ?>px !important;
 	display:block;
 	border-radius: 0px !important;
 	box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important; 
@@ -1099,23 +1102,24 @@ jQuery(document).ready(function(){
 
 .element .title-block {
 	position:relative;
-	font-size: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px;
-	height: 40px;
+	height: 30px;
 	margin: 0;
-	padding: 9px 0px 15px 0px;
+	padding: 15px 0px 15px 0px;
 	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 	box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 }
 
 .element .title-block h3 {
 	position:relative;
-	margin:0px;
-	padding:0px 1% 0px 1%;
+	margin:0px !important;
+	padding:0px 1% 0px 1% !important;
 	width:98%;
 	text-overflow: ellipsis;
 	overflow: hidden; 
 	white-space:nowrap;
 	font-weight:normal;
+	font-size: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
+	line-height: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
 	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
@@ -1125,7 +1129,7 @@ jQuery(document).ready(function(){
 	top:0px;
 	display:none;
 	vertical-align:middle;
-	height:43px;
+	height:30px;
 	padding:10px 10px 4px 10px;
 	background: <?php
 			list($r,$g,$b) = array_map('hexdec',str_split($paramssld['ht_view2_element_overlay_color'],2));
@@ -1206,7 +1210,7 @@ jQuery(document).ready(function(){
 #huge_it_portfolio_popup_list li.pupup-element .popup-wrapper {
 	overflow-y:scroll;
 	position:relative;
-	width:100%;
+	width:96%;
 	height:98%;
 	padding:2% 2% 0% 2%;
 }
@@ -1221,7 +1225,7 @@ jQuery(document).ready(function(){
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .image-block img {
-	width:100%;
+	width:100% !important;
 	display:block;
 }
 
@@ -1244,8 +1248,9 @@ jQuery(document).ready(function(){
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .title {
 	position:relative;
 	display:block;
-	margin:0px 0px 10px 0px;
-	font-size:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px;
+	margin:0px 0px 10px 0px !important;
+	font-size:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
 	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
@@ -1254,7 +1259,7 @@ jQuery(document).ready(function(){
 	position:relative;
 	font-weight:normal;
 	text-align:justify;
-	font-size:<?php echo $paramssld["ht_view2_description_font_size"];?>px;
+	font-size:<?php echo $paramssld["ht_view2_description_font_size"];?>px !important;
 	color:#<?php echo $paramssld["ht_view2_description_font_color"];?>;
 }
 
@@ -1267,8 +1272,8 @@ jQuery(document).ready(function(){
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description p, 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description strong,
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description span {
-	padding:2px;
-	margin:0px;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description ul,
@@ -1292,7 +1297,7 @@ jQuery(document).ready(function(){
 	float:left;
 	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px;
 	height:<?php echo $paramssld["ht_view2_thumbs_height"];?>px;
-	margin:0px 2% 5px 1%;
+	margin:0px 2% 5px 1% !important;
 	opacity:0.45;
 }
 
@@ -1305,8 +1310,8 @@ jQuery(document).ready(function(){
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li img {
-	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px;
-	height:<?php echo $paramssld["ht_view2_thumbs_height"];?>px;
+	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px !important;
+	height:<?php echo $paramssld["ht_view2_thumbs_height"];?>px !important;
 }
 
 
@@ -1525,7 +1530,7 @@ jQuery(document).ready(function(){
 }
 
 .element div.left-block .main-image-block img {
-	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px; 
+	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px !important; 
 	height:auto;
 }
 
@@ -1587,11 +1592,12 @@ jQuery(document).ready(function(){
 	margin:0px;
 	padding:0px;
 	font-weight:normal;
-	font-size:<?php echo $paramssld['ht_view3_title_font_size']; ?>px;
+	font-size:<?php echo $paramssld['ht_view3_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view3_title_font_size']; ?>px !important;
 	color:#<?php echo $paramssld['ht_view3_title_font_color']; ?>;
 }
 
-.element div.right-block .description-block p {
+.element div.right-block .description-block p,.element div.right-block .description-block * {
 	margin:0px;
 	padding:0px;
 	font-weight:normal;
@@ -1609,8 +1615,8 @@ jQuery(document).ready(function(){
 .element div.right-block .description-block p, 
 .element div.right-block .description-block strong,
 .element div.right-block .description-block span {
-	padding:2px;
-	margin:0px;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 .element div.right-block .description-block ul,
@@ -1658,7 +1664,7 @@ jQuery(document).ready(function(){
 	}
 
 	.element div.left-block .main-image-block img {
-		width:100%; 
+		width:100% !important;  
 		height:auto;
 	}
 
@@ -1952,7 +1958,7 @@ jQuery(document).ready(function(){
 	z-index:6; 
 }
 
-.wd-portfolio-panel .description-block p {	
+.wd-portfolio-panel .description-block p,.element div.right-block .description-block * {	
 	text-align:justify;
 	font-weight:normal;
 	font-size:<?php echo $paramssld['ht_view4_description_font_size']; ?>px;
@@ -1970,8 +1976,9 @@ jQuery(document).ready(function(){
 .wd-portfolio-panel .description-block p, 
 .wd-portfolio-panel .description-block strong,
 .wd-portfolio-panel .description-block span {
-	padding:2px;
-	margin:0px;
+	line-height:auto !important;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 .wd-portfolio-panel .description-block ul,
@@ -2328,8 +2335,8 @@ $container.hugeitmicro({
 }
 
 #main-slider .slider-content-wrapper .image-block ul.thumbs-list li img {
-	width:<?php echo $paramssld["ht_view5_thumbs_width"];?>px;
-	height:<?php echo $paramssld["ht_view5_thumbs_height"];?>px;
+	width:<?php echo $paramssld["ht_view5_thumbs_width"];?>px !important;
+	height:<?php echo $paramssld["ht_view5_thumbs_height"];?>px !important;
 }
 
 #main-slider .slider-content-wrapper .right-block {
@@ -2350,7 +2357,8 @@ $container.hugeitmicro({
 	position:relative;
 	display:block;
 	margin:-10px 0px 0px 0px;
-	font-size:<?php echo $paramssld["ht_view5_title_font_size"];?>px;
+	font-size:<?php echo $paramssld["ht_view5_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view5_title_font_size"];?>px !important;
 	color:#<?php echo $paramssld["ht_view5_title_font_color"];?>;
 }
 
@@ -2359,7 +2367,8 @@ $container.hugeitmicro({
 	position:relative;
 	font-weight:normal;
 	text-align:justify;
-	font-size:<?php echo $paramssld["ht_view5_description_font_size"];?>px;
+	font-size:<?php echo $paramssld["ht_view5_description_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view5_description_font_size"];?>px !important;
 	color:#<?php echo $paramssld["ht_view5_description_font_color"];?>;
 }
 
@@ -2372,8 +2381,8 @@ $container.hugeitmicro({
 #main-slider .slider-content-wrapper .right-block .description p, 
 #main-slider .slider-content-wrapper .right-block .description strong,
 #main-slider .slider-content-wrapper .right-block .description span {
-	padding:2px;
-	margin:0px;
+	padding:2px !important;
+	margin:0px !important;
 }
 
 #main-slider .slider-content-wrapper .right-block .description ul,
@@ -2500,7 +2509,7 @@ $container.hugeitmicro({
 }
 
 .element .image-block img {
-	width:<?php echo $paramssld['ht_view6_width']; ?>px;
+	width:<?php echo $paramssld['ht_view6_width']; ?>px !important;
 	height:auto;
 	display:block;
 	border-radius: 0px !important;
@@ -2517,7 +2526,7 @@ $container.hugeitmicro({
 	left:0px;
 	width:100%;
 	padding-top:5px;
-	height:35px;
+	height:30px;
 	bottom:-35px;
 	background: <?php
 			list($r,$g,$b) = array_map('hexdec',str_split($paramssld['ht_view6_title_background_color'],2));

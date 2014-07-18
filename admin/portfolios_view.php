@@ -339,7 +339,7 @@ jQuery(function() {
 							$i=0;
 							foreach($imgurl as $key1=>$img)
 							{	?>
-								<li <?php if($i==0){echo 'class="first"';} ?> class="editthisimage<?php echo $key; ?>">
+								<li class="editthisimage<?php echo $key; ?> <?php if($i==0){echo 'first';} ?>">
 									<img src="<?php echo $img; ?>" />
 									<a href="#edit" class="edit-image">edit</a>
 									<a href="#remove" class="remove-image">remove</a>
