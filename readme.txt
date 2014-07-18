@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/portfolio-gallery/
 Tags: portfolio, portfolios, page, pages, picture, pictures, album, custom fields, image, image description, images, image display, image-size, images gallery, gallery, jpeg, jpg, png, labels, posts, post, visual items, thumbnails, screenshots, screenshot, image gallery, FAQ, FAQ widget, answer, answers, wordpress FAQ, questions, list, grid, web designer, slider, sliders, wordpress slider, wordpress slideshow, wp slider, slide, slide show, slider, slider plugin, slider widget, slides, slideshow, slideshow manager, slideshow plugin, vertical slider, vertical slides, widget, widget slider, widget slideshow, widgets, posts slider, responsive, responsive slider, responsive slideshow, Photo Slider, plugin, Image Rotator, carousel, wordpress photo gallery plugin, wordpress gallery, wordpress gallery plugin, banner rotator, best gallery, best gallery plugin, filterable gallery, image album, image gallery, images gallery, media, photo, photo album, photo albums, photo gallery, photogallery, photos, photoset, picture, pictures, Simple gallery, website gallery, widget gallery, wp gallery plugins, wp gallery, photoalbum, view images, multiple pictures, category, categories, plugin, plugins, thumbs, shortcode, lightbox, lightbox photo, image lightbox
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 0.9.9
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
