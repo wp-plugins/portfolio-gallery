@@ -8,11 +8,11 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Huge-IT portfolio is a great plugin for adding specialized portfolios to your site. There are various view options for the images to choose from.
+Huge-IT Portfolio Gallery is a great plugin for adding specialized portfolios to your site. There are various view options for the images to choose from.
 
 == Description ==
 
-Portfolio is perfect for using for creating various portfolios within various views. The product allows adding descriptions and titles for each portfolio. It is rather useful whever using with various pages and posts, as well as within custom location.
+Portfolio Gallery is perfect for using for creating various portfolios within various views. The product allows adding descriptions and titles for each Portfolio Gallery. It is rather useful whever using with various pages and posts, as well as within custom location.
 
 It uses 7 view options and can be customized using the General Options. Almost all kind of texts are customizable in terms of text and color.
 
