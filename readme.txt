@@ -1,10 +1,10 @@
 === Portfolio Gallery ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/portfolio-gallery/
-Tags: portfolio, portfolios, page, pages, picture, pictures, album, custom fields, image, image description, images, image display, image-size, images gallery, gallery, jpeg, jpg, png, labels, posts, post, visual items, thumbnails, screenshots, screenshot, image gallery, FAQ, FAQ widget, answer, answers, wordpress FAQ, questions, list, grid, web designer, slider, sliders, wordpress slider, wordpress slideshow, wp slider, slide, slide show, slider, slider plugin, slider widget, slides, slideshow, slideshow manager, slideshow plugin, vertical slider, vertical slides, widget, widget slider, widget slideshow, widgets, posts slider, responsive, responsive slider, responsive slideshow, Photo Slider, plugin, Image Rotator, carousel, wordpress photo gallery plugin, wordpress gallery, wordpress gallery plugin, banner rotator, best gallery, best gallery plugin, filterable gallery, image album, image gallery, images gallery, media, photo, photo album, photo albums, photo gallery, photogallery, photos, photoset, picture, pictures, Simple gallery, website gallery, widget gallery, wp gallery plugins, wp gallery, photoalbum, view images, multiple pictures, category, categories, plugin, plugins, thumbs, shortcode, lightbox, lightbox photo, image lightbox
+Tags: portfolio, portfolios, page, pages, picture, pictures, album, custom fields, image, image description, images, image display, image-size, images gallery, gallery, jpeg, jpg, png, labels, posts, post, visual items, thumbnails, screenshots, screenshot, image gallery, FAQ, FAQ widget, answer, answers, wordpress FAQ, questions, list, grid, web designer, slider, sliders, wordpress slider, wordpress slideshow, wp slider, slide, slide show, slider, slider plugin, slider widget, slides, slideshow, slideshow manager, slideshow plugin, vertical slider, vertical slides, widget, widget slider, widget slideshow, widgets, posts slider, responsive, responsive slider, responsive slideshow, Photo Slider, plugin, Image Rotator, carousel, wordpress photo gallery plugin, wordpress gallery, wordpress gallery plugin, banner rotator, best gallery, best gallery plugin, filterable gallery, image album, image gallery, images gallery, media, photo, photo album, photo albums, photo gallery, photogallery, photos, photoset, picture, pictures, Simple gallery, website gallery, widget gallery, wp gallery plugins, wp gallery, photoalbum, view images, multiple pictures, category, categories, plugin, plugins, thumbs, shortcode, lightbox, lightbox photo, image lightbox, gallery lightbox, content slider, 
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,9 @@ Portfolio Gallery is a great plugin for adding specialized portfolios or gallery
 
 ### Wordpress Portfolio Gallery
 
-[Demo](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo/)  
-[Demo Admin](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo-admin/)   
-[User Manual](http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/)  
+[Demo Portfolio Gallery](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo/)  
+[Demo Portfolio Gallery Admin](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo-admin/)   
+[User Portfolio Gallery Manual](http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/)  
 
 Portfolio Gallery is perfect for using for creating various portfolios or gallery within various views. The product allows adding descriptions and titles for each portfolio gallery. It is rather useful whever using with various pages and posts, as well as within custom location.
 
@@ -24,7 +24,7 @@ It uses 7 view options and can be customized using the General Options. Almost a
 
 ### Features:
 
-WordPress ready
+WordPress Portfolio / Gallery ready
 
 7 Views Options:
 
@@ -40,7 +40,7 @@ Customizable Styles and Colors
 
 Possibility of adding various portfolios
 
-Possibility of adding various images for each portfolio
+Possibility of adding various images for each portfolio gallery
 
 Elegant design 
 
@@ -74,29 +74,29 @@ Now you can set your Portfolio Gallery options, images and use our portfolio gal
 
 ### Adding a Portfolio Gallery.
 
-To add a new Portfolio go to Porfolios> Add New Porfolio.
+To add a new Portfolio Gallery go to Porfolios> Add New Porfolio / Gallery.
 
 Add images. Use the standard WordPress Image uploader to add an image presing Add Project/Image button.
 
-Title. Provide a title for the portfolio set.
+Title. Provide a title for the portfolio gallery set.
 
-Description. Provide a description for the portfolio set.
+Description. Provide a description for the portfolio gallery set.
 
 URL. Provide the link to be opened when hitting the image. In addition you can make the image to open in a separate window checking the box.
 
-### Inserting Created Portfolio.
+### Inserting Created Portfolio Gallery.
 
-On the upper right hand you can identify three blocks of options for the portfolio.
+On the upper right hand you can identify three blocks of options for the portfolio gallery.
 
 Current Porfolio Options. Choose one of the options for the porfolio image display.
 
-Usage. Here you will see the shortcode for the created portfolio. You can add the shortcode to the page or post where you want the images to be displayed. In addition you can find the shortcode icon width each post and page within its TinyMCE editor and can click on it, select the portfolio and insert the shortcode.
+Usage. Here you will see the shortcode for the created portfolio gallery. You can add the shortcode to the page or post where you want the images to be displayed. In addition you can find the shortcode icon width each post and page within its TinyMCE editor and can click on it, select the portfolio gallery and insert the shortcode.
 
-Template Usage. If you want to use the portfolio for a custom location with the theme, you can copy and paste the provided code.
+Template Usage. If you want to use the portfolio gallery for a custom location with the theme, you can copy and paste the provided code.
 
-### General Options of Portfolio
+### General Options of Portfolio gallery.
 
-This section will allow making changes for the specific view option of the Portfolio. Most of the view options allow styling and color options. The relevant changes will affect all portfolio using that specific view option.
+This section will allow making changes for the specific view option of the Portfolio Gallery. Most of the view options allow styling and color options. The relevant changes will affect all portfolio gallery using that specific view option.
 
 ### Blocks Toggle Up/Down.
 
@@ -120,9 +120,9 @@ Main Image Height. Set the main image height in pixels.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
 thumbs
 
@@ -134,11 +134,11 @@ thumbs Width. Set the width for the image thumbs.
 
 Description
 
-Show Description. Choose whether to display the description of the portfolio or not.
+Show Description. Choose whether to display the description of the portfolio gallery or not.
 
-Description Font Size. Set the portfolio description font size in pixels.
+Description Font Size. Set the portfolio gallery description font size in pixels.
 
-Description Font Color. Select the portfolio description font color.
+Description Font Color. Select the portfolio gallery description font color.
 
 Link Button
 
@@ -172,9 +172,9 @@ Show Separator Lines. Choose whether to display divider lines or not.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
 Thumbs
 
@@ -274,11 +274,11 @@ Thumbs Width. Set the width for the image thumbs.
 
 Popup Description
 
-Show Description. Choose whether to display the description of the portfolio or not.
+Show Description. Choose whether to display the description of the portfolio gallery or not.
 
-Description Font Size. Set the portfolio description font size in pixels.
+Description Font Size. Set the portfolio gallery description font size in pixels.
 
-Description Font Color. Select the portfolio description font color.
+Description Font Color. Select the portfolio gallery description font color.
 
 Popup Link Button
 
@@ -312,9 +312,9 @@ Show Separator Lines. Choose whether to display divider lines or not.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
 Thumbs
 
@@ -326,7 +326,7 @@ Thumbs Width. Set the width for the image thumbs.
 
 Description
 
-Show Description. Choose whether to display the description of the portfolio or not.
+Show Description. Choose whether to display the description of the portfolio gallery or not.
 
 Description Font Size. Determine the description font size in pixels.
 
@@ -362,19 +362,19 @@ Block Border Color. Choose the boder color.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
 Toggle Button Style. Select the toggle button style from the provided options.
 
 Description
 
-Show Description. Choose whether to display the description of the portfolio or not.
+Show Description. Choose whether to display the description of the portfolio gallery or not.
 
-Description Font Size. Set the portfolio description font size in pixels.
+Description Font Size. Set the portfolio gallery description font size in pixels.
 
-Description Font Color. Select the portfolio description font color.
+Description Font Color. Select the portfolio gallery description font color.
 
 Link Button
 
@@ -418,17 +418,17 @@ Thumbs Height. Set the height for the imag thumbs.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
 Description
 
-Show Description. Choose whether to display the description of the portfolio or not.
+Show Description. Choose whether to display the description of the portfolio gallery or not.
 
-Description Font Size. Set the portfolio description font size in pixels.
+Description Font Size. Set the portfolio gallery description font size in pixels.
 
-Description Font Color. Select the portfolio description font color.
+Description Font Color. Select the portfolio gallery description font color.
 
 Link Button
 
@@ -460,11 +460,11 @@ Border Radius. Set the border radius in pixels.
 
 Title
 
-Title Font Size. Specify the font size for the portfolio title.
+Title Font Size. Specify the font size for the portfolio gallery title.
 
-Title Font Color. Choose the color for the portfolio title font.
+Title Font Color. Choose the color for the portfolio gallery title font.
 
-Title Font Hover Color. Choose the color for the portfolio title font when hovered.
+Title Font Hover Color. Choose the color for the portfolio gallery title font when hovered.
 
 Title Background Color. Set a bacground color fot the title.
 
