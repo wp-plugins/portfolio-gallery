@@ -27,11 +27,11 @@ function add_portfolio_my_custom_button($context) {
   $container_id = 'huge_it_portfolio';
   
 
-  $title = 'Select Huge IT Portfolio to insert into post';
+  $title = 'Select Huge IT Portfolio Gallery to insert into post';
 
-  $context .= '<a class="button thickbox" title="Select portfolio to insert into post"    href="#TB_inline?width=400&inlineId='.$container_id.'">
+  $context .= '<a class="button thickbox" title="Select portfolio gallery to insert into post"    href="#TB_inline?width=400&inlineId='.$container_id.'">
 		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
-	Add portfolio
+	Add Portfolio Gallery
 	</a>';
   
   return $context;
@@ -51,7 +51,7 @@ function add_portfolio_inline_popup_content() {
 </script>
 
 <div id="huge_it_portfolio" style="display:none;">
-  <h3>Select Huge IT Portfolio to insert into post</h3>
+  <h3>Select Huge IT Portfolio Gallery to insert into post</h3>
   <?php 
   	  global $wpdb;
 	  $query="SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios order by id ASC";
@@ -64,7 +64,7 @@ function add_portfolio_inline_popup_content() {
 								echo "<option value='".$shortcodeportfolio->id."'>".$shortcodeportfolio->name."</option>";
 							}
 							echo "</select>";
-							echo "<button class='button primary' id='hugeitportfolioinsert'>Insert portfolio</button>";
+							echo "<button class='button primary' id='hugeitportfolioinsert'>Insert portfolio gallery</button>";
 						} else {
 							echo "No slideshows found", "huge_it_portfolio";
 						}
@@ -115,7 +115,7 @@ function huge_it_portfolio_images_list_shotrcode($atts)
 }
 
 
-/////////////// Filter portfolio
+/////////////// Filter portfolio gallery
 
 
 function portfolio_after_search_results($query)
@@ -232,8 +232,8 @@ function huge_it_portfolio_Licensing(){
 	?>
     <div style="width:95%">
     <p>
-	This plugin is the non-commercial version of the Huge IT Portfolio/Gallery. If you want to customize to the styles and colors of your website,than you need to buy a license.
-Purchasing a license will add possibility to customize the general options of the Huge IT Huge IT Portfolio/Gallery. 
+	This plugin is the non-commercial version of the Huge IT Portfolio / Gallery. If you want to customize to the styles and colors of your website,than you need to buy a license.
+Purchasing a license will add possibility to customize the general options of the Huge IT Huge IT Portfolio / Gallery. 
 
  </p>
 <br /><br />
@@ -241,15 +241,15 @@ Purchasing a license will add possibility to customize the general options of th
 <br /><br /><br />
 <p>After the purchasing the commercial version follow this steps:</p>
 <ol>
-	<li>Deactivate Huge IT Portfolio/Gallery Plugin</li>
-	<li>Delete Huge IT Portfolio/Gallery Plugin</li>
+	<li>Deactivate Huge IT Portfolio / Gallery Plugin</li>
+	<li>Delete Huge IT Portfolio / Gallery Plugin</li>
 	<li>Install the downloaded commercial version of the plugin</li>
 </ol>
 </div>
 <?php
 	}
 
-/////////////////////             huge_it_portfolio print styles
+/////////////////////             huge_it_portfolio print styles gallery portfolio
 
 
 
@@ -446,7 +446,7 @@ function register_Huge_it_portfolio_Widget() {
 
 
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
-//////////////////////////////////////////////////////               Activate portfolio                     ///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////               Activate portfolio gallery                    ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
 
