@@ -36,6 +36,8 @@ WordPress Portfolio / Gallery ready
 *   Content Slider
 *   Lightbox Gallery
 
+Upgrade to [WordPress Portfolio / Gallery Pro](http://huge-it.com/portfolio-gallery) to add some features:
+ 
 Customizable Styles and Colors
 
 Possibility of adding various portfolios
