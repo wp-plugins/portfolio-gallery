@@ -313,9 +313,10 @@ jQuery(function() {
 										});
 										window.send_to_editor = function (html) {
 											imgurl = jQuery('img', html).attr('src');
-											window.parent.uploadID.val(imgurl);
+											window.parent.uploadID.val(imgurl+';');
 											tb_remove();
-											$("#save-buttom").click();
+											alert(imgurl);
+											//$("#save-buttom").click();
 										};
 									});
 									
