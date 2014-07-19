@@ -66,6 +66,13 @@ Now you can set your Portfolio Gallery options, images and use our portfolio gal
 
 == Screenshots ==
 
+== Screenshots ==
+
+1.  WordPress Portfolio Gallery - Portfolio Gallery Frontend    
+2.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Slides admin page  
+3.  [WordPress Portfolio Gallery](http://huge-it.com/slider) - Portfolio Gallery admin page 
+4.  WordPress Portfolio Gallery - Post Portfolio Gallery        
+5.  WordPress Portfolio Gallery - Widget Portfolio Gallery    
 
 == Changelog ==
 
