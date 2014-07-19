@@ -56,6 +56,13 @@ Sample Portfolios Included
 
 == Installation ==
 
+###Thank you for your interest in Portfolio Gallery.
+
+Minimum requirements Portfolio Gallery.
+WordPress 3.0+
+PHP 5.x
+MySQL 5.x
+
 ### First download the ZIP file ,
 
 1. Log in to your website administrator panel.   
@@ -66,7 +73,7 @@ Sample Portfolios Included
 
 Now you can set your Portfolio Gallery options, images and use our portfolio gallery.
 
-== Screenshots ==
+### If you think, that you found a bug in our [WordPress Portfolio Gallery](http://huge-it.com/portfolio-gallery) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
 == Screenshots ==
 
