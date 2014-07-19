@@ -26,7 +26,7 @@ It uses 7 view options and can be customized using the General Options. Almost a
 
 WordPress Portfolio / Gallery ready
 
-7 Views Portfolio Gallery :
+7 Views of Portfolio Gallery :
 
 *   Blocks Toggle Up/Down
 *   Full-Height Blocks
