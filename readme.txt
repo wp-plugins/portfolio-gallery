@@ -127,7 +127,7 @@ Template Usage. If you want to use the portfolio gallery for a custom location w
 
 This section will allow making changes for the specific view option of the Portfolio Gallery. Most of the view options allow styling and color options. The relevant changes will affect all portfolio gallery using that specific view option.
 
-### Blocks Toggle Up/Down.
+### Blocks Toggle Up/Down - Portfolio Gallery.
 
 Element Styles
 
@@ -185,7 +185,7 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### Full-Height Blocks
+### Full-Height Blocks - Portfolio Gallery
 
 Element Styles
 
@@ -237,7 +237,7 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### Gallery / Content Pop-Up
+### Gallery / Content Pop-Up - Portfolio Gallery
 
 Element Styles
 
@@ -325,7 +325,7 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### Full-Width Blocks
+### Full-Width Blocks - Portfolio Gallery
 
 Elements Styles
 
@@ -377,7 +377,7 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### FAQ
+### FAQ - Portfolio Gallery
 
 First Shown Block
 
@@ -421,9 +421,9 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### Content Slider
+### Content Slider - Portfolio Gallery
 
-Slider
+Portfolio Gallery Content Slider
 
 Slider Background Color. Choose the background color for the slider.
 
@@ -475,7 +475,7 @@ Link Button Background Color. Select the background color for the Show More butt
 
 Link Button Background Hover Color. Select the background color for the Show More button when hovered.
 
-### Lightbox Gallery
+### Lightbox Gallery - Portfolio Gallery
 
 Image
 
