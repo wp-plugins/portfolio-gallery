@@ -128,7 +128,7 @@ URL. Provide the link to be opened when hitting the image. In addition you can m
 
 On the upper right hand you can identify three blocks of options for the portfolio gallery.
 
-Current Porfolio Options. Choose one of the options for the porfolio image display.
+Current Porfolio Gallery Options. Choose one of the options for the porfolio gallery image display.
 
 Usage. Here you will see the shortcode for the created portfolio gallery. You can add the shortcode to the page or post where you want the images to be displayed. In addition you can find the shortcode icon width each post and page within its TinyMCE editor and can click on it, select the portfolio gallery and insert the shortcode.
 
@@ -142,21 +142,21 @@ This section will allow making changes for the specific view option of the Portf
 
 Element Styles
 
-Element Background Color.Determine the background color for the element.
+Element Background Color.Determine the background color for the portfolio gallery element.
 
-Element Border Width. Set the border width for the element.
+Element Border Width. Set the border width for the portfolio gallery element.
 
-Element Border Color. Select the element border color.
+Element Border Color. Select the portfolio gallery element border color.
 
-Toggle Button Style. Choose the style for the toggle button.
+Toggle Button Style. Choose the style for the portfolio gallery toggle button.
 
-Show Separator Lines. Choose whether to display divider lines or not.
+Show Separator Lines. Choose whether to display portfolio gallery divider lines or not.
 
 Main Image
 
-Main Image Width. Set the main image width in pixels.
+Main Image Width. Set the portfolio gallery main image width in pixels.
 
-Main Image Height. Set the main image height in pixels.
+Main Image Height. Set the portfolio gallery main image height in pixels.
 
 Title
 
@@ -166,11 +166,11 @@ Title Font Color. Choose the color for the portfolio gallery title font.
 
 thumbs
 
-Show thumbs. Choose whether to display the image thumbs or not.
+Show thumbs. Choose whether to display the portfolio gallery image thumbs or not.
 
-thumbs Position. Set the positioning of the thumbs.
+thumbs Position. Set the portfolio gallery positioning of the thumbs.
 
-thumbs Width. Set the width for the image thumbs.
+thumbs Width. Set the width for the portfolio gallery image thumbs.
 
 Description
 
@@ -182,19 +182,19 @@ Description Font Color. Select the portfolio gallery description font color.
 
 Link Button
 
-Show Link Button. Choose whether to display Show More button.
+Show Link Button. Choose whether to display portfolio gallery Show More button.
 
-Link Button Text. Define the text of the Show More button.
+Link Button Text. Define the text of the portfolio gallery Show More button.
 
-Link Button Font Size. Set the font size for the Show More button.
+Link Button Font Size. Set the font size for the portfolio gallery Show More button.
 
-Link Button Font Color. Select the font color for the Show More button.
+Link Button Font Color. Select the font color for the portfolio gallery Show More button.
 
-Link Button Font Hover Color. Select the font color for the Show More button when hovered.
+Link Button Font Hover Color. Select the font color for the portfolio gallery Show More button when hovered.
 
-Link Button Background Color. Select the background color for the Show More button.
+Link Button Background Color. Select the background color for the portfolio gallery Show More button.
 
-Link Button Background Hover Color. Select the background color for the Show More button when hovered.
+Link Button Background Hover Color. Select the background color for the portfolio gallery Show More button when hovered.
 
 ### Full-Height Blocks - Portfolio Gallery
 
@@ -202,11 +202,11 @@ Element Styles
 
 Block Width. Set the width of the blocks in pixels.
 
-Element Background Color. Determine the background color for the element.
+Element Background Color. Determine the background color for the portfolio gallery element.
 
-Element Border Width. Set the border width for the element.
+Element Border Width. Set the border width for the portfolio gallery element.
 
-Element Border Color. Select the element border color.
+Element Border Color. Select the portfolio gallery element border color.
 
 Show Separator Lines. Choose whether to display divider lines or not.
 
@@ -218,35 +218,35 @@ Title Font Color. Choose the color for the portfolio gallery title font.
 
 Thumbs
 
-Show Thumbs. Choose whether to display image thumbs or not.
+Show Thumbs. Choose whether to display the portfolio gallery image thumbs or not.
 
-Thumbs Position. Set the thumbnail position.
+Thumbs Position. Set the portfolio gallery thumbnail position.
 
-Thumbs Width. Set the thumbnail width in pixels.
+Thumbs Width. Set the portfolio gallery thumbnail width in pixels.
 
 Description
 
-Show Description. Choose whether to display the image descriptions or not.
+Show Description. Choose whether to display the portfolio gallery image descriptions or not.
 
-Description Font Size. Determine the font size for the image descriptions.
+Description Font Size. Determine the font size for the portfolio gallery image descriptions.
 
-Description Font Color. Choose the font color for the image description.
+Description Font Color. Choose the portfolio gallery font color for the image description.
 
 Link Button
 
 Show Link Button. Choose whether to display Show More button.
 
-Link Button Text. Define the text of the Show More button.
+Link Button Text. Define the portfolio gallery text of the Show More button.
 
-Link Button Font Size. Set the font size for the Show More button.
+Link Button Font Size. Set the portfolio gallery font size for the Show More button.
 
-Link Button Font Color. Select the font color for the Show More button.
+Link Button Font Color. Select the portfolio gallery font color for the Show More button.
 
-Link Button Font Hover Color. Select the font color for the Show More button when hovered.
+Link Button Font Hover Color. Select the portfolio gallery font color for the Show More button when hovered.
 
-Link Button Background Color. Select the background color for the Show More button.
+Link Button Background Color. Select the portfolio gallery background color for the Show More button.
 
-Link Button Background Hover Color. Select the background color for the Show More button when hovered.
+Link Button Background Hover Color. Select the portfolio gallery background color for the Show More button when hovered.
 
 ### Gallery / Content Pop-Up - Portfolio Gallery
 
