@@ -2274,7 +2274,7 @@ $container.hugeitmicro({
 
 
 [class$="-arrow"] {
-	background-image:url(<?php echo plugins_url('images/arrow.'.$paramssld["ht_view5_icons_style"].'.png', __FILE__);?>);
+	background-image:url(<?php echo plugins_url('../images/arrow.'.$paramssld["ht_view5_icons_style"].'.png', __FILE__);?>);
 }
 
 .ls-select-box {
@@ -2448,7 +2448,7 @@ $container.hugeitmicro({
 					<?php 	if($row->image_url != ';'){ ?>
 					<a href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
-					<img class="main-image" src="images/noimage.jpg" alt="" />
+					<img class="main-image" src="../images/noimage.jpg" alt="" />
 					<?php
 					} ?>
 					
@@ -2580,7 +2580,7 @@ $container.hugeitmicro({
 					<?php 	if($row->image_url != ';'){ ?>
 					<a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
+					<img id="wd-cl-img<?php echo $key; ?>" src="../images/noimage.jpg" alt="" />
 					<?php
 					} ?>	
 			</div>
