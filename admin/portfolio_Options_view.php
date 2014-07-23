@@ -40,6 +40,10 @@ jQuery(document).ready(function () {
 	}else {
 		jQuery('#portfolio-view-tabs-contents li[data-id="portfolio-view-options-0"]').addClass('active');
 	}
+	$('input[data-slider="true"]').bind("slider:changed", function (event, data) {
+		 $(this).parent().find('span').html(parseInt(data.value)+"%");
+		 $(this).val(parseInt(data.value));
+	});	
 });
 </script>
 <div class="wrap">

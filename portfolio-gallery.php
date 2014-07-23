@@ -4,7 +4,7 @@
 Plugin Name: Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.0.8
+Version: 1.0.9
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -88,17 +88,6 @@ function portfolio_lang_load()
 
 }
 
-$ident = 1;
-
-add_action('admin_head', 'huge_it_portfolio_ajax_func');
-function huge_it_portfolio_ajax_func()
-{
-    ?>
-    <script>
-        var huge_it_ajax = '<?php echo admin_url("admin-ajax.php"); ?>';
-    </script>
-<?php
-}
 
 function huge_it_portfolio_images_list_shotrcode($atts)
 {
@@ -256,7 +245,6 @@ Purchasing a license will add possibility to customize the general options of th
 function huge_it_portfolio_admin_script()
 {
 	wp_enqueue_style("jquery_ui", "http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css", FALSE);
-	wp_enqueue_script("jquery_new", "http://code.jquery.com/jquery-1.10.2.js", FALSE);
 	wp_enqueue_script("jquery_ui_new", "http://code.jquery.com/ui/1.10.4/jquery-ui.js", FALSE);
 	wp_enqueue_style("admin_css", plugins_url("style/admin.style.css", __FILE__), FALSE);
 	wp_enqueue_script("admin_js", plugins_url("js/admin.js", __FILE__), FALSE);

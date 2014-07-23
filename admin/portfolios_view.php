@@ -224,7 +224,7 @@ function change_select()
 	
 }
 jQuery(function() {
-	$( "#images-list" ).sortable({
+	jQuery( "#images-list" ).sortable({
 	  stop: function() {
 			jQuery("#images-list > li").removeClass('has-background');
 			count=jQuery("#images-list > li").length;
@@ -315,8 +315,7 @@ jQuery(function() {
 											imgurl = jQuery('img', html).attr('src');
 											window.parent.uploadID.val(imgurl+';');
 											tb_remove();
-											alert(imgurl);
-											//$("#save-buttom").click();
+											$("#save-buttom").click();
 										};
 									});
 									
