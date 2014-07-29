@@ -3,7 +3,7 @@
 function front_end_portfolio($images, $paramssld, $portfolio)
 {
 
-	ob_start();
+ ob_start();
 	$portfolioID=$portfolio[0]->id;
 	$portfoliotitle=$portfolio[0]->name;
 	$portfolioheight=$portfolio[0]->sl_height;
@@ -16,13 +16,166 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	$slidechangespeed=$portfolio[0]->param;
 
 ?>
+<script>
+	var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
+	var lightbox_speed = <?php echo $paramssld['light_box_speed'];?>;
+	var lightbox_fadeOut = <?php echo $paramssld['light_box_fadeout'];?>;
+	var lightbox_title = <?php echo $paramssld['light_box_title'];?>;
+	var lightbox_scalePhotos = <?php echo $paramssld['light_box_scalephotos'];?>;
+	var lightbox_scrolling = <?php echo $paramssld['light_box_scrolling'];?>;
+	var lightbox_opacity = <?php echo ($paramssld['light_box_opacity']/100)+0.001;?>;
+	var lightbox_open = <?php echo $paramssld['light_box_open'];?>;
+	var lightbox_returnFocus = <?php echo $paramssld['light_box_returnfocus'];?>;
+	var lightbox_trapFocus = <?php echo $paramssld['light_box_trapfocus'];?>;
+	var lightbox_fastIframe = <?php echo $paramssld['light_box_fastiframe'];?>;
+	var lightbox_preloading = <?php echo $paramssld['light_box_preloading'];?>;
+	var lightbox_overlayClose = <?php echo $paramssld['light_box_overlayclose'];?>;
+	var lightbox_escKey = <?php echo $paramssld['light_box_esckey'];?>;
+	var lightbox_arrowKey = <?php echo $paramssld['light_box_arrowkey'];?>;
+	var lightbox_loop = <?php echo $paramssld['light_box_loop'];?>;
+	var lightbox_closeButton = <?php echo $paramssld['light_box_closebutton'];?>;
+	var lightbox_previous = "<?php echo $paramssld['light_box_previous'];?>";
+	var lightbox_next = "<?php echo $paramssld['light_box_next'];?>";
+	var lightbox_close = "<?php echo $paramssld['light_box_close'];?>";
+	var lightbox_html = <?php echo $paramssld['light_box_html'];?>;
+	var lightbox_photo = <?php echo $paramssld['light_box_photo'];?>;
+	var lightbox_width = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['light_box_width']; } ?>';
+	var lightbox_height = '<?php if($paramssld['light_box_size_fix'] == 'false'){ echo 'false';} else { echo $paramssld['lightbox_height']; } ?>';
+	var lightbox_innerWidth = '<?php echo $paramssld['light_box_innerwidth'];?>';
+	var lightbox_innerHeight = '<?php echo $paramssld['light_box_innerheight'];?>';
+	var lightbox_initialWidth = '<?php echo $paramssld['light_box_initialwidth'];?>';
+	var lightbox_initialHeight = '<?php echo $paramssld['light_box_initialheight'];?>';
+	var lightbox_maxWidth = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo 'false';} else { echo $paramssld['light_box_maxwidth']; } ?>;
+	var lightbox_maxHeight = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo 'false';} else { echo $paramssld['light_box_maxheight']; } ?>;
+	var lightbox_slideshow = <?php echo $paramssld['light_box_slideshow'];?>;
+	var lightbox_slideshowSpeed = <?php echo $paramssld['light_box_slideshowspeed'];?>;
+	var lightbox_slideshowAuto = <?php echo $paramssld['light_box_slideshowauto'];?>;
+	var lightbox_slideshowStart = "<?php echo $paramssld['light_box_slideshowstart'];?>";
+	var lightbox_slideshowStop = "<?php echo $paramssld['light_box_slideshowstop'];?>";
+	var lightbox_fixed = <?php echo $paramssld['light_box_fixed'];?>;
+	<?php
+	$pos = $paramssld['slider_title_position'];
+	switch($pos){ 
+	case 1:
+	?>
+		var lightbox_top = '10%';
+		var lightbox_bottom = false;
+		var lightbox_left = '10%';
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 1:
+	?>
+		var lightbox_top = '10%';
+		var lightbox_bottom = false;
+		var lightbox_left = '10%';
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 2:
+	?>
+		var lightbox_top = '10%';
+		var lightbox_bottom = false;
+		var lightbox_left = false;
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 3:
+	?>
+		var lightbox_top = '10%';
+		var lightbox_bottom = false;
+		var lightbox_left = false;
+		var lightbox_right = '10%';
+	<?php
+	break;
+	case 4:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = false;
+		var lightbox_left = '10%';
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 5:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = false;
+		var lightbox_left = false;
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 6:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = false;
+		var lightbox_left = false;
+		var lightbox_right = '10%';
+	<?php
+	break;	
+	case 7:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = '10%';
+		var lightbox_left = '10%';
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 8:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = '10%';
+		var lightbox_left = false;
+		var lightbox_right = false;
+	<?php
+	break;	
+	case 9:
+	?>
+		var lightbox_top = false;
+		var lightbox_bottom = '10%';
+		var lightbox_left = false;
+		var lightbox_right = '10%';
+	<?php
+	break;	
+	} ?>
+	
+	var lightbox_reposition = <?php echo $paramssld['light_box_reposition'];?>;
+	var lightbox_retinaImage = <?php echo $paramssld['light_box_retinaimage'];?>;
+	var lightbox_retinaUrl = <?php echo $paramssld['light_box_retinaurl'];?>;
+	var lightbox_retinaSuffix = "<?php echo $paramssld['light_box_retinasuffix'];?>";
+	
+				jQuery(document).ready(function(){
+				jQuery("#huge_it_portfolio_content a[href$='.jpg'], #huge_it_portfolio_content a[href$='.png'], #huge_it_portfolio_content a[href$='.gif']").addClass('group1');
+				jQuery(".group1").colorbox({rel:'group1'});
+				jQuery(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				jQuery('.non-retina').colorbox({rel:'group5', transition:'none'})
+				jQuery('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+
+				jQuery("#click").click(function(){ 
+					jQuery('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		
+</script>
 	<!--Huge IT portfolio START-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link href="<?php echo plugins_url('../style/colorbox.css', __FILE__);?>" rel="stylesheet" type="text/css" />
+	<?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( !(is_plugin_active( 'lightbox/lightbox.php' ) )) { 
+		?>
+	<link href="<?php echo plugins_url('../style/colorbox-'.$paramssld['light_box_style'].'.css', __FILE__);?>" rel="stylesheet" type="text/css" />
+	<?php } ?>
 	<link href="<?php echo plugins_url('../style/portfolio-all.css', __FILE__);?>" rel="stylesheet" type="text/css" />
-	<script src="<?php echo plugins_url('../js/jquery.colorbox-min.js', __FILE__);?>"></script>
+	<script src="<?php echo plugins_url('../js/jquery.colorbox.js', __FILE__);?>"></script>
 	<script src="<?php echo plugins_url('../js/portfolio-all.js', __FILE__);?>"></script>
-	<link rel="stylesheet" href="<?php echo plugins_url('../css/style2-os.css', __FILE__);?>" />
+	<link rel="stylesheet" href="<?php echo plugins_url('../style/style2-os.css', __FILE__);?>" />
 	<script src="<?php echo plugins_url('../js/jquery.hugeitmicro.min.js', __FILE__);?>"></script>
 	<link href="<?php echo plugins_url('../style/lightbox.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	
@@ -30,15 +183,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	<?php
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( !(is_plugin_active( 'wp-lightbox-2/wp-lightbox-2.php' ) )) { ?>
-		<script>
-			/* jQuery Lightbox @author Warren Krewenki */
-			(function(a){a.fn.lightbox=function(h){var s=a.extend({},a.fn.lightbox.defaults,h);return this.each(function(){a(this).click(function(){e();n(this);return false;});});function e(){a("#overlay").remove();a("#lightbox").remove();s.inprogress=false;if(s.jsonData&&s.jsonData.length>0){var y=s.jsonDataParser?s.jsonDataParser:a.fn.lightbox.parseJsonData;s.imageArray=[];s.imageArray=y(s.jsonData);}var v='<div id="outerImageContainer"><div id="imageContainer"><iframe id="lightboxIframe" /><img id="lightboxImage"><div id="hoverNav"><a href="javascript://" title="'+s.strings.prevLinkTitle+'" id="prevLink"></a><a href="javascript://" id="nextLink" title="'+s.strings.nextLinkTitle+'"></a></div><div id="loading"><a href="javascript://" id="loadingLink"><img src="'+s.fileLoadingImage+'"></a></div></div></div>';var x='<div id="imageDataContainer" class="clearfix"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav">';if(s.displayHelp){x+='<span id="helpDisplay">'+s.strings.help+"</span>";}x+='<a href="javascript://" id="bottomNavClose" title="'+s.strings.closeTitle+'"><img src="'+s.fileBottomNavCloseImage+'"></a></div></div></div>';var w;if(s.navbarOnTop){w='<div id="overlay"></div><div id="lightbox">'+x+v+"</div>";a("body").append(w);a("#imageDataContainer").addClass("ontop");}else{w='<div id="overlay"></div><div id="lightbox">'+v+x+"</div>";a("body").append(w);}a("#overlay").click(function(){l();}).hide();a("#lightbox").click(function(){l();}).hide();a("#loadingLink").click(function(){l();return false;});a("#bottomNavClose").click(function(){l();return false;});a("#outerImageContainer").width(s.widthCurrent).height(s.heightCurrent);a("#imageDataContainer").width(s.widthCurrent);if(!s.imageClickClose){a("#lightboxImage").click(function(){return false;});a("#hoverNav").click(function(){return false;});}}function u(){var v=new Array(a(document).width(),a(document).height(),a(window).width(),a(window).height());return v;}function g(){var x,v;if(self.pageYOffset){v=self.pageYOffset;x=self.pageXOffset;}else{if(document.documentElement&&document.documentElement.scrollTop){v=document.documentElement.scrollTop;x=document.documentElement.scrollLeft;}else{if(document.body){v=document.body.scrollTop;x=document.body.scrollLeft;}}}var w=new Array(x,v);return w;}function o(x){var w=new Date();var v=null;do{v=new Date();}while(v-w<x);}function n(z){a('select, embed, object[class!="player"]').hide(); var w=u();a("#overlay").hide().css({width:"100%",height:w[1]+"px",opacity:s.overlayOpacity}).fadeIn();imageNum=0;if(!s.jsonData){s.imageArray=[];if(!z.rel||(z.rel=="")){s.imageArray.push(new Array(z.href,s.displayTitle?z.title:""));}else{a("a").each(function(){if(this.href&&(this.rel==z.rel)){s.imageArray.push(new Array(this.href,s.displayTitle?this.title:""));}});}}if(s.imageArray.length>1){for(i=0;i<s.imageArray.length;i++){for(j=s.imageArray.length-1;j>i;j--){if(s.imageArray[i][0]==s.imageArray[j][0]){s.imageArray.splice(j,1);}}}while(s.imageArray[imageNum][0]!=z.href){imageNum++;}}var v=g();var y=v[1]+(w[3]/10);var x=v[0];a("#lightbox").css({top:y+"px",left:x+"px"}).show();if(!s.slideNavBar){a("#imageData").hide();}t(imageNum);}function t(v){if(s.inprogress==false){s.inprogress=true;s.activeImage=v;a("#loading").show();a("#lightboxImage").hide();a("#hoverNav").hide();a("#prevLink").hide();a("#nextLink").hide();if(s.slideNavBar){a("#imageDataContainer").hide();a("#imageData").hide();k();}else{k();}}}function k(){imgPreloader=new Image();imgPreloader.onload=function(){var z=imgPreloader.width;var v=imgPreloader.height;if(s.fitToScreen){var x=u();var y;var w=x[2]-2*s.borderSize;var A=x[3]-200;if(imgPreloader.height>A){z=parseInt((A/imgPreloader.height)*imgPreloader.width);v=A;}else{if(imgPreloader.width>w){v=parseInt((w/imgPreloader.width)*imgPreloader.height);z=w;}}}a("#lightboxImage").attr("src",s.imageArray[s.activeImage][0]).width(z).height(v);m(z,v);};imgPreloader.src=s.imageArray[s.activeImage][0];}function l(){p();a("#lightbox").hide();a("#overlay").fadeOut();a('select, embed, object[class!="player"]').show();}function f(){if(s.loopImages&&s.imageArray.length>1){preloadNextImage=new Image();preloadNextImage.src=s.imageArray[(s.activeImage==(s.imageArray.length-1))?0:s.activeImage+1][0];preloadPrevImage=new Image();preloadPrevImage.src=s.imageArray[(s.activeImage==0)?(s.imageArray.length-1):s.activeImage-1][0];}else{if((s.imageArray.length-1)>s.activeImage){preloadNextImage=new Image();preloadNextImage.src=s.imageArray[s.activeImage+1][0];}if(s.activeImage>0){preloadPrevImage=new Image();preloadPrevImage.src=s.imageArray[s.activeImage-1][0];}}}function m(y,w){s.widthCurrent=a("#outerImageContainer").outerWidth();s.heightCurrent=a("#outerImageContainer").outerHeight();var v=Math.max(350,y+(s.borderSize*2));var x=(w+(s.borderSize*2));s.xScale=(v/s.widthCurrent)*100;s.yScale=(x/s.heightCurrent)*100;wDiff=s.widthCurrent-v;hDiff=s.heightCurrent-x;a("#imageDataContainer").animate({width:v},s.resizeSpeed,"linear");a("#outerImageContainer").animate({width:v},s.resizeSpeed,"linear",function(){a("#outerImageContainer").animate({height:x},s.resizeSpeed,"linear",function(){d();});});if((hDiff==0)&&(wDiff==0)){if(jQuery.browser.msie){o(250);}else{o(100);}}a("#prevLink").height(w);a("#nextLink").height(w);}function d(){a("#loading").hide();a("#lightboxImage").fadeIn("fast");c();f();s.inprogress=false;}function c(){a("#numberDisplay").html("");if(s.imageArray[s.activeImage][1]){a("#caption").html(s.imageArray[s.activeImage][1]).show();}if(s.imageArray.length>1){var w;w=s.strings.image+(s.activeImage+1)+s.strings.of+s.imageArray.length;if(!s.disableNavbarLinks){if((s.activeImage)>0||s.loopImages){w='<a title="'+s.strings.prevLinkTitle+'" href="#" id="prevLinkText">'+s.strings.prevLinkText+"</a>"+w;}if(((s.activeImage+1)<s.imageArray.length)||s.loopImages){w+='<a title="'+s.strings.nextLinkTitle+'" href="#" id="nextLinkText">'+s.strings.nextLinkText+"</a>";}}a("#numberDisplay").html(w).show();}if(s.slideNavBar){a("#imageData").slideDown(s.navBarSlideSpeed);}else{a("#imageData").show();}var v=u();a("#overlay").height(v[1]);q();}function q(){if(s.imageArray.length>1){a("#hoverNav").show();if(s.loopImages){a("#prevLink,#prevLinkText").show().click(function(){t((s.activeImage==0)?(s.imageArray.length-1):s.activeImage-1);return false;});a("#nextLink,#nextLinkText").show().click(function(){t((s.activeImage==(s.imageArray.length-1))?0:s.activeImage+1);return false;});}else{if(s.activeImage!=0){a("#prevLink,#prevLinkText").show().click(function(){t(s.activeImage-1);return false;});}if(s.activeImage!=(s.imageArray.length-1)){a("#nextLink,#nextLinkText").show().click(function(){t(s.activeImage+1);return false;});}}b();}}function r(y){var z=y.data.opts;var v=y.keyCode;var w=27;var x=String.fromCharCode(v).toLowerCase();if((x=="x")||(x=="o")||(x=="c")||(v==w)){l();}else{if((x=="p")||(v==37)){if(z.loopImages){p();t((z.activeImage==0)?(z.imageArray.length-1):z.activeImage-1);}else{if(z.activeImage!=0){p();t(z.activeImage-1);}}}else{if((x=="n")||(v==39)){if(s.loopImages){p();t((z.activeImage==(z.imageArray.length-1))?0:z.activeImage+1);}else{if(z.activeImage!=(z.imageArray.length-1)){p();t(z.activeImage+1);}}}}}}function b(){a(document).bind("keydown",{opts:s},r);}function p(){a(document).unbind("keydown");}};a.fn.lightbox.parseJsonData=function(c){var b=[];a.each(c,function(){b.push(new Array(this.url,this.title));});return b;};a.fn.lightbox.defaults={fileLoadingImage:"<?php echo plugins_url('../images/loading.white.gif', __FILE__);?>",fileBottomNavCloseImage:"<?php echo plugins_url('../images/close.gif', __FILE__);?>",overlayOpacity:0.8,borderSize:10,imageArray:new Array,activeImage:null,inprogress:false,resizeSpeed:350,widthCurrent:250,heightCurrent:250,xScale:1,yScale:1,displayTitle:true,navbarOnTop:false,slideNavBar:false,navBarSlideSpeed:350,displayHelp:false,strings:{help:" \u2190 / P - previous image\u00a0\u00a0\u00a0\u00a0\u2192 / N - next image\u00a0\u00a0\u00a0\u00a0ESC / X - close image gallery",prevLinkTitle:"previous image",nextLinkTitle:"next image",prevLinkText:"&laquo; Previous",nextLinkText:"Next &raquo;",closeTitle:"close image gallery",image:"Image ",of:" of "},fitToScreen:false,disableNavbarLinks:false,loopImages:false,imageClickClose:true,jsonData:null,jsonDataParser:null};})(jQuery);	
-			jQuery(document).ready(function(){
-			/*#################### LIGHTBOX START ###################################*/
-			jQuery("#content a[href$='.jpg'], #content a[href$='.png'], #content a[href$='.gif']").attr({"rel":"content"});
-			jQuery("a[href$='.jpg'], a[href$='.png'], a[href$='.gif']").lightbox({fitToScreen:true,loopImages:true,imageClickClose:true,disableNavbarLinks:true});
-			});
-		</script>
+
 	<?php } ?>
 	
 	
@@ -2448,7 +2593,7 @@ $container.hugeitmicro({
 					<?php 	if($row->image_url != ';'){ ?>
 					<a href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
-					<img class="main-image" src="../images/noimage.jpg" alt="" />
+					<img class="main-image" src="images/noimage.jpg" alt="" />
 					<?php
 					} ?>
 					
@@ -2580,7 +2725,7 @@ $container.hugeitmicro({
 					<?php 	if($row->image_url != ';'){ ?>
 					<a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="../images/noimage.jpg" alt="" />
+					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
 					<?php
 					} ?>	
 			</div>

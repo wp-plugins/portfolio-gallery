@@ -4,7 +4,7 @@
 Plugin Name: Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.0.9
+Version: 1.1.0
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -210,11 +210,13 @@ function huge_it_portfolio_options_panel()
     $page_cat = add_menu_page('Theme page title', 'Huge IT Portfolio', 'manage_options', 'portfolios_huge_it_portfolio', 'portfolios_huge_it_portfolio', plugins_url('images/huge_it_portfolioLogoHover -for_menu.png', __FILE__));
     add_submenu_page('portfolios_huge_it_portfolio', 'Portfolios', 'Portfolios', 'manage_options', 'portfolios_huge_it_portfolio', 'portfolios_huge_it_portfolio');
     $page_option = add_submenu_page('portfolios_huge_it_portfolio', 'General Options', 'General Options', 'manage_options', 'Options_portfolio_styles', 'Options_portfolio_styles');
+	$lightbox_options = add_submenu_page('portfolios_huge_it_portfolio', 'Lightbox Options', 'Lightbox Options', 'manage_options', 'Options_portfolio_lightbox_styles', 'Options_portfolio_lightbox_styles');
 	add_submenu_page( 'portfolios_huge_it_portfolio', 'Licensing', 'Licensing', 'manage_options', 'huge_it_portfolio_Licensing', 'huge_it_portfolio_Licensing');
 
 
 	add_action('admin_print_styles-' . $page_cat, 'huge_it_portfolio_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_portfolio_option_admin_script');
+	add_action('admin_print_styles-' . $lightbox_options, 'huge_it_portfolio_option_admin_script');
 }
 function huge_it_portfolio_Licensing(){
 
@@ -336,7 +338,15 @@ function Options_portfolio_styles()
             save_styles_options();
     showStyles();
 }
-
+function Options_portfolio_lightbox_styles()
+{
+    require_once("admin/portfolio_lightbox_func.php");
+    require_once("admin/portfolio_lightbox_view.php");
+    if (isset($_GET['task']))
+        if ($_GET['task'] == 'save')
+            save_styles_options();
+    showStyles();
+}
 
 
 /**
@@ -717,7 +727,75 @@ INSERT INTO `$table_name` (`id`, `name`, `sl_height`, `sl_width`, `pause_on_hove
       $wpdb->query($sql_3);
     }
 
-		
+			///////////////////////////update////////////////////////////////////
+    $table_name = $wpdb->prefix . "huge_itportfolio_params";
+	    $sql_update_p1 = <<<query1
+INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+('light_box_size', 'Light box size', 'Light box size', '17'),
+('light_box_width', 'Light Box width', 'Light Box width', '500'),
+('light_box_transition', 'Light Box Transition', 'Light Box Transition', 'elastic'),
+('light_box_speed', 'Light box speed', 'Light box speed', '800'),
+('light_box_href', 'Light box href', 'Light box href', 'False'),
+('light_box_title', 'Light box Title', 'Light box Title', 'false'),
+('light_box_scalephotos', 'Light box scalePhotos', 'Light box scalePhotos', 'true'),
+('light_box_rel', 'Light Box rel', 'Light Box rel', 'false'),
+('light_box_scrolling', 'Light box Scrollin', 'Light box Scrollin', 'false'),
+('light_box_opacity', 'Light box Opacity', 'Light box Opacity', '20'),
+('light_box_open', 'Light box Open', 'Light box Open', 'false'),
+('light_box_overlayclose', 'Light box overlayClose', 'Light box overlayClose', 'true'),
+('light_box_esckey', 'Light box escKey', 'Light box escKey', 'false'),
+('light_box_arrowkey', 'Light box arrowKey', 'Light box arrowKey', 'false'),
+('light_box_loop', 'Light box loop', 'Light box loop', 'true'),
+('light_box_data', 'Light box data', 'Light box data', 'false'),
+('light_box_classname', 'Light box className', 'Light box className', 'false'),
+('light_box_fadeout', 'Light box fadeOut', 'Light box fadeOut', '300'),
+('light_box_closebutton', 'Light box closeButton', 'Light box closeButton', 'false'),
+('light_box_current', 'Light box current', 'Light box current', 'image'),
+('light_box_previous', 'Light box previous', 'Light box previous', 'previous'),
+('light_box_next', 'Light box next', 'Light box next', 'next'),
+('light_box_close', 'Light box close', 'Light box close', 'close'),
+('light_box_iframe', 'Light box iframe', 'Light box iframe', 'false'),
+('light_box_inline', 'Light box inline', 'Light box inline', 'false'),
+('light_box_html', 'Light box html', 'Light box html', 'false'),
+('light_box_photo', 'Light box photo', 'Light box photo', 'false'),
+('light_box_height', 'Light box height', 'Light box height', '500'),
+('light_box_innerwidth', 'Light box innerWidth', 'Light box innerWidth', 'false'),
+('light_box_innerheight', 'Light box innerHeight', 'Light box innerHeight', 'false'),
+('light_box_initialwidth', 'Light box initialWidth', 'Light box initialWidth', '300'),
+('light_box_initialheight', 'Light box initialHeight', 'Light box initialHeight', '100'),
+('light_box_maxwidth', 'Light box maxWidth', 'Light box maxWidth', '768'),
+('light_box_maxheight', 'Light box maxHeight', 'Light box maxHeight', '500'),
+('light_box_slideshow', 'Light box slideshow', 'Light box slideshow', 'false'),
+('light_box_slideshowspeed', 'Light box slideshowSpeed', 'Light box slideshowSpeed', '2500'),
+('light_box_slideshowauto', 'Light box slideshowAuto', 'Light box slideshowAuto', 'true'),
+('light_box_slideshowstart', 'Light box slideshowStart', 'Light box slideshowStart', 'start slideshow'),
+('light_box_slideshowstop', 'Light box slideshowStop', 'Light box slideshowStop', 'stop slideshow'),
+('light_box_fixed', 'Light box fixed', 'Light box fixed', 'true'),
+('light_box_top', 'Light box top', 'Light box top', 'false'),
+('light_box_bottom', 'Light box bottom', 'Light box bottom', 'false'),
+('light_box_left', 'Light box left', 'Light box left', 'false'),
+('light_box_right', 'Light box right', 'Light box right', 'false'),
+('light_box_reposition', 'Light box reposition', 'Light box reposition', 'false'),
+('light_box_retinaimage', 'Light box retinaImage', 'Light box retinaImage', 'true'),
+('light_box_retinaurl', 'Light box retinaUrl', 'Light box retinaUrl', 'false'),
+('light_box_retinasuffix', 'Light box retinaSuffix', 'Light box retinaSuffix', '@2x.$1'),
+('light_box_returnfocus', 'Light box returnFocus', 'Light box returnFocus', 'true'),
+('light_box_trapfocus', 'Light box trapFocus', 'Light box trapFocus', 'true'),
+('light_box_fastiframe', 'Light box fastIframe', 'Light box fastIframe', 'true'),
+('light_box_preloading', 'Light box preloading', 'Light box preloading', 'true'),
+('slider_title_position', 'Slider title position', 'Slider title position', '5'),
+('light_box_style', 'Light Box style', 'Light Box style', '1'),
+('light_box_size_fix', 'Light Box size fix style', 'Light Box size fix style', 'false');
+
+query1;
+
+
+	global $wpdb;
+	$query="SELECT name FROM ".$wpdb->prefix."huge_itportfolio_params";
+	$update_p1=$wpdb->get_results($query);
+	if(end($update_p1)->name=='ht_view6_width'){
+		$wpdb->query($sql_update_p1);
+	}
 
 }
 

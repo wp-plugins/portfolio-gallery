@@ -647,3 +647,82 @@
 	display: block;
 	height: 55px;
 }
+
+/*###########LIGHTBOX###############*/
+
+
+.lightbox-options-block {
+	position:relative;
+	width:48%;
+	margin:10px 1% 10px 1px;
+	float:left;
+	background:#fff;
+}
+
+
+.lightbox-options-block > div {
+	position:relative;
+	padding:10px 10px 5px 10px;
+	clear:both;
+}
+
+.lightbox-options-block   h3 { 
+	text-align: center;
+}
+
+
+
+.lightbox-options-block > div label {
+	display:inline-block;
+	width:50%;
+	height:35px;
+} 
+
+
+.lightbox-options-block > div.has-background {background:#f9f9f9;}
+
+
+.lightbox-options-block > div label {
+	float:left;
+}
+
+.lightbox-options-block > div.has-height > div {display:inline-block;}
+
+
+
+.lightbox-options-block > div div.lightbox-container {
+	position:relative;
+	display: inline-block;
+	width: 100px;
+	margin-left:-5px;
+}
+
+.lightbox-options-block > div div.lightbox-container span {
+	position:absolute;
+	top:-3px;
+	right:0px;
+}
+
+.lightbox-options-block > div input[type='text'],.lightbox-options-block > div select , .lightbox-options-block > div input[type='number'] {
+	width:100px;
+}
+
+.lightbox-options-block > div .bws_position_table input {
+	margin:3px 17px 3px 3px;
+}
+
+
+.lightbox-options-block > div div.slider-container {
+	position:relative;
+	display: inline-block;
+	width: 145px;
+	margin-left:-5px;
+}
+
+.lightbox-options-block > div div.slider-container span {
+	position:absolute;
+	top:-3px;
+	right:0px;
+}
+
+.lightbox-options-block  > div.fixed-size {display:none;}

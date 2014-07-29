@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/portfolio-gallery/
 Tags: Portfolio Gallery, portfolio, portfolios, page, pages, picture, pictures, album, custom fields, image, image description, images, image display, image-size, images gallery, gallery, jpeg, jpg, png, labels, posts, post, visual items, thumbnails, screenshots, screenshot, image gallery, FAQ, FAQ widget, answer, answers, wordpress FAQ, questions, list, grid, web designer, slider, sliders, wordpress slider, wordpress slideshow, wp slider, slide, slide show, slider, slider plugin, slider widget, slides, slideshow, slideshow manager, gallery description, slideshow plugin, gallery slider,  galeri, galerie, vertical slides, widget, widget slider, widget slideshow, widgets, foto, seo, posts slider, responsive, responsive slider, responsive slideshow, Photo Slider, plugin, Image Rotator, carousel, wordpress photo gallery plugin, wordpress gallery, wordpress gallery plugin, banner rotator, best gallery, best gallery plugin, image album, image gallery plugin, images gallery, media, photo, photo album, photo albums, photo gallery, photogallery, photos, nextgen, nextgen gallery, photoset, picture, pictures, Simple gallery, website gallery, widget gallery, wp gallery plugins, wp gallery, photoalbum, view images, multiple pictures, category, categories, plugin, plugins, thumbs, shortcode, lightbox, lightbox photo, image lightbox, gallery lightbox, content slider, wordpress portfolio, galleries, galleria, wordpress portfolio plugin, project, photography, dashboard, projects, custom, filterable gallery, filterable portfolio, jquery portfolio, jquery gallery, sortable portfolio, prettyphoto, picture gallery, picture portfolio,
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,9 @@ Now you can set your Portfolio Gallery options, images and use our portfolio gal
 
 = 1.0.9 =
 *  Add image Bug fixed in Portfolio Gallery.
+
+= 1.1.0 =
+*  The lightbox has been changed from old one to new and better.
 
 ==Wordpress Adding a Portfolio Gallery==
 
