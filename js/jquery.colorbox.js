@@ -82,7 +82,7 @@
 		},
 		href: function() {
 			// using this.href would give the absolute url, when the href may have been inteded as a selector (e.g. '#container')
-			return $(this).attr('href');
+			return jQuery(this).attr('href');
 		},
 		
 		title: function() {
@@ -127,7 +127,7 @@
 	$prev,
 	$close,
 	$groupControls,
-	$events = $('<a/>'), // $({}) would be prefered, but there is an issue with jQuery 1.4.2
+	$events = jQuery('<a/>'), // jQuery({}) would be prefered, but there is an issue with jQuery 1.4.2
 	
 	// Variables for cached values or use across multiple functions
 	settings,
@@ -163,13 +163,13 @@
 			element.style.cssText = css;
 		}
 
-		return $(element);
+		return jQuery(element);
 	}
 	
 	// Get the window height using innerHeight when available to avoid an issue with iOS
 	// http://bugs.jquery.com/ticket/6724
 	function winheight() {
-		return window.innerHeight ? window.innerHeight : $(window).height();
+		return window.innerHeight ? window.innerHeight : jQuery(window).height();
 	}
 
 	function Settings(element, options) {
@@ -184,7 +184,7 @@
 			var dataAttr;
 
 			if (this.cache[key] === undefined) {
-				dataAttr = $(this.el).attr('data-cbox-'+key);
+				dataAttr = jQuery(this.el).attr('data-cbox-'+key);
 
 				if (dataAttr !== undefined) {
 					this.cache[key] = dataAttr;
@@ -246,7 +246,7 @@
 		index = 0;
 		
 		if (rel && rel !== false && rel !== 'nofollow') {
-			$related = $('.' + boxElement).filter(function () {
+			$related = jQuery('.' + boxElement).filter(function () {
 				var options = $.data(this, colorbox);
 				var settings = new Settings(this, options);
 				return (settings.get('rel') === rel);
@@ -259,13 +259,13 @@
 				index = $related.length - 1;
 			}
 		} else {
-			$related = $(settings.el);
+			$related = jQuery(settings.el);
 		}
 	}
 
 	function trigger(event) {
 		// for external use
-		$(document).trigger(event);
+		jQuery(document).trigger(event);
 		// for internal use
 		$events.triggerHandler(event);
 	}
@@ -356,7 +356,7 @@
 
 		if (!closing) {
 
-			options = $(element).data(colorbox);
+			options = jQuery(element).data(colorbox);
 
 			settings = new Settings(element, options);
 			
@@ -414,7 +414,7 @@
 				// Return focus on closing
 				if (settings.get('returnFocus')) {
 					$events.one(event_closed, function () {
-						$(settings.el).focus();
+						jQuery(settings.el).focus();
 					});
 				}
 			}
@@ -440,7 +440,7 @@
 	function appendHTML() {
 		if (!$box && document.body) {
 			init = false;
-			$window = $(window);
+			$window = jQuery(window);
 			$box = $tag(div).attr({
 				id: colorbox,
 				'class': $.support.opacity === false ? prefix + 'IE' : '', // class for optional IE8 & lower targeted CSS.
@@ -448,18 +448,18 @@
 				tabindex: '-1'
 			}).hide();
 			$overlay = $tag(div, "Overlay").hide();
-			$loadingOverlay = $([$tag(div, "LoadingOverlay")[0],$tag(div, "LoadingGraphic")[0]]);
+			$loadingOverlay = jQuery([$tag(div, "LoadingOverlay")[0],$tag(div, "LoadingGraphic")[0]]);
 			$wrap = $tag(div, "Wrapper");
 			$content = $tag(div, "Content").append(
 				$title = $tag(div, "Title"),
 				$current = $tag(div, "Current"),
-				$prev = $('<button type="button"/>').attr({id:prefix+'Previous'}),
-				$next = $('<button type="button"/>').attr({id:prefix+'Next'}),
+				$prev = jQuery('<button type="button"/>').attr({id:prefix+'Previous'}),
+				$next = jQuery('<button type="button"/>').attr({id:prefix+'Next'}),
 				$slideshow = $tag('button', "Slideshow"),
 				$loadingOverlay
 			);
 
-			$close = $('<button type="button"/>').attr({id:prefix+'Close'});
+			$close = jQuery('<button type="button"/>').attr({id:prefix+'Close'});
 			
 			$wrap.append( // The 3x3 Grid that makes up Colorbox
 				$tag(div).append(
@@ -483,7 +483,7 @@
 			
 			$groupControls = $next.add($prev).add($current).add($slideshow);
 
-			$(document.body).append($overlay, $box.append($wrap, $loadingBay));
+			jQuery(document.body).append($overlay, $box.append($wrap, $loadingBay));
 		}
 	}
 
@@ -519,7 +519,7 @@
 				});
 				
 				// Key Bindings
-				$(document).bind('keydown.' + prefix, function (e) {
+				jQuery(document).bind('keydown.' + prefix, function (e) {
 					var key = e.keyCode;
 					if (open && settings.get('escKey') && key === 27) {
 						e.preventDefault();
@@ -538,12 +538,12 @@
 
 				if ($.isFunction($.fn.on)) {
 					// For jQuery 1.7+
-					$(document).on('click.'+prefix, '.'+boxElement, clickHandler);
+					jQuery(document).on('click.'+prefix, '.'+boxElement, clickHandler);
 				} else {
 					// For jQuery 1.3.x -> 1.6.x
 					// This code is never reached in jQuery 1.9, so do not contact me about 'live' being removed.
 					// This is not here for jQuery 1.9, it's here for legacy users.
-					$('.'+boxElement).live('click.'+prefix, clickHandler);
+					jQuery('.'+boxElement).live('click.'+prefix, clickHandler);
 				}
 			}
 			return true;
@@ -557,7 +557,7 @@
 	}
 
 	// Append the HTML when the DOM loads
-	$(appendHTML);
+	jQuery(appendHTML);
 
 
 	// ****************
@@ -573,7 +573,7 @@
 		options = options || {};
 
 		if ($.isFunction($obj)) { // assume a call to $.colorbox
-			$obj = $('<a/>');
+			$obj = jQuery('<a/>');
 			options.open = true;
 		} else if (!$obj[0]) { // colorbox being applied to empty collection
 			return $obj;
@@ -780,7 +780,7 @@
 		
 		// floating the IMG removes the bottom line-height and fixed a problem where IE miscalculates the width of the parent element as 100% of the document width.
 		
-		$(photo).css({'float': 'none'});
+		jQuery(photo).css({'float': 'none'});
 
 		setClass(settings.get('className'));
 
@@ -854,7 +854,7 @@
 					iframe.scrolling = "no";
 				}
 				
-				$(iframe)
+				jQuery(iframe)
 					.attr({
 						src: settings.get('href'),
 						name: (new Date()).getTime(), // give the iframe a unique name to prevent caching
@@ -869,7 +869,7 @@
 				});
 
 				if (settings.get('fastIframe')) {
-					$(iframe).trigger('load');
+					jQuery(iframe).trigger('load');
 				}
 			} else {
 				complete();
@@ -932,10 +932,10 @@
 		}, 100);
 		
 		if (settings.get('inline')) {
-			var $target = $(href);
+			var $target = jQuery(href);
 			// Inserts an empty placeholder where inline content is being pulled from.
 			// An event is bound to put inline content back when Colorbox closes or loads new content.
-			$inline = $('<div>').hide().insertBefore($target);
+			$inline = jQuery('<div>').hide().insertBefore($target);
 
 			$events.one(event_purge, function () {
 				$inline.replaceWith($target);
@@ -954,7 +954,7 @@
 
 			photo = new Image();
 
-			$(photo)
+			jQuery(photo)
 			.addClass(prefix + 'Photo')
 			.bind('error',function () {
 				prep($tag(div, 'Error').html(settings.get('imgError')));
@@ -970,7 +970,7 @@
 					var percent;
 
 					$.each(['alt', 'longdesc', 'aria-describedby'], function(i,val){
-						var attr = $(settings.el).attr(val) || $(settings.el).attr('data-'+val);
+						var attr = jQuery(settings.el).attr(val) || jQuery(settings.el).attr('data-'+val);
 						if (attr) {
 							photo.setAttribute(val, attr);
 						}
@@ -1018,7 +1018,7 @@
 		} else if (href) {
 			$loadingBay.load(href, settings.get('data'), function (data, status) {
 				if (request === requests) {
-					prep(status === 'error' ? $tag(div, 'Error').html(settings.get('xhrError')) : $(this).contents());
+					prep(status === 'error' ? $tag(div, 'Error').html(settings.get('xhrError')) : jQuery(this).contents());
 				}
 			});
 		}
@@ -1075,17 +1075,17 @@
 		$overlay.remove();
 		closing = false;
 		$box = null;
-		$('.' + boxElement)
+		jQuery('.' + boxElement)
 			.removeData(colorbox)
 			.removeClass(boxElement);
 
-		$(document).unbind('click.'+prefix).unbind('keydown.'+prefix);
+		jQuery(document).unbind('click.'+prefix).unbind('keydown.'+prefix);
 	};
 
 	// A method for fetching the current element Colorbox is referencing.
 	// returns a jQuery object.
 	publicMethod.element = function () {
-		return $(settings.el);
+		return jQuery(settings.el);
 	};
 
 	publicMethod.settings = defaults;

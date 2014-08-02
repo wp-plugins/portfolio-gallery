@@ -1,5 +1,4 @@
 <?php
-
 if (function_exists('current_user_can'))
     if (!current_user_can('manage_options')) {
         die('Access Denied');
@@ -8,23 +7,12 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 
-
-
 function      html_showStyles($param_values, $op_type)
 {
-
-
-    ?>
-
-	
-	
-	
-	
+    ?>	
 <script>
-
-
 jQuery(document).ready(function () {
-	var strliID=$(location).attr('hash');
+	var strliID=jQuery(location).attr('hash');
 	//alert(strliID);
 	jQuery('#portfolio-view-tabs li').removeClass('active');
 	if(jQuery('#portfolio-view-tabs li a[href="'+strliID+'"]').length>0){
@@ -40,9 +28,9 @@ jQuery(document).ready(function () {
 	}else {
 		jQuery('#portfolio-view-tabs-contents li[data-id="portfolio-view-options-0"]').addClass('active');
 	}
-	$('input[data-slider="true"]').bind("slider:changed", function (event, data) {
-		 $(this).parent().find('span').html(parseInt(data.value)+"%");
-		 $(this).val(parseInt(data.value));
+	jQuery('input[data-slider="true"]').bind("slider:changed", function (event, data) {
+		 jQuery(this).parent().find('span').html(parseInt(data.value)+"%");
+		 jQuery(this).val(parseInt(data.value));
 	});	
 });
 </script>
@@ -51,11 +39,11 @@ jQuery(document).ready(function () {
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
 	<div class="slider-options-head">
 		<div style="float: left;">
-			<div><a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">User Manual</a></div>
-			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">More...</a></div>
+			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
+			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
 		</div>
 		<div style="float: right;">
-			<a class="header-logo-text" href="http://huge-it.com/portolio-gallery/" target="_blank">
+			<a class="header-logo-text" href="http://huge-it.com/portfolio-gallery/" target="_blank">
 				<div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
 				<div>Get the full version</div>
 			</a>
@@ -63,7 +51,6 @@ jQuery(document).ready(function () {
 	</div>
 <div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
-
 
 		<div id="post-body-content" class="portfolio-options">
 			<div id="post-body-heading">

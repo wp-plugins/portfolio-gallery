@@ -30,7 +30,7 @@ var __slice = [].slice,
         this.settings.classSuffix = "-" + this.settings.theme;
       }
       this.input.hide();
-      this.slider = $("<div>").addClass("slider" + (this.settings.classSuffix || "")).css({
+      this.slider = jQuery("<div>").addClass("slider" + (this.settings.classSuffix || "")).css({
         position: "relative",
         userSelect: "none",
         boxSizing: "border-box"
@@ -81,10 +81,10 @@ var __slice = [].slice,
         _this.domDrag(e.pageX, e.pageY);
         return false;
       });
-      $("body").mousemove(function(e) {
+      jQuery("body").mousemove(function(e) {
         if (_this.dragging) {
           _this.domDrag(e.pageX, e.pageY);
-          return $("body").css({
+          return jQuery("body").css({
             cursor: "pointer"
           });
         }
@@ -92,7 +92,7 @@ var __slice = [].slice,
         if (_this.dragging) {
           _this.dragging = false;
           _this.dragger.removeClass("dragging");
-          return $("body").css({
+          return jQuery("body").css({
             cursor: "auto"
           });
         }
@@ -116,7 +116,7 @@ var __slice = [].slice,
 
     SimpleSlider.prototype.createDivElement = function(classname) {
       var item;
-      item = $("<div>").addClass(classname).css({
+      item = jQuery("<div>").addClass(classname).css({
         position: "absolute",
         top: "50%",
         userSelect: "none",
@@ -310,22 +310,22 @@ var __slice = [].slice,
       var params, publicMethods, settingsOrMethod;
       settingsOrMethod = arguments[0], params = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       publicMethods = ["setRatio", "setValue"];
-      return $(this).each(function() {
+      return jQuery(this).each(function() {
         var obj, settings;
         if (settingsOrMethod && __indexOf.call(publicMethods, settingsOrMethod) >= 0) {
-          obj = $(this).data("slider-object");
+          obj = jQuery(this).data("slider-object");
           return obj[settingsOrMethod].apply(obj, params);
         } else {
           settings = settingsOrMethod;
-          return $(this).data("slider-object", new SimpleSlider($(this), settings));
+          return jQuery(this).data("slider-object", new SimpleSlider(jQuery(this), settings));
         }
       });
     }
   });
-  return $(function() {
-    return $("[data-slider]").each(function() {
+  return jQuery(function() {
+    return jQuery("[data-slider]").each(function() {
       var $el, allowedValues, settings, x;
-      $el = $(this);
+      $el = jQuery(this);
       settings = {};
       allowedValues = $el.data("slider-values");
       if (allowedValues) {

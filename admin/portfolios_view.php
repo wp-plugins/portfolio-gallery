@@ -51,11 +51,11 @@ function html_showportfolios( $rows,  $pageNav,$sort,$cat_row){
 	<?php $path_site2 = plugins_url("../images", __FILE__); ?>
 	<div class="slider-options-head">
 		<div style="float: left;">
-			<div><a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">User Manual</a></div>
-			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">More...</a></div>
+			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
+			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
 		</div>
 		<div style="float: right;">
-			<a class="header-logo-text" href="http://huge-it.com/portolio-gallery/" target="_blank">
+			<a class="header-logo-text" href="http://huge-it.com/portfolio-gallery/" target="_blank">
 				<div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
 				<div>Get the full version</div>
 			</a>
@@ -237,7 +237,7 @@ jQuery(function() {
 	  },
 	  revert: true
 	});
-   // $( "ul, li" ).disableSelection();
+   // jQuery( "ul, li" ).disableSelection();
 	});
 </script>
 
@@ -315,7 +315,7 @@ jQuery(function() {
 											imgurl = jQuery('img', html).attr('src');
 											window.parent.uploadID.val(imgurl+';');
 											tb_remove();
-											$("#save-buttom").click();
+											jQuery("#save-buttom").click();
 										};
 									});
 									
@@ -396,7 +396,7 @@ jQuery(function() {
 											window.parent.uploadID.val(imgurl);
 											if(jQuery('#post-body-heading input').val()!=""){
 												jQuery('#post-body-heading input').val(jQuery('#post-body-heading input').val()+';');
-												$("#save-buttom").click();
+												jQuery("#save-buttom").click();
 											}
 										}
 										else{		
@@ -561,27 +561,27 @@ function html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_row, $rowim, $
 						window.parent.uploadID.val(ID1);
 						
 						tb_remove();
-						$("#save-buttom").click();
+						jQuery("#save-buttom").click();
 						
 					});
 						
-					$('.huge-it-post-checked').change(function(){
-						if($(this).is(':checked')){
-							$(this).addClass('active');
-							$(this).parent().addClass('active');
+					jQuery('.huge-it-post-checked').change(function(){
+						if(jQuery(this).is(':checked')){
+							jQuery(this).addClass('active');
+							jQuery(this).parent().addClass('active');
 						}else {
-							$(this).removeClass('active');
-							$(this).parent().removeClass('active');
+							jQuery(this).removeClass('active');
+							jQuery(this).parent().removeClass('active');
 						}
 						
 						var inputval="";
-						$('#huge-it-add-posts-params').val("");
-						$('.huge-it-post-checked').each(function(){
-							if($(this).is(':checked')){
-								inputval+=$(this).val()+";";
+						jQuery('#huge-it-add-posts-params').val("");
+						jQuery('.huge-it-post-checked').each(function(){
+							if(jQuery(this).is(':checked')){
+								inputval+=jQuery(this).val()+";";
 							}
 						});
-						$('#huge-it-add-posts-params').val(inputval);
+						jQuery('#huge-it-add-posts-params').val(inputval);
 					});
 	
 					
@@ -606,7 +606,7 @@ function html_popup_posts($ord_elem, $count_ord,$images,$row,$cat_row, $rowim, $
 					
 					jQuery('.updated').css({"display":"none"});
 				<?php	if($_GET["closepop"] == 1){ ?>
-					$("#closepopup").click();
+					jQuery("#closepopup").click();
 					self.parent.location.reload();
 				<?php	} ?>
 				});

@@ -481,15 +481,15 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	?>
   </div>
  </section><script> 
-$(function(){
+jQuery(function(){
 var defaultBlockHeight=<?php echo $paramssld['ht_view0_block_height']; ?>;
 var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
-var $container = $('#huge_it_portfolio_container');
+var $container = jQuery('#huge_it_portfolio_container');
 
 
   // add randomish size classes
   $container.find('.element').each(function(){
-	var $this = $(this),
+	var $this = jQuery(this),
 		number = parseInt( $this.find('.number').text(), 10 );
 		//alert(number);
 	if ( number % 7 % 2 === 1 ) {
@@ -536,11 +536,11 @@ $container.hugeitmicro({
 });
 
 
-  var $optionSets = $('#huge_it_portfolio_options .option-set'),
+  var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
 	  $optionLinks = $optionSets.find('a');
 
   $optionLinks.click(function(){
-	var $this = $(this);
+	var $this = jQuery(this);
 
 	if ( $this.hasClass('selected') ) {
 	  return false;
@@ -628,8 +628,8 @@ $container.hugeitmicro({
 		  }, 300,function(){	$container.hugeitmicro('reLayout');});
 	});
 
-	var $sortBy = $('#sort-by');
-	$('#shuffle a').click(function(){
+	var $sortBy = jQuery('#sort-by');
+	jQuery('#shuffle a').click(function(){
 	  $container.hugeitmicro('shuffle');
 	  $sortBy.find('.selected').removeClass('selected');
 	  $sortBy.find('[data-option-value="random"]').addClass('selected');
@@ -890,15 +890,15 @@ $container.hugeitmicro({
   </div>
  </section>
  <script>
-   $(function(){
+   jQuery(function(){
     var defaultBlockHeight=<?php echo $paramssld['ht_view1_block_width']; ?>;
 	var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
-    var $container = $('#huge_it_portfolio_container');
+    var $container = jQuery('#huge_it_portfolio_container');
     
     
       // add randomish size classes
       $container.find('.element').each(function(){
-        var $this = $(this),
+        var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
         if ( number % 7 % 2 === 1 ) {
@@ -945,11 +945,11 @@ $container.hugeitmicro({
     });
     
     
-      var $optionSets = $('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
-        var $this = $(this);
+        var $this = jQuery(this);
 
         if ( $this.hasClass('selected') ) {
           return false;
@@ -1001,8 +1001,8 @@ $container.hugeitmicro({
         }
       }
      
-    var $sortBy = $('#sort-by');
-    $('#shuffle a').click(function(){
+    var $sortBy = jQuery('#sort-by');
+    jQuery('#shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
@@ -1027,14 +1027,14 @@ $container.hugeitmicro({
 	  ?>
 
 <script> 
-$(function(){
+jQuery(function(){
     var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']+37; ?>;
 	var defaultBlockWidth=<?php echo $paramssld['ht_view2_element_width']; ?>;
-    var $container = $('#huge_it_portfolio_container');
+    var $container = jQuery('#huge_it_portfolio_container');
 
       // add randomish size classes
       $container.find('.element').each(function(){
-        var $this = $(this),
+        var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
         if ( number % 7 % 2 === 1 ) {
@@ -1082,11 +1082,11 @@ $(function(){
     });
     
     
-	var $optionSets = $('#huge_it_portfolio_options .option-set'),
+	var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
 	$optionLinks = $optionSets.find('a');
 
 	$optionLinks.click(function(){
-		var $this = $(this);
+		var $this = jQuery(this);
 
 		if ( $this.hasClass('selected') ) {
 		  return false;
@@ -1134,8 +1134,8 @@ $(function(){
 		}
 	}
 
-    var $sortBy = $('#sort-by');
-    $('#shuffle a').click(function(){
+    var $sortBy = jQuery('#sort-by');
+    jQuery('#shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
@@ -1875,14 +1875,14 @@ jQuery(document).ready(function(){
  </section>
   
  <script>
-  $(function(){
+  jQuery(function(){
     
-    var $container = $('#huge_it_portfolio_container');
+    var $container = jQuery('#huge_it_portfolio_container');
     
     
       // add randomish size classes
       $container.find('.element').each(function(){
-        var $this = $(this),
+        var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
         if ( number % 7 % 2 === 1 ) {
@@ -1929,11 +1929,11 @@ jQuery(document).ready(function(){
     });
     
     
-      var $optionSets = $('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
-        var $this = $(this);
+        var $this = jQuery(this);
 
         if ( $this.hasClass('selected') ) {
           return false;
@@ -1988,15 +1988,15 @@ jQuery(document).ready(function(){
   
 
       $container.delegate( '.element', 'click', function(){
-	  	if($(this).hasClass("large")){
-		 $(this).animate({
+	  	if(jQuery(this).hasClass("large")){
+		 jQuery(this).animate({
     height: "245px"
   }, 900, function() {
-     $(this).toggleClass('large');
+     jQuery(this).toggleClass('large');
         $container.hugeitmicro('reLayout');
 	
   });
-			 $(this).removeClass("active");
+			 jQuery(this).removeClass("active");
 			 return false;
 		}
 	
@@ -2006,17 +2006,17 @@ jQuery(document).ready(function(){
 
       });
 
-    var $sortBy = $('#sort-by');
-    $('#shuffle a').click(function(){
+    var $sortBy = jQuery('#sort-by');
+    jQuery('#shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
 	
-	$(window).load(function(){
+	jQuery(window).load(function(){
 		$container.hugeitmicro('reLayout');
-		$(window).resize(function(){$container.hugeitmicro('reLayout');});
+		jQuery(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
 
   });
@@ -2235,15 +2235,15 @@ jQuery(document).ready(function(){
   
   </div>
  </section><script> 
-$(function(){
+jQuery(function(){
 var defaultBlockHeight=<?php echo $paramssld['ht_view4_block_width']; ?>;
 var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>+20+<?php echo $paramssld['ht_view4_border_width']*2; ?>;
-var $container = $('#huge_it_portfolio_container');
+var $container = jQuery('#huge_it_portfolio_container');
 
 
   // add randomish size classes
   $container.find('.element').each(function(){
-	var $this = $(this),
+	var $this = jQuery(this),
 		number = parseInt( $this.find('.number').text(), 10 );
 		//alert(number);
 	if ( number % 7 % 2 === 1 ) {
@@ -2290,11 +2290,11 @@ $container.hugeitmicro({
 });
 
 
-  var $optionSets = $('#huge_it_portfolio_options .option-set'),
+  var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
 	  $optionLinks = $optionSets.find('a');
 
   $optionLinks.click(function(){
-	var $this = $(this);
+	var $this = jQuery(this);
 
 	if ( $this.hasClass('selected') ) {
 	  return false;
@@ -2377,16 +2377,16 @@ $container.hugeitmicro({
 		  }, 700,function(){	$container.hugeitmicro('reLayout');});
 	});
 
-	var $sortBy = $('#sort-by');
-	$('#shuffle a').click(function(){
+	var $sortBy = jQuery('#sort-by');
+	jQuery('#shuffle a').click(function(){
 	  $container.hugeitmicro('shuffle');
 	  $sortBy.find('.selected').removeClass('selected');
 	  $sortBy.find('[data-option-value="random"]').addClass('selected');
 	  return false;
 	});
 	
-	$(window).load(function(){
-		$(window).resize(function(){$container.hugeitmicro('reLayout');});
+	jQuery(window).load(function(){
+		jQuery(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
 });
 </script>
@@ -2625,7 +2625,7 @@ $container.hugeitmicro({
    <script>
     /**
      * If you need to access the internal property or methods, use this:
-     * var api = $.data( $('#main-slider')[0], 'liquidSlider');
+     * var api = $.data( jQuery('#main-slider')[0], 'liquidSlider');
      * console.log(api);
      */
 	 jQuery('#main-slider').liquidSlider();
@@ -2742,14 +2742,14 @@ $container.hugeitmicro({
 </section>
 
 <script> 
- $(function(){
+ jQuery(function(){
 	var defaultBlockWidth=<?php echo $paramssld['ht_view6_width']; ?>+20+<?php echo $paramssld['ht_view6_width']*2; ?>;
-    var $container = $('#huge_it_portfolio_container');
+    var $container = jQuery('#huge_it_portfolio_container');
     
     
       // add randomish size classes
       $container.find('.element').each(function(){
-        var $this = $(this),
+        var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
         if ( number % 7 % 2 === 1 ) {
@@ -2796,11 +2796,11 @@ $container.hugeitmicro({
 });
     
     
-      var $optionSets = $('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
-        var $this = $(this);
+        var $this = jQuery(this);
 
         if ( $this.hasClass('selected') ) {
           return false;
@@ -2852,15 +2852,15 @@ $container.hugeitmicro({
         }
       }
      
-    var $sortBy = $('#sort-by');
-    $('#shuffle a').click(function(){
+    var $sortBy = jQuery('#sort-by');
+    jQuery('#shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
 
-	  $(window).load(function(){
+	  jQuery(window).load(function(){
 		$container.hugeitmicro('reLayout');
 	  });
   });

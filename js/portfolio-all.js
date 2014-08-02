@@ -2,7 +2,7 @@
 var delayLength = 4000;
 	
 function doMove(panelWidth, tooFar) {
-	var leftValue = $("#mover").css("left");
+	var leftValue = jQuery("#mover").css("left");
 	
 	// Fix for IE
 	if (leftValue == "auto") { leftValue = 0; };
@@ -10,26 +10,26 @@ function doMove(panelWidth, tooFar) {
 	var movement = parseFloat(leftValue, 10) - panelWidth;
 	
 	if (movement == tooFar) {
-		$(".slide img").animate({
+		jQuery(".slide img").animate({
 			"top": -200
 		}, function() {
-			$("#mover").animate({
+			jQuery("#mover").animate({
 				"left": 0
 			}, function() {
-				$(".slide img").animate({
+				jQuery(".slide img").animate({
 					"top": 20
 				});
 			});
 		});
 	}
 	else {
-		$(".slide img").animate({
+		jQuery(".slide img").animate({
 			"top": -200
 		}, function() {
-			$("#mover").animate({
+			jQuery("#mover").animate({
 				"left": movement
 			}, function() {
-				$(".slide img").animate({
+				jQuery(".slide img").animate({
 					"top": 20
 				});
 			});
@@ -37,9 +37,9 @@ function doMove(panelWidth, tooFar) {
 	}
 }
 
-$(function(){
+jQuery(function(){
 	
-    var $slide1 = $("#slide-1");
+    var $slide1 = jQuery("#slide-1");
 
 	var panelWidth = $slide1.css("width");
 	var panelPaddingLeft = $slide1.css("paddingLeft");
@@ -51,27 +51,27 @@ $(function(){
 
 	panelWidth = panelWidth + panelPaddingLeft + panelPaddingRight;
 	
-	var numPanels = $(".slide").length;
+	var numPanels = jQuery(".slide").length;
 	var tooFar = -(panelWidth * numPanels);
 	var totalMoverwidth = numPanels * panelWidth;
-	$("#mover").css("width", totalMoverwidth);
+	jQuery("#mover").css("width", totalMoverwidth);
 
-	$("#slider").append('<a href="#" id="slider-stopper">Stop</a>');
+	jQuery("#slider").append('<a href="#" id="slider-stopper">Stop</a>');
 
 	sliderIntervalID = setInterval(function(){
 		doMove(panelWidth, tooFar);
 	}, delayLength);
 	
-	$("#slider-stopper").click(function(){
-		if ($(this).text() == "Stop") {
+	jQuery("#slider-stopper").click(function(){
+		if (jQuery(this).text() == "Stop") {
 			clearInterval(sliderIntervalID);
-		 	$(this).text("Start");
+		 	jQuery(this).text("Start");
 		}
 		else {
 			sliderIntervalID = setInterval(function(){
 				doMove(panelWidth, tooFar);
 			}, delayLength);
-		 	$(this).text("Stop");
+		 	jQuery(this).text("Stop");
 		}
 		 
 	});
