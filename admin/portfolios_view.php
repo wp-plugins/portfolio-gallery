@@ -405,7 +405,7 @@ jQuery(function() {
 											wp.media.editor.send.attachment = function(props, attachment){
 											  if ( _custom_media ) {
 													jQuery("#"+id).parent().before('<li class="editthisimage1 "><img src="'+attachment.url+'" alt="" /><input type="button" class="edit-image"  id="" value="Edit" /><a href="#remove" class="remove-image">remove</a></li>');
-													alert(jQuery("#"+id).val());
+													//alert(jQuery("#"+id).val());
 													jQuery("#"+id).val(jQuery("#"+id).val()+attachment.url+';');
 											  } else {
 												return _orig_send_attachment.apply( this, [props, attachment] );
