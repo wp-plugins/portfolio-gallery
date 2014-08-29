@@ -295,33 +295,14 @@ jQuery(function() {
 
 				<div id="post-body">
 					<div id="post-body-heading">
-						<h3>Projects/Images</h3>
-						
-						<input type="hidden"  name="imagess" value="" />
-						<a href="" class="button button-primary add-new-image"  id="slideup">
-							<span class="wp-media-buttons-icon"></span>Add Project/Image
-						</a>
+						<h3>Projects / Images</h3>
+	
 
-						<script>
-								jQuery(document).ready(function ($) {
-										
-										jQuery("#slideup").click(function () {
-											window.parent.uploadID = jQuery(this).prev('input');
-											formfield = jQuery('.upload').attr('name');
-											tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-											return false;
-										});
-										window.send_to_editor = function (html) {
-											imgurl = jQuery('img', html).attr('src');
-											window.parent.uploadID.val(imgurl+';');
-											tb_remove();
-											jQuery("#save-buttom").click();
-										};
-									});
-									
-						</script>
-
-					<!--<a class="button button-primary" href="admin.php?page=portfolios_huge_it_portfolio&id=<?php echo $row->id; ?>&task=apply&addslide=1">Add Image</a>-->
+						<input type="hidden" name="imagess" id="_unique_name" />
+						<span class="wp-media-buttons-icon"></span>
+						<div class="huge-it-newuploader uploader button button-primary add-new-image">
+						<input type="button" class="button wp-media-buttons-icon" name="_unique_name_button" id="_unique_name_button" value="Add Project / Image" />
+						</div>
 				
 					</div>
 					<ul id="images-list">
@@ -331,87 +312,137 @@ jQuery(function() {
 					//$rowim = array_reverse($rowim);
 					foreach ($rowim as $key=>$rowimages){ ?>
 						<li <?php if($j%2==0){echo "class='has-background'";}$j++; ?>>
-						<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
+							<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
 							<div class="image-container">
-							<ul class="widget-images-list">
-							<?php $imgurl=explode(";",$rowimages->image_url);
-							array_pop($imgurl);
-							$i=0;
-							foreach($imgurl as $key1=>$img)
-							{	?>
-								<li class="editthisimage<?php echo $key; ?> <?php if($i==0){echo 'first';} ?>">
-									<img src="<?php echo $img; ?>" />
-									<a href="#edit" class="edit-image">edit</a>
-									<a href="#remove" class="remove-image">remove</a>
-								</li>
-							<?php $i++; } ?>
-							
-							<li class="add-image-box">
-								<input type="hidden" name="imagess<?php echo $rowimages->id; ?>" class="all-urls" value="<?php echo $rowimages->image_url; ?>" />
-								<a href="#add-image" class="add-image" id="addnewimage<?php echo $key; ?>">+</a>
-							</li>
-							</ul>
-							<script>
-								jQuery(document).ready(function ($) {
-									
-									jQuery("ul.widget-images-list li.editthisimage<?php echo $key; ?>").on('click','.edit-image',function () {	
-										window.parent.uploadID = jQuery(this).prev('img');
-										formfield = jQuery('.upload').attr('name');
-										tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-										return false;
-									});	
+								<ul class="widget-images-list">
+									<?php $imgurl=explode(";",$rowimages->image_url);
+									array_pop($imgurl);
+									$i=0;
+									//$imgurl = array_reverse($imgurl);
+									foreach($imgurl as $key1=>$img)
+									{	?>
+										<li class="editthisimage<?php echo $key; ?> <?php if($i==0){echo 'first';} ?>">
+											<img src="<?php echo $img; ?>" />
+											<input type="button" class="edit-image"  id="" value="Edit" />
+											<a href="#remove" class="remove-image">remove</a>	
+										</li>
+									<?php $i++; } ?>
 
-									jQuery("ul.widget-images-list").on('click','.remove-image',function () {	
-										jQuery(this).parent().find('img').remove();
-										
-										var allUrls="";
-										
-										jQuery(this).parents('ul.widget-images-list').find('img').each(function(){
-											allUrls=allUrls+jQuery(this).attr('src')+';';
-											jQuery(this).parent().parent().parent().find('input.all-urls').val(allUrls);
-										});								
-										jQuery(this).parent().remove();
-										return false;
-									});
-									
-									jQuery("#addnewimage<?php echo $key; ?>").on('click',function () {			
-										window.parent.uploadID = jQuery(this).prev('input');
-										formfield = jQuery('.upload').attr('name');
-										tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-										return false;
-									});	
-									
-									
-									window.send_to_editor = function (html) {
-										imgurl = jQuery('img', html).attr('src');
-										
-										if(window.parent.uploadID.parent().hasClass('add-image-box')){
-											var firstKey=jQuery(window.parent.uploadID.parent().parents('li')).index();
-											var secondKey=jQuery(window.parent.uploadID.parent()).index();
-											window.parent.uploadID.val(window.parent.uploadID.val()+imgurl+';');
-											jQuery('<li><img src="'+imgurl+'" /><a href="#edit" class="edit-image">edit</a><a href="#remove" class="remove-image" id="removeimage'+firstKey+secondKey+'" >remove</a></li>').insertBefore(window.parent.uploadID.parent().parent().find('li.add-image-box'));
-										}
-										else if(window.parent.uploadID.parent().is('#post-body-heading')){
-											imgurl = jQuery('img', html).attr('src');
-											window.parent.uploadID.val(imgurl);
-											if(jQuery('#post-body-heading input').val()!=""){
-												jQuery('#post-body-heading input').val(jQuery('#post-body-heading input').val()+';');
-												jQuery("#save-buttom").click();
+									<li class="add-image-box">
+										<input type="hidden" name="imagess<?php echo $rowimages->id; ?>" id="unique_name<?php echo $rowimages->id; ?>" class="all-urls" value="<?php echo $rowimages->image_url; ?>" />
+										<input type="button" class="button<?php echo $rowimages->id; ?> wp-media-buttons-icon add-image"  id="unique_name_button<?php echo $rowimages->id; ?>" value="+" />	
+									</li>
+								</ul>
+								<script>
+									jQuery(document).ready(function($){
+										jQuery(".wp-media-buttons-icon").click(function() {
+											jQuery(".attachment-filters").css("display","none");
+										});
+									  var _custom_media = true,
+										  _orig_send_attachment = wp.media.editor.send.attachment;
+										 
+										/*#####ADD NEW PROJECT######*/ 
+										jQuery('.huge-it-newuploader .button').click(function(e) {
+											var send_attachment_bkp = wp.media.editor.send.attachment;
+											var button = jQuery(this);
+											var id = button.attr('id').replace('_button', '');
+											_custom_media = true;
+
+											jQuery("#"+id).val('');
+											wp.media.editor.send.attachment = function(props, attachment){
+											  if ( _custom_media ) {
+												 jQuery("#"+id).val(attachment.url+';;;'+jQuery("#"+id).val());
+												 jQuery("#save-buttom").click();
+											  } else {
+												return _orig_send_attachment.apply( this, [props, attachment] );
+											  };
 											}
-										}
-										else{		
+											wp.media.editor.open(button);
+											return false;
+										});
+										  
+										/*#####EDIT IMAGE######*/  
+										jQuery('.widget-images-list').on('click','.edit-image',function(e) {
+											var send_attachment_bkp = wp.media.editor.send.attachment;
+											var button = jQuery(this);
+											var id = button.parents('.widget-images-list').find('.all-urls').attr('id');
+											var img= button.prev('img');
+											_custom_media = true;
+											jQuery(".media-menu .media-menu-item").css("display","none");
+											jQuery(".media-menu-item:first").css("display","block");
+											jQuery(".separator").next().css("display","none");
+											jQuery('.attachment-filters').val('image').trigger('change');
+											jQuery(".attachment-filters").css("display","none");
+											wp.media.editor.send.attachment = function(props, attachment){
+											  if ( _custom_media ) {	 
+												 img.attr('src',attachment.url);
+												 var allurls ='';
+												 img.parents('.widget-images-list').find('img').each(function(){
+													allurls = allurls+jQuery(this).attr('src')+';';
+												 });
+												 jQuery("#"+id).val(allurls);
+												 //jQuery("#save-buttom").click();
+											  } else {
+												return _orig_send_attachment.apply( this, [props, attachment] );
+											  };
+											}
+											wp.media.editor.open(button);
+											return false;
+										});
+
+										jQuery('.add_media').on('click', function(){
+											_custom_media = false;
+										});
+										
+										 /*#####ADD IMAGE######*/  
+										jQuery('.add-image.button<?php echo $rowimages->id; ?>').click(function(e) {
+											var send_attachment_bkp = wp.media.editor.send.attachment;
+
+											var button = jQuery(this);
+											var id = button.attr('id').replace('_button', '');
+											_custom_media = true;
+
+											wp.media.editor.send.attachment = function(props, attachment){
+											  if ( _custom_media ) {
+													jQuery("#"+id).parent().before('<li class="editthisimage1 "><img src="'+attachment.url+'" alt="" /><input type="button" class="edit-image"  id="" value="Edit" /><a href="#remove" class="remove-image">remove</a></li>');
+													alert(jQuery("#"+id).val());
+													jQuery("#"+id).val(jQuery("#"+id).val()+attachment.url+';');
+											  } else {
+												return _orig_send_attachment.apply( this, [props, attachment] );
+											  };
+											}
+
+											wp.media.editor.open(button);
+											 
+											return false;
+										});
+
+										
+										/*#####REMOVE IMAGE######*/  
+										jQuery("ul.widget-images-list").on('click','.remove-image',function () {	
+											jQuery(this).parent().find('img').remove();
+											
 											var allUrls="";
-											window.parent.uploadID.attr('src',imgurl);
-											window.parent.uploadID.parent().parent().find('img').each(function(){
-												allUrls=allUrls+jQuery(this).parent().find('img').attr('src')+';';
-											});
-											window.parent.uploadID.parent().parent().find('input.all-urls').val(allUrls);
-										}
-										tb_remove();										
-									};
-								});
-													
-							</script>
+											
+											jQuery(this).parents('ul.widget-images-list').find('img').each(function(){
+												allUrls=allUrls+jQuery(this).attr('src')+';';
+												jQuery(this).parent().parent().parent().find('input.all-urls').val(allUrls);
+											});								
+											jQuery(this).parent().remove();
+											return false;
+										});
+										
+
+										/*#####HIDE NEW UPLOADER'S LEFT MENU######*/  
+										jQuery(".wp-media-buttons-icon").click(function() {
+											jQuery(".media-menu .media-menu-item").css("display","none");
+											jQuery(".media-menu-item:first").css("display","block");
+											jQuery(".separator").next().css("display","none");
+											jQuery('.attachment-filters').val('image').trigger('change');
+											jQuery(".attachment-filters").css("display","none");
+										});
+									});
+								</script>
 							</div>
 							<div class="image-options">
 								<div>
@@ -425,17 +456,17 @@ jQuery(function() {
 								<div class="link-block">
 									<label for="sl_url<?php echo $rowimages->id; ?>">URL:</label>
 									<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
-									<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">Open in new tab</label>
-									<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
-									<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
-									
-									<!--<input type="checkbox" name="pause_on_hover" id="pause_on_hover"  <?php if($row->pause_on_hover == 'on'){ echo 'checked="checked"'; } ?>  class="link_target"/>-->
+									<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">
+										<span>Open in new tab</span>
+										<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
+										<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
+									</label>
 								</div>
 								<div class="remove-image-container">
-									<a class="button remove-image" href="admin.php?page=portfolios_huge_it_portfolio&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">Remove Image</a>
+									<a class="button remove-image" href="admin.php?page=portfolios_huge_it_portfolio&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">Remove Project</a>
 								</div>
 							</div>
-						<div class="clear"></div>
+							<div class="clear"></div>
 						</li>
 					<?php } ?>
 					</ul>

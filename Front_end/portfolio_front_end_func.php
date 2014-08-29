@@ -1,13 +1,5 @@
 <?php
-
-
-
-
-
-
-
-
-function showPublishedimages_1($id)
+function showPublishedportfolios_1($id)
 {
  global $wpdb;
  
@@ -33,14 +25,8 @@ function showPublishedimages_1($id)
         $paramssld[$key] = $value;
     }
 
-
-	
-  
 	return front_end_portfolio($images, $paramssld, $portfolio);
-			
-			
-			
-   
+
 }
 
 

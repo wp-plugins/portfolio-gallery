@@ -11,8 +11,9 @@ function      html_showStyles($param_values, $op_type)
 {
     ?>	
 <script>
+
 jQuery(document).ready(function () {
-	var strliID=jQuery(location).attr('hash');
+	var strliID=$(location).attr('hash');
 	//alert(strliID);
 	jQuery('#portfolio-view-tabs li').removeClass('active');
 	if(jQuery('#portfolio-view-tabs li a[href="'+strliID+'"]').length>0){
@@ -21,16 +22,16 @@ jQuery(document).ready(function () {
 		jQuery('#portfolio-view-tabs li a[href="#portfolio-view-options-0"]').parent().addClass('active');
 	}
 	jQuery('#portfolio-view-tabs-contents li').removeClass('active');
-	strliID=strliID.replace("#","");
+	strliID=strliID;
 	//alert(strliID);
-	if(jQuery('#portfolio-view-tabs-contents li[data-id="'+strliID+'"]').length>0){
-		jQuery('#portfolio-view-tabs-contents li[data-id="'+strliID+'"]').addClass('active');
+	if(jQuery(strliID).length>0){
+		jQuery(strliID).addClass('active');
 	}else {
-		jQuery('#portfolio-view-tabs-contents li[data-id="portfolio-view-options-0"]').addClass('active');
+		jQuery('#portfolio-view-options-0').addClass('active');
 	}
-	jQuery('input[data-slider="true"]').bind("slider:changed", function (event, data) {
-		 jQuery(this).parent().find('span').html(parseInt(data.value)+"%");
-		 jQuery(this).val(parseInt(data.value));
+	$('input[data-slider="true"]').bind("slider:changed", function (event, data) {
+		 $(this).parent().find('span').html(parseInt(data.value)+"%");
+		 $(this).val(parseInt(data.value));
 	});	
 });
 </script>
@@ -56,7 +57,7 @@ jQuery(document).ready(function () {
 			<div id="post-body-heading">
 				<h3>General Options</h3>
 				
-				<a onclick="document.getElementById('adminForm').submit()" class="save-portfolio-options button-primary">Save</a>
+				<a class="save-portfolio-options button-primary">Save</a>
 		
 			</div>
 		<form action="admin.php?page=Options_portfolio_styles" method="post" id="adminForm" name="adminForm">
@@ -74,7 +75,7 @@ jQuery(document).ready(function () {
 			
 			<ul class="options-block" id="portfolio-view-tabs-contents">
 
-				<li data-id="portfolio-view-options-0">
+				<li id="portfolio-view-options-0">
 					<div>
 						<h3>Element Styles</h3>
 						<div class="has-background">
@@ -202,7 +203,7 @@ jQuery(document).ready(function () {
 				
 
 				<!-- VIEW 1 -->
-				<li data-id="portfolio-view-options-1">
+				<li id="portfolio-view-options-1">
 					<div>
 						<h3>Element Styles</h3>
 						<div class="has-background">
@@ -314,7 +315,7 @@ jQuery(document).ready(function () {
 				</li>
 
 				<!-- VIEW 2 POPUP -->
-				<li data-id="portfolio-view-options-2">
+				<li id="portfolio-view-options-2">
 					<div>
 						<h3>Element Styles</h3>
 						<div class="has-background">
@@ -515,7 +516,7 @@ jQuery(document).ready(function () {
 					</div>
 				</li>	
 				<!-- VIEW 3 Fullwidth -->
-				<li data-id="portfolio-view-options-3">
+				<li id="portfolio-view-options-3">
 					<div>
 						<h3>Elements Styles</h3>
 						<div class="has-background">
@@ -625,7 +626,7 @@ jQuery(document).ready(function () {
 				</li>
 				
 				<!-- VIEW 4 FAQ  -->
-				<li data-id="portfolio-view-options-4">
+				<li id="portfolio-view-options-4">
 					<div>
 						<h3>First Shown Block</h3>
 						<div class="has-background">
@@ -718,7 +719,7 @@ jQuery(document).ready(function () {
 					</div>
 				</li>
 				<!-- View 5 Slider -->
-				<li data-id="portfolio-view-options-5">
+				<li id="portfolio-view-options-5">
 					<div>
 						<h3>Slider</h3>					
 						<div  class="has-background">
@@ -825,7 +826,7 @@ jQuery(document).ready(function () {
 					</div>
 				</li>
 				<!-- VIEW 6 Gallery  -->
-				<li data-id="portfolio-view-options-6">
+				<li id="portfolio-view-options-6">
 					<div>
 						<h3>Image</h3>
 						<div class="has-background">
@@ -879,7 +880,7 @@ jQuery(document).ready(function () {
 			</ul>
 
 		<div id="post-body-footer">
-			<a onclick="document.getElementById('adminForm').submit()" class="save-portfolio-options button-primary">Save</a>
+			<a class="save-portfolio-options button-primary">Save</a>
 			<div class="clear"></div>
 		</div>
 		</form>

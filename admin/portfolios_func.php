@@ -601,17 +601,21 @@ if (isset($_POST['params'])) {
 	  }
 	
 $table_name = $wpdb->prefix . "huge_itportfolio_images";
+	$imagesnewuploader = explode(";;;", $_POST["imagess"]);
+	
+	array_pop($imagesnewuploader);
+	foreach($imagesnewuploader as $imagesnewupload){
     $sql_2 = "
 INSERT INTO 
 
 `" . $table_name . "` ( `name`, `portfolio_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`) VALUES
-( '', '".$row->id."', '', '".$_POST["imagess"]."', '', 'par_TV', 2, '1' )";
+( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1' )";
 
    
 	
 
       $wpdb->query($sql_2);
-	
+		}
 	   }
 	   
 	if(isset($_POST["posthuge-it-description-length"])){

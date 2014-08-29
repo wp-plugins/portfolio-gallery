@@ -233,6 +233,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 
 .default-block img {
 	margin:0px !important;
+	padding:0px !important;
 	max-width:none !important;
 	width:<?php echo $paramssld['ht_view0_block_width']; ?>px !important;
 	height:<?php echo $paramssld['ht_view0_block_height']; ?>px !important;
@@ -258,7 +259,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	font-weight:normal;
 	color:#<?php echo $paramssld['ht_view0_title_font_color']; ?>;
 	font-size:<?php echo $paramssld['ht_view0_title_font_size']; ?>px !important;
-	line-height:<?php echo $paramssld['ht_view0_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view0_title_font_size']+4; ?>px !important;
 }
 
 .element .title-block .open-close-button {
@@ -358,6 +359,8 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 }
 
 .wd-portfolio-panel img {
+	margin:0px !important;
+	padding:0px !important;
 	display:table-cell;
 	vertical-align:middle;
 	width:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px !important;
@@ -674,6 +677,7 @@ $container.hugeitmicro({
 
 .default-block img {
   margin:0px !important;
+  padding:0px !important;
   max-width:none !important;
   width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
   border-radius:0px;
@@ -697,7 +701,7 @@ $container.hugeitmicro({
 	font-weight:normal;
 	color:#<?php echo $paramssld['ht_view1_title_font_color']; ?>;
 	font-size:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
-	line-height:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view1_title_font_size']+4; ?>px !important;
 }
 
 
@@ -768,6 +772,8 @@ $container.hugeitmicro({
 }
 
 .wd-portfolio-panel img {
+	margin:0px !important;
+	padding:0px !important;
 	display:table-cell;
 	vertical-align:middle;
 	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
@@ -1210,6 +1216,8 @@ jQuery(document).ready(function(){
 }
 
 .element .image-block img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld['ht_view2_element_width']; ?>px !important;
 	height:<?php echo $paramssld['ht_view2_element_height']; ?>px !important;
 	display:block;
@@ -1264,7 +1272,7 @@ jQuery(document).ready(function(){
 	white-space:nowrap;
 	font-weight:normal;
 	font-size: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
-	line-height: <?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
+	line-height: <?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
 	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
@@ -1372,6 +1380,8 @@ jQuery(document).ready(function(){
 #huge_it_portfolio_popup_list .popup-wrapper .image-block img {
 	width:100% !important;
 	display:block;
+	margin:0px !important;
+	padding:0px !important;
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block {
@@ -1395,7 +1405,7 @@ jQuery(document).ready(function(){
 	display:block;
 	margin:0px 0px 10px 0px !important;
 	font-size:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
 	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
@@ -1455,6 +1465,8 @@ jQuery(document).ready(function(){
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px !important;
 	height:<?php echo $paramssld["ht_view2_thumbs_height"];?>px !important;
 }
@@ -1675,6 +1687,8 @@ jQuery(document).ready(function(){
 }
 
 .element div.left-block .main-image-block img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px !important; 
 	height:auto;
 }
@@ -1708,6 +1722,8 @@ jQuery(document).ready(function(){
 }
 
 .element div.left-block .thumbs-block ul li a img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld['ht_view3_thumbs_width']; ?>px; 
 	height:<?php echo $paramssld['ht_view3_thumbs_height']; ?>px; 
 }
@@ -1738,7 +1754,7 @@ jQuery(document).ready(function(){
 	padding:0px;
 	font-weight:normal;
 	font-size:<?php echo $paramssld['ht_view3_title_font_size']; ?>px !important;
-	line-height:<?php echo $paramssld['ht_view3_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view3_title_font_size']+4; ?>px !important;
 	color:#<?php echo $paramssld['ht_view3_title_font_color']; ?>;
 }
 
@@ -1809,6 +1825,8 @@ jQuery(document).ready(function(){
 	}
 
 	.element div.left-block .main-image-block img {
+		margin:0px !important;
+		padding:0px !important;
 		width:100% !important;  
 		height:auto;
 	}
@@ -2480,6 +2498,8 @@ $container.hugeitmicro({
 }
 
 #main-slider .slider-content-wrapper .image-block ul.thumbs-list li img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld["ht_view5_thumbs_width"];?>px !important;
 	height:<?php echo $paramssld["ht_view5_thumbs_height"];?>px !important;
 }
@@ -2503,7 +2523,7 @@ $container.hugeitmicro({
 	display:block;
 	margin:-10px 0px 0px 0px;
 	font-size:<?php echo $paramssld["ht_view5_title_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view5_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view5_title_font_size"]+4;?>px !important;
 	color:#<?php echo $paramssld["ht_view5_title_font_color"];?>;
 }
 
@@ -2513,7 +2533,7 @@ $container.hugeitmicro({
 	font-weight:normal;
 	text-align:justify;
 	font-size:<?php echo $paramssld["ht_view5_description_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view5_description_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view5_description_font_size"]+4;?>px !important;
 	color:#<?php echo $paramssld["ht_view5_description_font_color"];?>;
 }
 
@@ -2654,6 +2674,8 @@ $container.hugeitmicro({
 }
 
 .element .image-block img {
+	margin:0px !important;
+	padding:0px !important;
 	width:<?php echo $paramssld['ht_view6_width']; ?>px !important;
 	height:auto;
 	display:block;
