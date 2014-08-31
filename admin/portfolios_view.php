@@ -296,7 +296,45 @@ jQuery(function() {
 				<div id="post-body">
 					<div id="post-body-heading">
 						<h3>Projects / Images</h3>
+							<script>
+jQuery(document).ready(function($){
+
+
+	 
+
+  jQuery('.huge-it-newuploader .button').click(function(e) {
+    var send_attachment_bkp = wp.media.editor.send.attachment;
 	
+    var button = jQuery(this);
+    var id = button.attr('id').replace('_button', '');
+    _custom_media = true;
+
+	jQuery("#"+id).val('');
+	wp.media.editor.send.attachment = function(props, attachment){
+      if ( _custom_media ) {
+	     jQuery("#"+id).val(attachment.url+';;;'+jQuery("#"+id).val());
+		 jQuery("#save-buttom").click();
+      } else {
+        return _orig_send_attachment.apply( this, [props, attachment] );
+      };
+    }
+  
+    wp.media.editor.open(button);
+	 
+    return false;
+  });
+  
+  	/*#####HIDE NEW UPLOADER'S LEFT MENU######*/  
+										jQuery(".wp-media-buttons-icon").click(function() {
+											jQuery(".media-menu .media-menu-item").css("display","none");
+											jQuery(".media-menu-item:first").css("display","block");
+											jQuery(".separator").next().css("display","none");
+											jQuery('.attachment-filters').val('image').trigger('change');
+											jQuery(".attachment-filters").css("display","none");
+										});
+
+});
+</script>
 
 						<input type="hidden" name="imagess" id="_unique_name" />
 						<span class="wp-media-buttons-icon"></span>
