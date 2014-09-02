@@ -1154,6 +1154,7 @@ jQuery(document).ready(function(){
 	jQuery('.element .image-block .image-overlay a').on('click',function(){
 		var strid = jQuery(this).attr('href').replace('#','');
 		jQuery('body').append('<div id="huge-popup-overlay"></div>');
+		jQuery('#huge_it_portfolio_popup_list').insertBefore('#huge-popup-overlay');
 		var height = jQuery(window).height();
 		var width=jQuery(window).width();
 		if(width<=767){
@@ -1314,8 +1315,9 @@ jQuery(document).ready(function(){
 	width:80%;
 	top:7%;
 	left:7%;
+	margin:0px !important;
 	list-style:none;
-	z-index:200;
+	z-index:2000;
 	display:none;
 	height:90%;
 }
@@ -1342,7 +1344,7 @@ jQuery(document).ready(function(){
 	height:40px;
 	top:0px;
 	left:0px;
-	z-index:201;
+	z-index:2001;
 	background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center bottom repeat-x;
 }
 

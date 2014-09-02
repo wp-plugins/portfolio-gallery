@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.1.4
+Version: 1.1.5
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -212,12 +212,22 @@ function huge_it_portfolio_options_panel()
     $page_option = add_submenu_page('portfolios_huge_it_portfolio', 'General Options', 'General Options', 'manage_options', 'Options_portfolio_styles', 'Options_portfolio_styles');
 	$lightbox_options = add_submenu_page('portfolios_huge_it_portfolio', 'Lightbox Options', 'Lightbox Options', 'manage_options', 'Options_portfolio_lightbox_styles', 'Options_portfolio_lightbox_styles');
 	add_submenu_page( 'portfolios_huge_it_portfolio', 'Licensing', 'Licensing', 'manage_options', 'huge_it_portfolio_Licensing', 'huge_it_portfolio_Licensing');
-
+	add_submenu_page('portfolios_huge_it_portfolio', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__portfolio_featured_plugins', 'huge_it__portfolio_featured_plugins');
 
 	add_action('admin_print_styles-' . $page_cat, 'huge_it_portfolio_admin_script');
     add_action('admin_print_styles-' . $page_option, 'huge_it_portfolio_option_admin_script');
 	add_action('admin_print_styles-' . $lightbox_options, 'huge_it_portfolio_option_admin_script');
 }
+
+function huge_it__portfolio_featured_plugins()
+{
+	switch ($_GET['task']) {
+	default:
+		include_once("admin/huge_it_featured_plugins.php");
+		break;
+	}
+}
+
 function huge_it_portfolio_Licensing(){
 
 	?>
