@@ -248,11 +248,11 @@ jQuery(function() {
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
 	<div class="slider-options-head">
 		<div style="float: left;">
-			<div><a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">User Manual</a></div>
-			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-slider-user-manual/" target="_blank">More...</a></div>
+			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
+			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
 		</div>
 		<div style="float: right;">
-			<a class="header-logo-text" href="http://huge-it.com/portolio-gallery/" target="_blank">
+			<a class="header-logo-text" href="http://huge-it.com/portfolio-gallery/" target="_blank">
 				<div><img width="250px" src="<?php echo $path_site2; ?>/huge-it1.png" /></div>
 				<div>Get the full version</div>
 			</a>
