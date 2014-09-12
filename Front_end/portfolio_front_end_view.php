@@ -8,7 +8,6 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	$portfoliotitle=$portfolio[0]->name;
 	$portfolioheight=$portfolio[0]->sl_height;
 	$portfoliowidth=$portfolio[0]->sl_width;
-	$portfoliourl=$portfolio[0]->sl_url;
 	$portfolioeffect=$portfolio[0]->portfolio_list_effects_s;
 	$slidepausetime=($portfolio[0]->description+$portfolio[0]->param);
 	$portfoliopauseonhover=$portfolio[0]->pause_on_hover;
@@ -1406,9 +1405,9 @@ jQuery(document).ready(function(){
 	position:relative;
 	display:block;
 	margin:0px 0px 10px 0px !important;
-	font-size:<?php echo $paramssld["ht_view2_popup_title_font_size"];?>px !important;
-	line-height:<?php echo $paramssld["ht_view2_popup_title_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
+	font-size:<?php echo $paramssld["ht_view2_element_title_font_size"];?>px !important;
+	line-height:<?php echo $paramssld["ht_view2_element_title_font_size"]+4;?>px !important;
+	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description {
@@ -1417,7 +1416,7 @@ jQuery(document).ready(function(){
 	font-weight:normal;
 	text-align:justify;
 	font-size:<?php echo $paramssld["ht_view2_description_font_size"];?>px !important;
-	color:#<?php echo $paramssld["ht_view2_description_font_color"];?>;
+	color:#<?php echo $paramssld["ht_view2_description_color"];?>;
 }
 
 #huge_it_portfolio_popup_list .popup-wrapper .right-block .description h1,
@@ -1620,7 +1619,7 @@ jQuery(document).ready(function(){
 				<div class="right-block">
 					<?php if($paramssld["ht_view2_show_popup_title"]=='on'){?><h3 class="title"><?php echo $row->name; ?></h3><?php } ?>
 					
-					<?php if($paramssld["ht_view2_thumbs_position"]=='before' and $paramssld["ht_view2_show_thumbs"]){?>
+					<?php if($paramssld["ht_view2_thumbs_position"]=='before' and $paramssld["ht_view2_show_thumbs"] == 'on'){?>
 					<div><ul class="thumbs-list">
 						<?php   
 								foreach($imgurl as $key=>$img){?>
@@ -1631,7 +1630,7 @@ jQuery(document).ready(function(){
 					
 					<?php if($paramssld["ht_view2_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
-					<?php if($paramssld["ht_view2_thumbs_position"]=='after' and $paramssld["ht_view2_show_thumbs"]){?>
+					<?php if($paramssld["ht_view2_thumbs_position"]=='after' and $paramssld["ht_view2_show_thumbs"] == 'on'){?>
 					<div><ul class="thumbs-list">
 						<?php   $imgurl=explode(";",$row->image_url);array_pop($imgurl);
 								foreach($imgurl as $key=>$img){?>
@@ -1859,7 +1858,11 @@ jQuery(document).ready(function(){
 					}
 					?>
 				</div>
-				<div class="thumbs-block">		
+				<div class="thumbs-block">
+                                    <?php
+                                    if($paramssld["ht_view3_show_thumbs"] == 'on')
+                                        {
+                                    ?>
 					<ul class="thumbs-list">					
 						<?php
 						$imgurl=explode(";",$row->image_url);
@@ -1874,16 +1877,31 @@ jQuery(document).ready(function(){
 						}
 						?>
 					</ul>
+                                    <?php
+                                    }
+                                    ?>
 				</div>
 			</div>
 			<div class="right-block">
 			  <?php if($row->name!=''){?><div class="title-block"><h3><?php echo $row->name; ?></h3></div><?php } ?>
-			  <?php if($row->description!=''){?><div class="description-block"><p><?php echo $row->description; ?></p></div><?php } ?>
-			  <?php if($link!=''){?>
-				<div class="button-block">
-					<a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
-				</div>
-			  <?php } ?>
+			  <?php
+                          if($paramssld["ht_view3_show_description"] == 'on')
+                              {
+                                if($row->description!='')
+                                    { ?>
+                                    <div class="description-block"><p><?php echo $row->description; ?></p></div>
+                              <?php } ?>
+                        <?php }
+                          
+                                if($link!='')
+                                { 
+                                if($paramssld["ht_view3_show_linkbutton"] == 'on') {
+                                ?>
+                                    <div class="button-block">
+                                            <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
+                                    </div>
+                                <?php }
+                                } ?>
 			</div>
 		</div>
 		
@@ -2079,6 +2097,7 @@ jQuery(document).ready(function(){
 	height:45px;
 	padding:10px 0px 0px 0px;
 	width:<?php echo $paramssld['ht_view4_block_width']; ?>px;
+        max-width: 467px;
 }
 
 .title-block h3 {
@@ -2430,7 +2449,7 @@ $container.hugeitmicro({
 
 #main-slider div.slider-content {
 	position:relative;
-	width:100%;localhost
+	width:100%;
 	padding:0px 0px 0px 0px;
 	position:relative;
 	background:#<?php echo $paramssld["ht_view5_slider_background_color"];?>;
@@ -2536,7 +2555,7 @@ $container.hugeitmicro({
 	text-align:justify;
 	font-size:<?php echo $paramssld["ht_view5_description_font_size"];?>px !important;
 	line-height:<?php echo $paramssld["ht_view5_description_font_size"]+4;?>px !important;
-	color:#<?php echo $paramssld["ht_view5_description_font_color"];?>;
+	color:#<?php echo $paramssld["ht_view5_description_color"];?>;
 }
 
 #main-slider .slider-content-wrapper .right-block .description h1,
@@ -2613,7 +2632,7 @@ $container.hugeitmicro({
 			<div class="slider-content-wrapper">
 				<div class="image-block">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
+					<a class="group1" href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
 					<img class="main-image" src="images/noimage.jpg" alt="" />
 					<?php
@@ -2624,7 +2643,7 @@ $container.hugeitmicro({
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
-									<li><a href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
+									<li><a class="group1" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
 								<?php } ?>
 					</ul></div>
 					<?php } ?>					
@@ -2634,7 +2653,7 @@ $container.hugeitmicro({
 					<?php if($paramssld["ht_view5_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					<?php if($paramssld["ht_view5_show_linkbutton"]=='on'){?>
 						<div class="button-block">
-							<a href="<?php echo $link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view5_linkbutton_text"]; ?></a>
+							<a class="group1" href="<?php echo $link; ?>"  <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view5_linkbutton_text"]; ?></a>
 						</div>
 					<?php } ?>
 				</div>
@@ -2662,6 +2681,7 @@ $container.hugeitmicro({
 <style type="text/css"> 
 
 .element {
+        max-width: 459px;
 	width:<?php echo $paramssld['ht_view6_width']; ?>px;
 	margin:0px 0px 10px 0px;
 	border:<?php echo $paramssld['ht_view6_border_width']; ?>px solid #<?php echo $paramssld['ht_view6_border_color']; ?>;
@@ -2695,8 +2715,8 @@ $container.hugeitmicro({
 	left:0px;
 	width:100%;
 	padding-top:5px;
-	height:30px;
-	bottom:-35px;
+	height: <?php echo $paramssld["ht_view6_title_font_size"] + 10; ?>px;
+	bottom:-<?php echo $paramssld["ht_view6_title_font_size"] + 15; ?>px;
 	background: <?php
 			list($r,$g,$b) = array_map('hexdec',str_split($paramssld['ht_view6_title_background_color'],2));
 				$titleopacity=$paramssld["ht_view6_title_background_transparency"]/100;						
@@ -2898,6 +2918,6 @@ $container.hugeitmicro({
 	
       <?php   
 	return ob_get_clean();
-}  
+}
 ?>
 

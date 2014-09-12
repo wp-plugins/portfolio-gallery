@@ -34,7 +34,8 @@ jQuery(document).ready(function () {
 });
 </script>
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
-	<div class="slider-options-head">
+		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
+			<div class="slider-options-head">
 		<div style="float: left;">
 			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
 			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
@@ -46,6 +47,7 @@ jQuery(document).ready(function () {
 			</a>
 		</div>
 	</div>
+	<div style="clear:both;"></div>
 			<div id="post-body-heading">
 				<h3>Lightbox Options</h3>
 				<a onclick="" class="save-portfolio-options button-primary">Save</a>

@@ -38,7 +38,8 @@ jQuery(document).ready(function () {
 <div class="wrap">
 
 <?php $path_site2 = plugins_url("../images", __FILE__); ?>
-	<div class="slider-options-head">
+		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
+			<div class="slider-options-head">
 		<div style="float: left;">
 			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
 			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
@@ -50,8 +51,8 @@ jQuery(document).ready(function () {
 			</a>
 		</div>
 	</div>
+	<div style="clear:both;"></div>
 <div id="poststuff">
-		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 
 		<div id="post-body-content" class="portfolio-options">
 			<div id="post-body-heading">
@@ -430,13 +431,13 @@ jQuery(document).ready(function () {
 					<div>					
 						<h3>Popup Title</h3>
 						<div class="has-background">
-							<label for="ht_view2_element_title_font_size">Popup Title Font Size</label>
-							<input type="text" name="params[ht_view2_element_title_font_size]" id="ht_view2_element_title_font_size" value="<?php echo $param_values['ht_view2_element_title_font_size']; ?>" class="text" />
+							<label for="ht_view2_popup_title_font_size">Popup Title Font Size</label>
+							<input type="text" name="params[ht_view2_popup_title_font_size]" id="ht_view2_element_title_font_size" value="<?php echo $param_values['ht_view2_popup_title_font_size']; ?>" class="text" />
 							<span>px</span>
 						</div>
 						<div>
-							<label for="ht_view2_element_title_font_color">Popup Title Font Color</label>
-							<input name="params[ht_view2_element_title_font_color]" type="text" class="color" id="ht_view2_element_title_font_color" value="#<?php echo $param_values['ht_view2_element_title_font_color']; ?>" size="10" />
+							<label for="ht_view2_popup_title_font_color">Popup Title Font Color</label>
+							<input name="params[ht_view2_popup_title_font_color]" type="text" class="color" id="ht_view2_element_title_font_color" value="#<?php echo $param_values['ht_view2_popup_title_font_color']; ?>" size="10" />
 						</div>
 					</div>
 					<div>

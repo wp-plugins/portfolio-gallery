@@ -49,7 +49,7 @@ function html_showportfolios( $rows,  $pageNav,$sort,$cat_row){
 
 <div class="wrap">
 	<?php $path_site2 = plugins_url("../images", __FILE__); ?>
-	<div class="slider-options-head">
+		<div class="slider-options-head">
 		<div style="float: left;">
 			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
 			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
@@ -258,7 +258,6 @@ jQuery(function() {
 			</a>
 		</div>
 	</div>
-
 <form action="admin.php?page=portfolios_huge_it_portfolio&id=<?php echo $row->id; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div id="portfolio-header">

@@ -502,32 +502,6 @@ function removeportfolio($id)
  <div class="updated"><p><strong><?php _e('Item Deleted.' ); ?></strong></p></div>
  <?php
  }
-    $row=$wpdb->get_results($wpdb->prepare('UPDATE '.$wpdb->prefix.'huge_itportfolio_portfolios SET sl_width="0"   WHERE sl_width= %d', $id));
-	$rows=$wpdb->get_results($wpdb->prepare('SELECT * FROM '.$wpdb->prefix.'huge_itportfolio_portfolios  ORDER BY `ordering` ASC '));
-	
-	$count_of_rows=count($rows);
-	$ordering_values=array();
-	$ordering_ids=array();
-	for($i=0;$i<$count_of_rows;$i++)
-	{		
-	
-		$ordering_ids[$i]=$rows[$i]->id;
-		if(isset($_POST["ordering"]))
-		$ordering_values[$i]=$i+1+$_POST["ordering"];
-		else
-		$ordering_values[$i]=$i+1;
-	}
-
-		for($i=0;$i<$count_of_rows;$i++)
-	{	
-			$wpdb->update($wpdb->prefix.'huge_itportfolio_portfolios', 
-			  array('ordering'      =>$ordering_values[$i]), 
-              array('id'			=>$ordering_ids[$i]),
-			  array('%s'),
-			  array( '%s' )
-			  );
-	}
-
 }
 
 function apply_cat($id)
