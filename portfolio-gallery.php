@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.1.8
+Version: 1.1.9
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -292,15 +292,6 @@ function portfolios_huge_it_portfolio()
         case 'add_cat':
             add_portfolio();
             break;
-
-		case 'popup_posts':
-            if ($id)
-                popup_posts($id);
-            else {
-                $id = $wpdb->get_var("SELECT MAX( id ) FROM " . $wpdb->prefix . "huge_itportfolio_portfolios");
-                popup_posts($id);
-            }
-            break;
         case 'edit_cat':
             if ($id)
                 editportfolio($id);
@@ -425,8 +416,6 @@ class Huge_it_portfolio_Widget extends WP_Widget {
 				$query="SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios ";
 				$rowwidget=$wpdb->get_results($query);
 				foreach($rowwidget as $rowwidgetecho){
-				
-				selected
 				?>
 					<option <?php if($rowwidgetecho->id == $instance['portfolio_id']){ echo 'selected'; } ?> value="<?php echo $rowwidgetecho->id; ?>"><?php echo $rowwidgetecho->name; ?></option>
 
