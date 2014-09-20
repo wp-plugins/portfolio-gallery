@@ -239,13 +239,13 @@ function apply_cat($id)
 	}
 
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  name = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_width = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_height = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  pause_on_hover = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  portfolio_list_effects_s = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  description = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  param = %s  WHERE id = %d ", $_POST["name"], $id));
-	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_position = %s  WHERE id = %d ", $_POST["name"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_width = %s  WHERE id = %d ", $_POST["sl_width"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_height = %s  WHERE id = %d ", $_POST["sl_height"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  pause_on_hover = %s  WHERE id = %d ", $_POST["pause_on_hover"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  portfolio_list_effects_s = %s  WHERE id = %d ", $_POST["portfolio_effects_list"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  description = %s  WHERE id = %d ", $_POST["sl_pausetime"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  param = %s  WHERE id = %d ", $_POST["sl_changespeed"], $id));
+	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_position = %s  WHERE id = %d ", $_POST["sl_position"], $id));
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ordering = '1'  WHERE id = %d ", $id));
 
 		
