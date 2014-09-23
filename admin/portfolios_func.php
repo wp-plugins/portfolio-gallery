@@ -1,19 +1,16 @@
-	<?php	
-	if(function_exists('current_user_can'))
-	if(!current_user_can('manage_options')) {
-	die('Access Denied');
-}	
-if(!function_exists('current_user_can')){
-	die('Access Denied');
-}
-
+<?php	
 function showportfolio() 
   {
 	  
   global $wpdb;
 	$limit=0;
 
+	if(isset($_POST['search_events_by_title'])){
 	$search_tag=esc_html(stripslashes($_POST['search_events_by_title']));
+	}
+	else {
+	$search_tag = '';
+	}
 	$cat_row_query="SELECT id,name FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE sl_width=0";
 	$cat_row=$wpdb->get_results($cat_row_query);
 	
@@ -22,14 +19,14 @@ function showportfolio()
 	
 	$total = $wpdb->get_var($query);
 
-	if(!($cat_id)){
+	
 	 $query =$wpdb->prepare("SELECT  a.* ,  COUNT(b.id) AS count, g.par_name AS par_name FROM ".$wpdb->prefix."huge_itportfolio_portfolios  AS a LEFT JOIN ".$wpdb->prefix."huge_itportfolio_portfolios AS b ON a.id = b.sl_width LEFT JOIN (SELECT  ".$wpdb->prefix."huge_itportfolio_portfolios.ordering as ordering,".$wpdb->prefix."huge_itportfolio_portfolios.id AS id, COUNT( ".$wpdb->prefix."huge_itportfolio_images.portfolio_id ) AS prod_count
 FROM ".$wpdb->prefix."huge_itportfolio_images, ".$wpdb->prefix."huge_itportfolio_portfolios
 WHERE ".$wpdb->prefix."huge_itportfolio_images.portfolio_id = ".$wpdb->prefix."huge_itportfolio_portfolios.id
 GROUP BY ".$wpdb->prefix."huge_itportfolio_images.portfolio_id) AS c ON c.id = a.id LEFT JOIN
 (SELECT ".$wpdb->prefix."huge_itportfolio_portfolios.name AS par_name,".$wpdb->prefix."huge_itportfolio_portfolios.id FROM ".$wpdb->prefix."huge_itportfolio_portfolios) AS g
  ON a.sl_width=g.id WHERE a.name LIKE %s  group by a.id  ","%".$search_tag."%");
-}
+
 
 $rows = $wpdb->get_results($query);
 
@@ -52,6 +49,8 @@ foreach($rows as $row)
 	}
 }
 	$cat_row=open_cat_in_tree($cat_row);
+	$pageNav='';
+	$sort='';
 		html_showportfolios( $rows, $pageNav,$sort,$cat_row);
   }
 

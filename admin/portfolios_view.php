@@ -79,8 +79,6 @@ function html_showportfolios( $rows,  $pageNav,$sort,$cat_row){
 				 document.getElementById(\'admin_form\').submit();" class="button-secondary action">
 				 <input type="button" value="Reset" onclick="window.location.href=\'admin.php?page=portfolios_huge_it_portfolio\'" class="button-secondary action">
 			</div>';
-
-			 print_html_nav($pageNav['total'],$pageNav['limit'],$serch_fields);
 			?>
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>
