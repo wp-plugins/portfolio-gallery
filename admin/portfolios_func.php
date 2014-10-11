@@ -27,7 +27,6 @@ GROUP BY ".$wpdb->prefix."huge_itportfolio_images.portfolio_id) AS c ON c.id = a
 (SELECT ".$wpdb->prefix."huge_itportfolio_portfolios.name AS par_name,".$wpdb->prefix."huge_itportfolio_portfolios.id FROM ".$wpdb->prefix."huge_itportfolio_portfolios) AS g
  ON a.sl_width=g.id WHERE a.name LIKE %s  group by a.id  ","%".$search_tag."%");
 
-
 $rows = $wpdb->get_results($query);
 
 $rows=open_cat_in_tree($rows);
@@ -82,8 +81,6 @@ function editportfolio($id)
 		$idfordelete = $_GET["removeslide"];
 	  $wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_itportfolio_images  WHERE id = %d ", $idfordelete));
 
-
-	
 	   }
 	   }
 
@@ -119,9 +116,6 @@ INSERT INTO
 	
 	   }
 	   }
-	   
-	
-	   
 	   $query="SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios order by id ASC";
 			   $rowsld=$wpdb->get_results($query);
 			  
@@ -144,10 +138,7 @@ INSERT INTO
 	 if(isset($_POST["iframecatid"])){
 	 	  $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."term_relationships where term_taxonomy_id = %d order by object_id ASC",$_POST["iframecatid"]);
 		$rowsposts8=$wpdb->get_results($query);
-
-
-	 
-
+		
 			   foreach($rowsposts8 as $rowsposts13){
 	 $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."posts where post_type = 'post' and post_status = 'publish' and ID = %d  order by ID ASC",$rowsposts13->object_id);
 			   $rowsposts1=$wpdb->get_results($query);
@@ -156,7 +147,6 @@ INSERT INTO
 	 }
 	 }
 	
-	   	   
     Html_editportfolio($ord_elem, $count_ord, $images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat);
   }
   
@@ -184,7 +174,6 @@ INSERT INTO
 			   $rowsldcc=$wpdb->get_results($query);
 			   $last_key = key( array_slice( $rowsldcc, -1, 1, TRUE ) );
 			   
-			   
 	foreach($rowsldcc as $key=>$rowsldccs){
 		if($last_key == $key){
 			header('Location: admin.php?page=portfolios_huge_it_portfolio&id='.$rowsldccs->id.'&task=apply');
@@ -194,7 +183,6 @@ INSERT INTO
 	html_add_portfolio($ord_elem, $cat_row);
 	
 }
-
 
 function removeportfolio($id)
 {
@@ -295,9 +283,6 @@ INSERT INTO
 
 `" . $table_name . "` ( `name`, `portfolio_id`, `description`, `image_url`, `sl_url`, `ordering`, `published`, `published_in_sl_width`) VALUES
 ( '', '".$row->id."', '', '".$imagesnewupload.";', '', 'par_TV', 2, '1' )";
-
-   
-	
 
       $wpdb->query($sql_2);
 		}

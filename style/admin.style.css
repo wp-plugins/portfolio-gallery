@@ -19,7 +19,6 @@
 
 #portfolios-list-page table tr.has-background {background:#f9f9f9;}
 
-/*portfolioS TABS*/
  #portfolios-list  {
 	width:100%;
 	margin:0px 0px 20px 0px;
@@ -73,10 +72,6 @@
 	border:0px;
 	width: 90px;
 }
-
-
-
-/*SIDEBAR*/
 
 #portfolio-unique-options-list li label {
 	display:inline-block;

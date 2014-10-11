@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.2.2
+Version: 1.2.3
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -26,8 +26,7 @@ function add_portfolio_my_custom_button($context) {
 
   $container_id = 'huge_it_portfolio';
   
-
-  $title = 'Select Huge IT Portfolio Gallery to insert into post';
+  $title = 'Select Huge IT Portfolio Gallery to insert into post.';
 
   $context .= '<a class="button thickbox" title="Select portfolio gallery to insert into post"    href="#TB_inline?width=400&inlineId='.$container_id.'">
 		<span class="wp-media-buttons-icon" style="background: url('.$img.'); background-repeat: no-repeat; background-position: left bottom;"></span>
@@ -88,7 +87,6 @@ function portfolio_lang_load()
 
 }
 
-
 function huge_it_portfolio_images_list_shotrcode($atts)
 {
     extract(shortcode_atts(array(
@@ -96,16 +94,11 @@ function huge_it_portfolio_images_list_shotrcode($atts)
     
     ), $atts));
 
-
-
-
     return huge_it_portfolio_images_list($atts['id']);
 
 }
 
-
 /////////////// Filter portfolio gallery
-
 
 function portfolio_after_search_results($query)
 {
@@ -115,7 +108,6 @@ function portfolio_after_search_results($query)
         $query = str_replace($wpdb->prefix . "posts.post_content", gen_string_portfolio_search($serch_word, $wpdb->prefix . 'posts.post_content') . " " . $wpdb->prefix . "posts.post_content", $query);
     }
     return $query;
-
 }
 
 add_filter('posts_request', 'portfolio_after_search_results');
@@ -154,14 +146,9 @@ function gen_string_portfolio_search($serch_word, $wordpress_query_post)
     return $string_search;
 }
 
-
 ///////////////////// end filter
 
-
 add_shortcode('huge_it_portfolio', 'huge_it_portfolio_images_list_shotrcode');
-
-
-
 
 function   huge_it_portfolio_images_list($id)
 {
@@ -182,9 +169,6 @@ function   huge_it_portfolio_images_list($id)
     }
 }
 
-
-
-
 add_filter('admin_head', 'huge_it_portfolio_ShowTinyMCE');
 function huge_it_portfolio_ShowTinyMCE()
 {
@@ -202,7 +186,6 @@ function huge_it_portfolio_ShowTinyMCE()
     do_action("admin_print_styles-post-php");
     do_action('admin_print_styles');
 }
-
 
 add_action('admin_menu', 'huge_it_portfolio_options_panel');
 function huge_it_portfolio_options_panel()
@@ -248,7 +231,6 @@ Purchasing a license will add possibility to customize the general options and l
 <?php
 	}
 	
-	
 function huge_it_portfolio_admin_script()
 {
 	wp_enqueue_media();
@@ -256,7 +238,6 @@ function huge_it_portfolio_admin_script()
 	wp_enqueue_style("admin_css", plugins_url("style/admin.style.css", __FILE__), FALSE);
 	wp_enqueue_script("admin_js", plugins_url("js/admin.js", __FILE__), FALSE);
 }
-
 
 function huge_it_portfolio_option_admin_script()
 {
@@ -268,15 +249,12 @@ function huge_it_portfolio_option_admin_script()
 	wp_enqueue_script('param_block2', plugins_url("elements/jscolor/jscolor.js", __FILE__));
 }
 
-
 function portfolios_huge_it_portfolio()
 {
-
     require_once("admin/portfolios_func.php");
     require_once("admin/portfolios_view.php");
     if (!function_exists('print_html_nav'))
         require_once("portfolio_function/html_portfolio_func.php");
-
 
     if (isset($_GET["task"]))
         $task = $_GET["task"]; 
@@ -319,9 +297,7 @@ function portfolios_huge_it_portfolio()
             break;
     }
 
-
 }
-
 
 function Options_portfolio_styles()
 {
@@ -343,12 +319,7 @@ function Options_portfolio_lightbox_styles()
 }
 
 
-/**
- * Huge IT Widget
- */
 class Huge_it_portfolio_Widget extends WP_Widget {
-
-
 	public function __construct() {
 		parent::__construct(
 	 		'Huge_it_portfolio_Widget', 
@@ -357,7 +328,6 @@ class Huge_it_portfolio_Widget extends WP_Widget {
 		);
 	}
 
-	
 	public function widget( $args, $instance ) {
 		extract($args);
 
@@ -398,9 +368,6 @@ class Huge_it_portfolio_Widget extends WP_Widget {
 			$title = $instance['title'];
 		}
 
-        
-
-        
 		?>
 		<p>
 			
@@ -438,16 +405,10 @@ function register_Huge_it_portfolio_Widget() {
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////               Activate portfolio gallery                    ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
-//////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
-
 
 function huge_it_portfolio_activate()
 {
     global $wpdb;
-
-/// creat database tables
-
-
 
     $sql_huge_itportfolio_params = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_params`(

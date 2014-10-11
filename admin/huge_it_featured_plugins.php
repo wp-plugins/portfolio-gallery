@@ -139,7 +139,7 @@
 <div class="element hugeitmicro-item">
 	<div class="left-block">
 		<div class="main-image-block">
-			<a href="<?php echo plugins_url( '../images/slider.logo_.jpg' , __FILE__ ); ?>" rel="content"><img src="<?php echo plugins_url( '../images/slider.logo_.jpg' , __FILE__ ); ?>"></a>
+			<a href="<?php echo plugins_url( '../images/slider-logo.png' , __FILE__ ); ?>" rel="content"><img src="<?php echo plugins_url( '../images/slider-logo.png' , __FILE__ ); ?>"></a>
 		</div>
 	</div>
 	<div class="right-block">
