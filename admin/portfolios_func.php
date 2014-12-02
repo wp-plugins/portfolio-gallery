@@ -152,21 +152,13 @@ INSERT INTO
   
 function add_portfolio()
 {
-	global $wpdb;
-	
-	$query="SELECT name,ordering FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE sl_width=0 ORDER BY `ordering`";
-	$ord_elem=$wpdb->get_results($query); ///////ordering elements list
-	$cat_row=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios where sl_width=0");
-	$cat_row=open_cat_in_tree($cat_row);
-	
+	global $wpdb;	
 	$table_name = $wpdb->prefix . "huge_itportfolio_portfolios";
     $sql_2 = "
 INSERT INTO 
 
-`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `portfolio_list_effects_s`, `description`, `param`, `ordering`, `published`) VALUES
-( 'New portfolio', '375', '600', 'on', 'cubeH', '4000', '1000', '1', '300')";
-
-    $wpdb->query($sql_huge_itportfolio_portfolios);
+`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `portfolio_list_effects_s`, `description`, `param`, `sl_position`, `ordering`, `published`) VALUES
+( 'New portfolio', '375', '600', 'on', 'cubeH', '4000', '1000', 'center', '1', '300')";
 
       $wpdb->query($sql_2);
 
@@ -179,8 +171,7 @@ INSERT INTO
 			header('Location: admin.php?page=portfolios_huge_it_portfolio&id='.$rowsldccs->id.'&task=apply');
 		}
 	}
-	
-	html_add_portfolio($ord_elem, $cat_row);
+
 	
 }
 
