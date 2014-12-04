@@ -109,8 +109,8 @@ This can happen because of your browser’s cache files. Press ctrl+f5 (Chrome, 
 **Will I lose all my changes that I made in free version, if I update to pro version?**
 All kind of changes made in free version will remain, even if you delete the plugin
 
-**How to change “New Portfolio” name?**
-In order to change Portfolio name just double click on it’s name (not on pencil)
+**How to change “New Portfolio Gallery” name?**
+In order to change Portfolio Gallery name just double click on it’s name (not on pencil)
 
 **How to see the title of the image in lightbox?**
 In order to add name to you image and see it in lightbox. 
@@ -120,6 +120,8 @@ Set “show the title” from Lightbox Options
 **I have already purchased multi version, how do I upgrade it to Developer version, without buying it again?**
 If you have any pro version of our products and want to upgrade it, you do not need to buy the new one again, you only need to pay the difference price.
 For example, if you have personal version and need to upgrade to multi, just buy one more personal, and contact us by info@huge-it.com, send the receipt and we will send multi version, from multi to developer, just buy one personal, and ask us for developer version.
+
+### If you think, that you found a bug in our [WordPress Portfolio Gallery](http://huge-it.com/portfolio-gallery) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
 == Changelog ==
 
