@@ -75,8 +75,7 @@ jQuery(document).ready(function () {
 			</ul>
 			
 			<ul class="options-block" id="portfolio-view-tabs-contents">
-
-				<li id="portfolio-view-options-0">
+                            <li id="portfolio-view-options-0">
 					<div>
 						<h3>Element Styles</h3>
 						<div class="has-background">
@@ -118,7 +117,7 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
-					<div>
+					<div style="margin-top: 14px;">
 						<h3>Title</h3>
 						<div class="has-background">
 							<label for="ht_view0_title_font_size">Title Font Size</label>
@@ -130,7 +129,94 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view0_title_font_color]" type="text" class="color" id="ht_view0_title_font_color" value="#<?php echo $param_values['ht_view0_title_font_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div style="margin-top:-40px;">
+                                        
+                                        <div style="margin-top:-40px;">
+                                            <h3>Sorting styles</h3>
+                                            <div class="has-background" style="display: none;">
+                                                    <label for="ht_view0_show_sorting">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view0_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view0_show_sorting"  <?php if($param_values['ht_view0_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view0_show_sorting]" value="on" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view0_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view0_sortbutton_font_size]" id="ht_view0_sortbutton_font_size" value="<?php echo $param_values['ht_view0_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view0_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view0_sortbutton_font_color]" type="text" class="color" id="ht_view0_sortbutton_font_color" value="#<?php echo $param_values['ht_view0_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view0_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view0_sortbutton_hover_font_color]" type="text" class="color" id="ht_view0_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view0_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view0_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view0_sortbutton_background_color]" type="text" class="color" id="ht_view0_sortbutton_background_color" value="#<?php echo $param_values['ht_view0_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view0_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view0_sortbutton_hover_background_color]" type="text" class="color" id="ht_view0_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view0_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view0_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view0_sortbutton_border_width]" id="ht_view0_sortbutton_border_width" value="<?php echo $param_values['ht_view0_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view0_sortbutton_border_color]" type="text" class="color" id="ht_view0_sortbutton_border_color" value="#<?php echo $param_values['ht_view0_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view0_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div>
+                                                    <label for="ht_view0_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view0_sortbutton_border_radius]" id="ht_view0_sortbutton_border_radius" value="<?php echo $param_values['ht_view0_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div  class="has-background">
+                                                    <label for="ht_view0_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view0_sortbutton_border_padding]" id="ht_view0_sortbutton_border_padding" value="<?php echo $param_values['ht_view0_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view0_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view0_sortbutton_margin]" id="ht_view0_sortbutton_margin" value="<?php echo $param_values['ht_view0_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div>
+                                                    <label for="ht_view0_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view0_sorting_float" name="params[ht_view0_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view0_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view0_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view0_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view0_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<input name="params[ht_view0_sorting_name_by_default]" type="text" id="ht_view0_sorting_name_by_default" value="<?php echo $param_values['ht_view0_sorting_name_by_default']; ?>" size="10" class="text"/>
+						</div>
+						<div class="">
+							<label for="ht_view0_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<input name="params[ht_view0_sorting_name_by_id]" type="text" id="ht_view0_sorting_name_by_id" value="<?php echo $param_values['ht_view0_sorting_name_by_id']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view0_sorting_name_by_name">Sorting By Title Botton Name</label>
+							<input name="params[ht_view0_sorting_name_by_name]" type="text" id="ht_view0_sorting_name_by_name" value="<?php echo $param_values['ht_view0_sorting_name_by_name']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view0_sorting_name_by_random">Random Sorting Botton Name</label>
+							<input name="params[ht_view0_sorting_name_by_random]" type="text" id="ht_view0_sorting_name_by_random" value="<?php echo $param_values['ht_view0_sorting_name_by_random']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view0_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<input name="params[ht_view0_sorting_name_by_asc]" type="text" id="ht_view0_sorting_name_by_asc" value="<?php echo $param_values['ht_view0_sorting_name_by_asc']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view0_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<input name="params[ht_view0_sorting_name_by_desc]" type="text" id="ht_view0_sorting_name_by_desc" value="<?php echo $param_values['ht_view0_sorting_name_by_desc']; ?>" size="10" />
+						</div>
+                                            </div>
+                                                                                    
+					<div style="margin-top:14px;">
 						<h3>Thumbnails</h3>
 						<div class="has-background">
 							<label for="ht_view0_show_thumbs">Show Thumbnails</label>
@@ -150,6 +236,8 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
+                                        
+                                        
 					<div>
 						<h3>Description</h3>
 						<div class="has-background">
@@ -167,7 +255,73 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view0_description_color]" type="text" class="color" id="ht_view0_description_color" value="#<?php echo $param_values['ht_view0_description_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div style="margin-top:-35px;">
+                                    
+                                        <div style="margin-top: 14px;">
+                                            <h3>Category styles</h3>
+                                            
+                                                <div  style="display: none;">
+                                                    <label for="ht_view0_show_filtering">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view0_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view0_show_filtering"  <?php if($param_values['ht_view0_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view0_show_filtering]" value="on" />
+                                                </div>
+
+                                                <div class="has-background">
+                                                    <label for="ht_view0_filterbutton_font_size">Filter Button Font Size</label>
+                                                    <input type="text" name="params[ht_view0_filterbutton_font_size]" id="ht_view0_filterbutton_font_size" value="<?php echo $param_values['ht_view0_filterbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view0_filterbutton_font_color">Filter Button Font Color</label>
+                                                    <input name="params[ht_view0_filterbutton_font_color]" type="text" class="color" id="ht_view0_filterbutton_font_color" value="#<?php echo $param_values['ht_view0_filterbutton_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view0_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                    <input name="params[ht_view0_filterbutton_hover_font_color]" type="text" class="color" id="ht_view0_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view0_filterbutton_hover_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view0_filterbutton_background_color">Filter Button Background Color</label>
+                                                    <input name="params[ht_view0_filterbutton_background_color]" type="text" class="color" id="ht_view0_filterbutton_background_color" value="#<?php echo $param_values['ht_view0_filterbutton_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background" >
+                                                    <label for="ht_view0_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                    <input name="params[ht_view0_filterbutton_hover_background_color]" type="text" class="color" id="ht_view0_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view0_filterbutton_hover_background_color']; ?>" size="10" />
+                                                </div>
+
+                                                <div class="" style="display: none;">
+                                                    <label for="ht_view0_filterbutton_border_width">Filter Button Border Width</label>
+                                                    <input type="text" name="params[ht_view0_filterbutton_border_width]" id="ht_view0_filterbutton_border_width" value="<?php echo $param_values['ht_view0_filterbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <input name="params[ht_view0_filterbutton_border_color]" type="text" class="color" id="ht_view0_filterbutton_border_color" value="#<?php echo $param_values['ht_view0_filterbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view0_filterbutton_border_color">Filter Button Border Color</label>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view0_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view0_filterbutton_border_radius]" id="ht_view0_filterbutton_border_radius" value="<?php echo $param_values['ht_view0_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view0_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view0_filterbutton_border_padding]" id="ht_view0_filterbutton_border_padding" value="<?php echo $param_values['ht_view0_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view0_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view0_filterbutton_margin]" id="ht_view0_filterbutton_margin" value="<?php echo $param_values['ht_view0_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view0_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view0_filtering_float" name="params[ht_view0_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view0_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view0_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view0_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    
+					<div style="margin-top: -264px;">
 						<h3>Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view0_show_linkbutton">Show Link Button</label>
@@ -199,6 +353,7 @@ jQuery(document).ready(function () {
 							<label for="ht_view0_linkbutton_background_hover_color">Link Button Background Hover Color</label>
 							<input name="params[ht_view0_linkbutton_background_hover_color]" type="text" class="color" id="ht_view0_linkbutton_background_hover_color" value="#<?php echo $param_values['ht_view0_linkbutton_background_hover_color']; ?>" size="10" />
 						</div>
+                                                
 					</div>
 				</li>
 				
@@ -243,7 +398,7 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view1_title_font_color]" type="text" class="color" id="ht_view1_title_font_color" value="#<?php echo $param_values['ht_view1_title_font_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div>
+					<div style="margin-top: 14px;">
 						<h3>Thumbnails</h3>
 						<div class="has-background">
 							<label for="ht_view1_show_thumbs">Show Thumbnails</label>
@@ -263,24 +418,8 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
+                                       
 					<div style="margin-top:-80px;">
-						<h3>Description</h3>
-						<div class="has-background">
-							<label for="ht_view1_show_description">Show Description</label>
-							<input type="hidden" value="off" name="params[ht_view1_show_description]" />
-							<input type="checkbox" id="ht_view1_show_description"  <?php if($param_values['ht_view1_show_description']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view1_show_description]" value="on" />
-						</div>
-						<div>
-							<label for="ht_view1_description_font_size">Description Font Size</label>
-							<input type="text" name="params[ht_view1_description_font_size]" id="ht_view1_description_font_size" value="<?php echo $param_values['ht_view1_description_font_size']; ?>" class="text" />
-							<span>px</span>
-						</div>
-						<div class="has-background">
-							<label for="ht_view1_description_color">Description Font Color</label>
-							<input name="params[ht_view1_description_color]" type="text" class="color" id="ht_view1_description_color" value="#<?php echo $param_values['ht_view1_description_color']; ?>" size="10" />
-						</div>
-					</div>
-					<div>
 						<h3>Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view1_show_linkbutton">Show Link Button</label>
@@ -313,6 +452,175 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view1_linkbutton_background_hover_color]" type="text" class="color" id="ht_view1_linkbutton_background_hover_color" value="#<?php echo $param_values['ht_view1_linkbutton_background_hover_color']; ?>" size="10" />
 						</div>
 					</div>
+                                    
+                                        
+                                        
+                                        <div style="margin-top: 14px;">
+						<h3>Description</h3>
+						<div class="has-background">
+							<label for="ht_view1_show_description">Show Description</label>
+							<input type="hidden" value="off" name="params[ht_view1_show_description]" />
+							<input type="checkbox" id="ht_view1_show_description"  <?php if($param_values['ht_view1_show_description']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view1_show_description]" value="on" />
+						</div>
+						<div>
+							<label for="ht_view1_description_font_size">Description Font Size</label>
+							<input type="text" name="params[ht_view1_description_font_size]" id="ht_view1_description_font_size" value="<?php echo $param_values['ht_view1_description_font_size']; ?>" class="text" />
+							<span>px</span>
+						</div>
+						<div class="has-background">
+							<label for="ht_view1_description_color">Description Font Color</label>
+							<input name="params[ht_view1_description_color]" type="text" class="color" id="ht_view1_description_color" value="#<?php echo $param_values['ht_view1_description_color']; ?>" size="10" />
+						</div>
+					</div>
+                                        
+                                        <div style="margin-top:14px;">
+                                            <h3>Category styles</h3>
+                                                <div style="display: none;">
+                                                    <label for="ht_view1_show_filtering" style="display: none;">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view1_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view1_show_filtering"  <?php if($param_values['ht_view1_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view1_show_filtering]" value="on" />
+                                                </div>
+
+                                                <div class="has-background">
+                                                    <label for="ht_view1_filterbutton_font_size">Filter Button Font Size</label>
+                                                    <input type="text" name="params[ht_view1_filterbutton_font_size]" id="ht_view1_filterbutton_font_size" value="<?php echo $param_values['ht_view1_filterbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view1_filterbutton_font_color">Filter Button Font Color</label>
+                                                    <input name="params[ht_view1_filterbutton_font_color]" type="text" class="color" id="ht_view1_filterbutton_font_color" value="#<?php echo $param_values['ht_view1_filterbutton_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view1_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                    <input name="params[ht_view1_filterbutton_hover_font_color]" type="text" class="color" id="ht_view1_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view1_filterbutton_hover_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view1_filterbutton_background_color">Filter Button Background Color</label>
+                                                    <input name="params[ht_view1_filterbutton_background_color]" type="text" class="color" id="ht_view1_filterbutton_background_color" value="#<?php echo $param_values['ht_view1_filterbutton_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view1_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                        <input name="params[ht_view1_filterbutton_hover_background_color]" type="text" class="color" id="ht_view1_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view1_filterbutton_hover_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="" style="display: none;">
+                                                    <label for="ht_view1_filterbutton_border_width">Filter Button Border Width</label>
+                                                    <input type="text" name="params[ht_view1_filterbutton_border_width]" id="ht_view1_filterbutton_border_width" value="<?php echo $param_values['ht_view1_filterbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <input name="params[ht_view1_filterbutton_border_color]" type="text" class="color" id="ht_view1_filterbutton_border_color" value="#<?php echo $param_values['ht_view1_filterbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view1_filterbutton_border_color">Filter Button Border Color</label>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view1_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view1_filterbutton_border_radius]" id="ht_view1_filterbutton_border_radius" value="<?php echo $param_values['ht_view1_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view1_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view1_filterbutton_border_padding]" id="ht_view1_filterbutton_border_padding" value="<?php echo $param_values['ht_view1_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view1_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view1_filterbutton_margin]" id="ht_view1_filterbutton_margin" value="<?php echo $param_values['ht_view1_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view1_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view1_filtering_float" name="params[ht_view1_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view1_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view1_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view1_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                                <div class="has-background">
+							<label for="ht_view1_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<input name="params[ht_view1_sorting_name_by_default]" type="text" id="ht_view1_sorting_name_by_default" value="<?php echo $param_values['ht_view1_sorting_name_by_default']; ?>" size="10" class="text"/>
+						</div>
+						<div class="">
+							<label for="ht_view1_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<input name="params[ht_view1_sorting_name_by_id]" type="text" id="ht_view1_sorting_name_by_id" value="<?php echo $param_values['ht_view1_sorting_name_by_id']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view1_sorting_name_by_name">Sorting By Title Botton Name</label>
+							<input name="params[ht_view1_sorting_name_by_name]" type="text" id="ht_view1_sorting_name_by_name" value="<?php echo $param_values['ht_view1_sorting_name_by_name']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view1_sorting_name_by_random">Random Sorting Botton Name</label>
+							<input name="params[ht_view1_sorting_name_by_random]" type="text" id="ht_view1_sorting_name_by_random" value="<?php echo $param_values['ht_view1_sorting_name_by_random']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view1_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<input name="params[ht_view1_sorting_name_by_asc]" type="text" id="ht_view1_sorting_name_by_asc" value="<?php echo $param_values['ht_view1_sorting_name_by_asc']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view1_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<input name="params[ht_view1_sorting_name_by_desc]" type="text" id="ht_view1_sorting_name_by_desc" value="<?php echo $param_values['ht_view1_sorting_name_by_desc']; ?>" size="10" />
+						</div>
+                                        </div>
+                                        
+                                        <div style="margin-top: -574px;">
+                                            <h3>Sorting styles</h3>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view1_show_sorting" style="display: none;">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view1_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view1_show_sorting"  <?php if($param_values['ht_view1_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view1_show_sorting]" value="on" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view1_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view1_sortbutton_font_size]" id="ht_view1_sortbutton_font_size" value="<?php echo $param_values['ht_view1_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view1_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view1_sortbutton_font_color]" type="text" class="color" id="ht_view1_sortbutton_font_color" value="#<?php echo $param_values['ht_view1_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view1_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view1_sortbutton_hover_font_color]" type="text" class="color" id="ht_view1_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view1_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view1_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view1_sortbutton_background_color]" type="text" class="color" id="ht_view1_sortbutton_background_color" value="#<?php echo $param_values['ht_view1_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view1_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view1_sortbutton_hover_background_color]" type="text" class="color" id="ht_view1_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view1_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background" style="display: none;">
+                                                    <label for="ht_view1_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view1_sortbutton_border_width]" id="ht_view1_sortbutton_border_width" value="<?php echo $param_values['ht_view1_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view1_sortbutton_border_color]" type="text" class="color" id="ht_view1_sortbutton_border_color" value="#<?php echo $param_values['ht_view1_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view1_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view1_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view1_sortbutton_border_radius]" id="ht_view1_sortbutton_border_radius" value="<?php echo $param_values['ht_view1_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view1_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view1_sortbutton_border_padding]" id="ht_view1_sortbutton_border_padding" value="<?php echo $param_values['ht_view1_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div  style="display: none;">
+                                                    <label for="ht_view1_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view1_sortbutton_margin]" id="ht_view1_sortbutton_margin" value="<?php echo $param_values['ht_view1_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view1_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view1_sorting_float" name="params[ht_view1_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view1_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view1_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view1_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+						</div>
+                                        </div>
 				</li>
 
 				<!-- VIEW 2 POPUP -->
@@ -398,37 +706,161 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view2_element_linkbutton_background_color]" type="text" class="color" id="ht_view2_element_linkbutton_background_color" value="#<?php echo $param_values['ht_view2_element_linkbutton_background_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div style="margin-top:-45px;">
-						<h3>Popup Styles</h3>
-						<div class="has-background">
-							<label for="ht_view2_popup_background_color">Popup Background Color</label>
-							<input name="params[ht_view2_popup_background_color]" type="text" class="color" id="ht_view2_popup_background_color" value="#<?php echo $param_values['ht_view2_popup_background_color']; ?>" size="10" />
+					
+                                        <div style="margin-top: -36px;">
+                                            <h3>Sorting styles</h3>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view2_show_sorting" style="display: none;">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view2_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view2_show_sorting"  <?php if($param_values['ht_view2_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view2_show_sorting]" value="on" />
+                                            </div>
+
+                                            <div class="has-background">
+                                                    <label for="ht_view2_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view2_sortbutton_font_size]" id="ht_view2_sortbutton_font_size" value="<?php echo $param_values['ht_view2_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view2_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view2_sortbutton_font_color]" type="text" class="color" id="ht_view2_sortbutton_font_color" value="#<?php echo $param_values['ht_view2_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view2_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view2_sortbutton_hover_font_color]" type="text" class="color" id="ht_view2_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view2_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view2_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view2_sortbutton_background_color]" type="text" class="color" id="ht_view2_sortbutton_background_color" value="#<?php echo $param_values['ht_view2_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view2_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view2_sortbutton_hover_background_color]" type="text" class="color" id="ht_view2_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view2_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view2_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view2_sortbutton_border_width]" id="ht_view2_sortbutton_border_width" value="<?php echo $param_values['ht_view2_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view2_sortbutton_border_color]" type="text" class="color" id="ht_view2_sortbutton_border_color" value="#<?php echo $param_values['ht_view2_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view2_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view2_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view2_sortbutton_border_radius]" id="ht_view2_sortbutton_border_radius" value="<?php echo $param_values['ht_view2_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view2_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view2_sortbutton_border_padding]" id="ht_view2_sortbutton_border_padding" value="<?php echo $param_values['ht_view2_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="" style="display: none;">
+                                                    <label for="ht_view2_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view2_sortbutton_margin]" id="ht_view2_sortbutton_margin" value="<?php echo $param_values['ht_view2_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view2_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view2_sorting_float" name="params[ht_view2_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view2_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view2_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view2_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
 						</div>
-						<div>
-							<label for="ht_view2_popup_overlay_color">Popup Overlay Color</label>
-							<input name="params[ht_view2_popup_overlay_color]" type="text" class="color" id="ht_view2_popup_overlay_color" value="#<?php echo $param_values['ht_view2_popup_overlay_color']; ?>" size="10" />
+                                                <div class="has-background">
+							<label for="ht_view2_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<input name="params[ht_view2_sorting_name_by_default]" type="text" id="ht_view2_sorting_name_by_default" value="<?php echo $param_values['ht_view2_sorting_name_by_default']; ?>" size="10" class="text"/>
 						</div>
-						<div class="has-background">
-							<label for="ht_view2_popup_overlay_transparency_color">Popup Overlay Transparency</label>
-							<div class="slider-container">
-								<input name="params[ht_view2_popup_overlay_transparency_color]" id="ht_view2_popup_overlay_transparency_color" data-slider-highlight="true"  data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="<?php echo $param_values['ht_view2_popup_overlay_transparency_color']; ?>" />
-								<span><?php echo $param_values['ht_view2_popup_overlay_transparency_color']; ?>%</span>
-							</div>
+						<div class="">
+							<label for="ht_view2_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<input name="params[ht_view2_sorting_name_by_id]" type="text" id="ht_view2_sorting_name_by_id" value="<?php echo $param_values['ht_view2_sorting_name_by_id']; ?>" size="10" />
 						</div>
-						<div>
-							<label for="ht_view2_popup_closebutton_style">Popup Close Button Style</label>
-							<select id="ht_view2_popup_closebutton_style" name="params[ht_view2_popup_closebutton_style]">	
-							  <option <?php if($param_values['ht_view2_popup_closebutton_style'] == 'light'){ echo 'selected="selected"'; } ?> value="light">Light</option>
-							  <option <?php if($param_values['ht_view2_popup_closebutton_style'] == 'dark'){ echo 'selected="selected"'; } ?> value="dark">Dark</option>
-							</select>
+                                                <div class="has-background">
+							<label for="ht_view2_sorting_name_by_name">Sorting By Title Botton Name</label>
+							<input name="params[ht_view2_sorting_name_by_name]" type="text" id="ht_view2_sorting_name_by_name" value="<?php echo $param_values['ht_view2_sorting_name_by_name']; ?>" size="10" />
 						</div>
-						<div class="has-background">
-							<label for="ht_view2_show_separator_lines">Show Separator Lines</label>
-							<input type="hidden" value="off" name="params[ht_view2_show_separator_lines]" />
-							<input type="checkbox" id="ht_view2_show_separator_lines"  <?php if($param_values['ht_view2_show_separator_lines']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view2_show_separator_lines]" value="on" />
+						<div class="">
+							<label for="ht_view2_sorting_name_by_random">Random Sorting Botton Name</label>
+							<input name="params[ht_view2_sorting_name_by_random]" type="text" id="ht_view2_sorting_name_by_random" value="<?php echo $param_values['ht_view2_sorting_name_by_random']; ?>" size="10" />
 						</div>
-					</div>
-					<div>					
+                                                <div class="has-background">
+							<label for="ht_view2_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<input name="params[ht_view2_sorting_name_by_asc]" type="text" id="ht_view2_sorting_name_by_asc" value="<?php echo $param_values['ht_view2_sorting_name_by_asc']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view2_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<input name="params[ht_view2_sorting_name_by_desc]" type="text" id="ht_view2_sorting_name_by_desc" value="<?php echo $param_values['ht_view2_sorting_name_by_desc']; ?>" size="10" />
+						</div>
+                                        </div>
+                                        
+                                        <div style="margin-top: 14px;">
+                                            <h3>Category styles</h3>
+                                            
+                                            <div style="display: none;">
+                                                    <label for="ht_view2_show_filtering" style="display: none;">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view2_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view2_show_filtering"  <?php if($param_values['ht_view2_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view2_show_filtering]" value="on" />
+                                            </div>
+
+                                            <div class="has-background">
+                                                    <label for="ht_view2_filterbutton_font_size">Filter Button Font Size</label>
+                                                    <input type="text" name="params[ht_view2_filterbutton_font_size]" id="ht_view2_filterbutton_font_size" value="<?php echo $param_values['ht_view2_filterbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view2_filterbutton_font_color">Filter Button Font Color</label>
+                                                    <input name="params[ht_view2_filterbutton_font_color]" type="text" class="color" id="ht_view2_filterbutton_font_color" value="#<?php echo $param_values['ht_view2_filterbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view2_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                    <input name="params[ht_view2_filterbutton_hover_font_color]" type="text" class="color" id="ht_view2_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view2_filterbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view2_filterbutton_background_color">Filter Button Background Color</label>
+                                                    <input name="params[ht_view2_filterbutton_background_color]" type="text" class="color" id="ht_view2_filterbutton_background_color" value="#<?php echo $param_values['ht_view2_filterbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view2_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                    <input name="params[ht_view2_filterbutton_hover_background_color]" type="text" class="color" id="ht_view2_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view2_filterbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view2_filterbutton_border_width">Filter Button Border Width</label>
+                                                    <input type="text" name="params[ht_view2_filterbutton_border_width]" id="ht_view2_filterbutton_border_width" value="<?php echo $param_values['ht_view2_filterbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view2_filterbutton_border_color]" type="text" class="color" id="ht_view2_filterbutton_border_color" value="#<?php echo $param_values['ht_view2_filterbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view2_filterbutton_border_color">Filter Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view2_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view2_filterbutton_border_radius]" id="ht_view2_filterbutton_border_radius" value="<?php echo $param_values['ht_view2_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view2_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view2_filterbutton_border_padding]" id="ht_view2_filterbutton_border_padding" value="<?php echo $param_values['ht_view2_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view2_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view2_filterbutton_margin]" id="ht_view2_filterbutton_margin" value="<?php echo $param_values['ht_view2_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view2_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view2_filtering_float" name="params[ht_view2_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view2_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view2_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view2_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        
+                                        
+                                    <div style="margin-top: 14px;">	
 						<h3>Popup Title</h3>
 						<div class="has-background">
 							<label for="ht_view2_popup_title_font_size">Popup Title Font Size</label>
@@ -440,7 +872,7 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view2_popup_title_font_color]" type="text" class="color" id="ht_view2_element_title_font_color" value="#<?php echo $param_values['ht_view2_popup_title_font_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div>
+					<div style="margin-top: 14px;" >
 						<h3>Popup Thumbnails</h3>
 						<div class="has-background">
 							<label for="ht_view2_show_thumbs">Show Thumbnails</label>
@@ -465,7 +897,7 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
-					<div  style="margin-top:-180px;">
+                                        <div style="margin-top: -224px;">
 						<h3>Popup Description</h3>
 						<div class="has-background">
 							<label for="ht_view2_show_description">Show Description</label>
@@ -482,7 +914,7 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view2_description_color]" type="text" class="color" id="ht_view2_description_color" value="#<?php echo $param_values['ht_view2_description_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div>
+					<div style="margin-top: -10px;">
 						<h3>Popup Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view2_show_popup_linkbutton">Show Link Button</label>
@@ -515,6 +947,45 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view2_popup_linkbutton_background_hover_color]" type="text" class="color" id="ht_view2_popup_linkbutton_background_hover_color" value="#<?php echo $param_values['ht_view2_popup_linkbutton_background_hover_color']; ?>" size="10" />
 						</div>
 					</div>
+                                    
+                                        <div style="margin-top: 14px;">
+						<h3>Popup Styles</h3>
+                                                <div class="has-background">
+							<label for="ht_view2_popup_full_width">Popup Image Full Width</label>
+							<input type="hidden" value="off" name="params[ht_view2_popup_full_width]" />
+							<input type="checkbox" id="ht_view2_popup_full_width"  <?php if($param_values['ht_view2_popup_full_width']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view2_popup_full_width]" value="on" />
+						</div>
+						<div class="">
+							<label for="ht_view2_popup_background_color">Popup Background Color</label>
+							<input name="params[ht_view2_popup_background_color]" type="text" class="color" id="ht_view2_popup_background_color" value="#<?php echo $param_values['ht_view2_popup_background_color']; ?>" size="10" />
+						</div>
+						<div class="has-background">
+							<label for="ht_view2_popup_overlay_color">Popup Overlay Color</label>
+							<input name="params[ht_view2_popup_overlay_color]" type="text" class="color" id="ht_view2_popup_overlay_color" value="#<?php echo $param_values['ht_view2_popup_overlay_color']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view2_popup_overlay_transparency_color">Popup Overlay Transparency</label>
+							<div class="slider-container">
+								<input name="params[ht_view2_popup_overlay_transparency_color]" id="ht_view2_popup_overlay_transparency_color" data-slider-highlight="true"  data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="<?php echo $param_values['ht_view2_popup_overlay_transparency_color']; ?>" />
+								<span><?php echo $param_values['ht_view2_popup_overlay_transparency_color']; ?>%</span>
+							</div>
+						</div>
+						<div class="has-background">
+							<label for="ht_view2_popup_closebutton_style">Popup Close Button Style</label>
+							<select id="ht_view2_popup_closebutton_style" name="params[ht_view2_popup_closebutton_style]">	
+							  <option <?php if($param_values['ht_view2_popup_closebutton_style'] == 'light'){ echo 'selected="selected"'; } ?> value="light">Light</option>
+							  <option <?php if($param_values['ht_view2_popup_closebutton_style'] == 'dark'){ echo 'selected="selected"'; } ?> value="dark">Dark</option>
+							</select>
+						</div>
+						<div class="">
+							<label for="ht_view2_show_separator_lines">Show Separator Lines</label>
+							<input type="hidden" value="off" name="params[ht_view2_show_separator_lines]" />
+							<input type="checkbox" id="ht_view2_show_separator_lines"  <?php if($param_values['ht_view2_show_separator_lines']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view2_show_separator_lines]" value="on" />
+						</div>
+                                                
+					</div>
+                                        
+                                    
 				</li>	
 				<!-- VIEW 3 Fullwidth -->
 				<li id="portfolio-view-options-3">
@@ -574,7 +1045,158 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
-					<div  style="margin-top:-80px;">
+                                        
+                                        <div style="margin-top:-80px;">
+                                            <h3>Sorting styles</h3>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view3_show_sorting" style="display: none;">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view3_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view3_show_sorting"  <?php if($param_values['ht_view3_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view3_show_sorting]" value="on" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view3_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view3_sortbutton_font_size]" id="ht_view3_sortbutton_font_size" value="<?php echo $param_values['ht_view3_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view3_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view3_sortbutton_font_color]" type="text" class="color" id="ht_view3_sortbutton_font_color" value="#<?php echo $param_values['ht_view3_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view3_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view3_sortbutton_hover_font_color]" type="text" class="color" id="ht_view3_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view3_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view3_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view3_sortbutton_background_color]" type="text" class="color" id="ht_view3_sortbutton_background_color" value="#<?php echo $param_values['ht_view3_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view3_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view3_sortbutton_hover_background_color]" type="text" class="color" id="ht_view3_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view3_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view3_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view3_sortbutton_border_width]" id="ht_view3_sortbutton_border_width" value="<?php echo $param_values['ht_view3_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view3_sortbutton_border_color]" type="text" class="color" id="ht_view3_sortbutton_border_color" value="#<?php echo $param_values['ht_view3_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view3_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view3_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view3_sortbutton_border_radius]" id="ht_view3_sortbutton_border_radius" value="<?php echo $param_values['ht_view3_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div  class="has-background">
+                                                    <label for="ht_view3_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view3_sortbutton_border_padding]" id="ht_view3_sortbutton_border_padding" value="<?php echo $param_values['ht_view3_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view3_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view3_sortbutton_margin]" id="ht_view3_sortbutton_margin" value="<?php echo $param_values['ht_view3_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view3_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view3_sorting_float" name="params[ht_view3_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view3_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view3_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view3_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view3_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<input name="params[ht_view3_sorting_name_by_default]" type="text" id="ht_view3_sorting_name_by_default" value="<?php echo $param_values['ht_view3_sorting_name_by_default']; ?>" size="10" class="text"/>
+						</div>
+						<div class="">
+							<label for="ht_view3_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<input name="params[ht_view3_sorting_name_by_id]" type="text" id="ht_view3_sorting_name_by_id" value="<?php echo $param_values['ht_view3_sorting_name_by_id']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view3_sorting_name_by_name">Sorting By Title Botton Name</label>
+							<input name="params[ht_view3_sorting_name_by_name]" type="text" id="ht_view3_sorting_name_by_name" value="<?php echo $param_values['ht_view3_sorting_name_by_name']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view3_sorting_name_by_random">Random Sorting Botton Name</label>
+							<input name="params[ht_view3_sorting_name_by_random]" type="text" id="ht_view3_sorting_name_by_random" value="<?php echo $param_values['ht_view3_sorting_name_by_random']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view3_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<input name="params[ht_view3_sorting_name_by_asc]" type="text" id="ht_view3_sorting_name_by_asc" value="<?php echo $param_values['ht_view3_sorting_name_by_asc']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view3_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<input name="params[ht_view3_sorting_name_by_desc]" type="text" id="ht_view3_sorting_name_by_desc" value="<?php echo $param_values['ht_view3_sorting_name_by_desc']; ?>" size="10" />
+						</div>
+                                        </div>
+                                        
+                                        <div style="margin-top: 14px;">
+                                            <h3>Category styles</h3>
+                                            
+                                            <div style="display: none;">
+                                                    <label for="ht_view3_show_filtering" style="display: none;">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view3_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view3_show_filtering"  <?php if($param_values['ht_view3_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view3_show_filtering]" value="on" />
+                                            </div>
+
+                                            <div class="has-background">
+                                                    <label for="ht_view3_filterbutton_font_size">Filter Button Font Size</label>
+                                                    <input type="text" name="params[ht_view3_filterbutton_font_size]" id="ht_view3_filterbutton_font_size" value="<?php echo $param_values['ht_view3_filterbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div >
+                                                    <label for="ht_view3_filterbutton_font_color">Filter Button Font Color</label>
+                                                    <input name="params[ht_view3_filterbutton_font_color]" type="text" class="color" id="ht_view3_filterbutton_font_color" value="#<?php echo $param_values['ht_view3_filterbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view3_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                    <input name="params[ht_view3_filterbutton_hover_font_color]" type="text" class="color" id="ht_view3_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view3_filterbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view3_filterbutton_background_color">Filter Button Background Color</label>
+                                                    <input name="params[ht_view3_filterbutton_background_color]" type="text" class="color" id="ht_view3_filterbutton_background_color" value="#<?php echo $param_values['ht_view3_filterbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view3_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                    <input name="params[ht_view3_filterbutton_hover_background_color]" type="text" class="color" id="ht_view3_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view3_filterbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background" style="display: none;">
+                                                    <label for="ht_view3_filterbutton_border_width">Filter Button Border Width</label>
+                                                    <input type="text" name="params[ht_view3_filterbutton_border_width]" id="ht_view3_filterbutton_border_width" value="<?php echo $param_values['ht_view3_filterbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view3_filterbutton_border_color]" type="text" class="color" id="ht_view3_filterbutton_border_color" value="#<?php echo $param_values['ht_view3_filterbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view3_filterbutton_border_color">Filter Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view3_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view3_filterbutton_border_radius]" id="ht_view3_filterbutton_border_radius" value="<?php echo $param_values['ht_view3_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view3_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view3_filterbutton_border_padding]" id="ht_view3_filterbutton_border_padding" value="<?php echo $param_values['ht_view3_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view3_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view3_filterbutton_margin]" id="ht_view3_filterbutton_margin" value="<?php echo $param_values['ht_view3_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view3_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view3_filtering_float" name="params[ht_view3_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view3_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view3_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view3_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        
+					<div>
 						<h3>Description</h3>
 						<div class="has-background">
 							<label for="ht_view3_show_description">Show Description</label>
@@ -591,7 +1213,7 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view3_description_color]" type="text" class="color" id="ht_view3_description_color" value="#<?php echo $param_values['ht_view3_description_color']; ?>" size="10" />
 						</div>
 					</div>
-					<div>
+					<div style="margin-top: -50px;">
 						<h3>Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view3_show_linkbutton">Show Link Button</label>
@@ -668,24 +1290,157 @@ jQuery(document).ready(function () {
 							</select>
 						</div>
 					</div>
-					<div>
-						<h3>Description</h3>
-						<div class="has-background">
-							<label for="ht_view4_show_description">Show Description</label>
-							<input type="hidden" value="off" name="params[ht_view4_show_description]" />
-							<input type="checkbox" id="ht_view4_show_description"  <?php if($param_values['ht_view4_show_description']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view4_show_description]" value="on" />
+					
+                                        <div style="margin-top: 14px;">
+                                            <h3>Sorting styles</h3>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view4_show_sorting" style="display: none;">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view4_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view4_show_sorting"  <?php if($param_values['ht_view4_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view4_show_sorting]" value="on" />
+                                            </div>
+
+                                            <div class="has-background">
+                                                    <label for="ht_view4_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view4_sortbutton_font_size]" id="ht_view4_sortbutton_font_size" value="<?php echo $param_values['ht_view4_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view4_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view4_sortbutton_font_color]" type="text" class="color" id="ht_view4_sortbutton_font_color" value="#<?php echo $param_values['ht_view4_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view4_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view4_sortbutton_hover_font_color]" type="text" class="color" id="ht_view4_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view4_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view4_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view4_sortbutton_background_color]" type="text" class="color" id="ht_view4_sortbutton_background_color" value="#<?php echo $param_values['ht_view4_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view4_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view4_sortbutton_hover_background_color]" type="text" class="color" id="ht_view4_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view4_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background" style="display: none;">
+                                                    <label for="ht_view4_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view4_sortbutton_border_width]" id="ht_view4_sortbutton_border_width" value="<?php echo $param_values['ht_view4_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view4_sortbutton_border_color]" type="text" class="color" id="ht_view4_sortbutton_border_color" value="#<?php echo $param_values['ht_view4_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view4_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view4_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view4_sortbutton_border_radius]" id="ht_view4_sortbutton_border_radius" value="<?php echo $param_values['ht_view4_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view4_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view4_sortbutton_border_padding]" id="ht_view4_sortbutton_border_padding" value="<?php echo $param_values['ht_view4_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view4_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view4_sortbutton_margin]" id="ht_view4_sortbutton_margin" value="<?php echo $param_values['ht_view4_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view4_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view4_sorting_float" name="params[ht_view4_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view4_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view4_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view4_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
 						</div>
-						<div>
-							<label for="ht_view4_description_font_size">Description Font Size</label>
-							<input type="text" name="params[ht_view4_description_font_size]" id="ht_view4_description_font_size" value="<?php echo $param_values['ht_view4_description_font_size']; ?>" class="text" />
-							<span>px</span>
-						</div>
-						<div class="has-background">
-							<label for="ht_view4_description_color">Description Font Color</label>
-							<input name="params[ht_view4_description_color]" type="text" class="color" id="ht_view4_description_color" value="#<?php echo $param_values['ht_view4_description_color']; ?>" size="10" />
-						</div>
-					</div>
-					<div  style="margin-top:-160px;">
+                                                <div class="has-background">
+                                                        <label for="ht_view4_sorting_name_by_default">Sort By Default Bottom Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_default]" type="text" id="ht_view4_sorting_name_by_default" value="<?php echo $param_values['ht_view4_sorting_name_by_default']; ?>" size="10" class="text"/>
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view4_sorting_name_by_id">Sorting By ID Botton Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_id]" type="text" id="ht_view4_sorting_name_by_id" value="<?php echo $param_values['ht_view4_sorting_name_by_id']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view4_sorting_name_by_name">Sorting By Title Botton Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_name]" type="text" id="ht_view4_sorting_name_by_name" value="<?php echo $param_values['ht_view4_sorting_name_by_name']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view4_sorting_name_by_random">Random Sorting Botton Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_random]" type="text" id="ht_view4_sorting_name_by_random" value="<?php echo $param_values['ht_view4_sorting_name_by_random']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view4_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_asc]" type="text" id="ht_view4_sorting_name_by_asc" value="<?php echo $param_values['ht_view4_sorting_name_by_asc']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view4_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+                                                        <input name="params[ht_view4_sorting_name_by_desc]" type="text" id="ht_view4_sorting_name_by_desc" value="<?php echo $param_values['ht_view4_sorting_name_by_desc']; ?>" size="10" />
+                                                </div>
+                                            </div>
+                                    
+                                            <div style="margin-top: -600px;">
+                                            <h3>Category styles</h3>
+                                                <div class="" style="display: none;">
+                                                    <label for="ht_view4_show_filtering" style="display: none;">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view4_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view4_show_filtering"  <?php if($param_values['ht_view4_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view4_show_filtering]" value="on" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view4_filterbutton_font_size">Filter Button Font Size</label>
+                                                        <input type="text" name="params[ht_view4_filterbutton_font_size]" id="ht_view4_filterbutton_font_size" value="<?php echo $param_values['ht_view4_filterbutton_font_size']; ?>" class="text" />
+                                                        <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view4_filterbutton_font_color">Filter Button Font Color</label>
+                                                        <input name="params[ht_view4_filterbutton_font_color]" type="text" class="color" id="ht_view4_filterbutton_font_color" value="#<?php echo $param_values['ht_view4_filterbutton_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view4_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                        <input name="params[ht_view4_filterbutton_hover_font_color]" type="text" class="color" id="ht_view4_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view4_filterbutton_hover_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view4_filterbutton_background_color">Filter Button Background Color</label>
+                                                        <input name="params[ht_view4_filterbutton_background_color]" type="text" class="color" id="ht_view4_filterbutton_background_color" value="#<?php echo $param_values['ht_view4_filterbutton_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                        <label for="ht_view4_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                        <input name="params[ht_view4_filterbutton_hover_background_color]" type="text" class="color" id="ht_view4_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view4_filterbutton_hover_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="" style="display: none;">
+                                                        <label for="ht_view4_filterbutton_border_width">Filter Button Border Width</label>
+                                                        <input type="text" name="params[ht_view4_filterbutton_border_width]" id="ht_view4_filterbutton_border_width" value="<?php echo $param_values['ht_view4_filterbutton_border_width']; ?>" class="text" />
+                                                        <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                        <input name="params[ht_view4_filterbutton_border_color]" type="text" class="color" id="ht_view4_filterbutton_border_color" value="#<?php echo $param_values['ht_view4_filterbutton_border_color']; ?>" size="10" />
+                                                        <label for="ht_view4_filterbutton_border_color">Filter Button Border Color</label>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view4_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view4_filterbutton_border_radius]" id="ht_view4_filterbutton_border_radius" value="<?php echo $param_values['ht_view4_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view4_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view4_filterbutton_border_padding]" id="ht_view4_filterbutton_border_padding" value="<?php echo $param_values['ht_view4_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view4_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view4_filterbutton_margin]" id="ht_view4_filterbutton_margin" value="<?php echo $param_values['ht_view4_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view4_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view4_filtering_float" name="params[ht_view4_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view4_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view4_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view4_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    
+                                            <div style="margin-top: -186px;">
 						<h3>Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view4_show_linkbutton">Show Link Button</label>
@@ -718,6 +1473,25 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view4_linkbutton_background_hover_color]" type="text" class="color" id="ht_view4_linkbutton_background_hover_color" value="#<?php echo $param_values['ht_view4_linkbutton_background_hover_color']; ?>" size="10" />
 						</div>
 					</div>
+                                    
+                                        <div>
+						<h3>Description</h3>
+						<div class="has-background">
+							<label for="ht_view4_show_description">Show Description</label>
+							<input type="hidden" value="off" name="params[ht_view4_show_description]" />
+							<input type="checkbox" id="ht_view4_show_description"  <?php if($param_values['ht_view4_show_description']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view4_show_description]" value="on" />
+						</div>
+						<div>
+							<label for="ht_view4_description_font_size">Description Font Size</label>
+							<input type="text" name="params[ht_view4_description_font_size]" id="ht_view4_description_font_size" value="<?php echo $param_values['ht_view4_description_font_size']; ?>" class="text" />
+							<span>px</span>
+						</div>
+						<div class="has-background">
+							<label for="ht_view4_description_color">Description Font Color</label>
+							<input name="params[ht_view4_description_color]" type="text" class="color" id="ht_view4_description_color" value="#<?php echo $param_values['ht_view4_description_color']; ?>" size="10" />
+						</div>
+					</div>
+					
 				</li>
 				<!-- View 5 Slider -->
 				<li id="portfolio-view-options-5">
@@ -828,29 +1602,7 @@ jQuery(document).ready(function () {
 				</li>
 				<!-- VIEW 6 Gallery  -->
 				<li id="portfolio-view-options-6">
-					<div>
-						<h3>Image</h3>
-						<div class="has-background">
-							<label for="ht_view6_width">Image Width</label>
-							<input type="text" name="params[ht_view6_width]" id="ht_view6_width" value="<?php echo $param_values['ht_view6_width']; ?>" class="text" />
-							<span>px</span>
-						</div>
-						<div>
-							<label for="ht_view6_border_width">Image Border Width</label>
-							<input type="text" name="params[ht_view6_border_width]" id="ht_view6_border_width" value="<?php echo $param_values['ht_view6_border_width']; ?>" class="text" />
-							<span>px</span>
-						</div>
-						<div class="has-background">
-							<label for="ht_view6_border_color">Image Border Color</label>
-							<input name="params[ht_view6_border_color]" type="text" class="color" id="ht_view6_border_color" value="#<?php echo $param_values['ht_view6_border_color']; ?>" size="10" />
-						</div>
-						<div>
-							<label for="ht_view6_border_radius">Border Radius</label>
-							<input type="text" name="params[ht_view6_border_radius]" id="ht_view6_border_radius" value="<?php echo $param_values['ht_view6_border_radius']; ?>" class="text" />
-							<span>px</span>
-						</div>
-					</div>
-					<div>
+                                        <div style="margin-top: 0px">
 						<h3>Title</h3>
 						<div class="has-background">
 							<label for="ht_view6_title_font_size">Title Font Size</label>
@@ -877,6 +1629,180 @@ jQuery(document).ready(function () {
 							</div>
 						</div>
 					</div>
+                                    
+                                        <div style="margin-top: 0px;">
+						<h3>Image</h3>
+						<div class="has-background">
+							<label for="ht_view6_width">Image Width</label>
+							<input type="text" name="params[ht_view6_width]" id="ht_view6_width" value="<?php echo $param_values['ht_view6_width']; ?>" class="text" />
+							<span>px</span>
+						</div>
+						<div>
+							<label for="ht_view6_border_width">Image Border Width</label>
+							<input type="text" name="params[ht_view6_border_width]" id="ht_view6_border_width" value="<?php echo $param_values['ht_view6_border_width']; ?>" class="text" />
+							<span>px</span>
+						</div>
+						<div class="has-background">
+							<label for="ht_view6_border_color">Image Border Color</label>
+							<input name="params[ht_view6_border_color]" type="text" class="color" id="ht_view6_border_color" value="#<?php echo $param_values['ht_view6_border_color']; ?>" size="10" />
+						</div>
+						<div>
+							<label for="ht_view6_border_radius">Border Radius</label>
+							<input type="text" name="params[ht_view6_border_radius]" id="ht_view6_border_radius" value="<?php echo $param_values['ht_view6_border_radius']; ?>" class="text" />
+							<span>px</span>
+						</div>
+					</div>
+                                        
+                                        <div>
+                                            <h3>Sorting styles</h3>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view6_show_sorting" style="display: none;">Show Sorting</label>
+                                                    <input type="hidden" value="off" name="params[ht_view6_show_sorting]" />
+                                                    <input type="checkbox" id="ht_view6_show_sorting"  <?php if($param_values['ht_view6_show_sorting']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view6_show_sorting]" value="on" />
+                                            </div>
+
+                                            <div class="has-background">
+                                                    <label for="ht_view6_sortbutton_font_size">Sort Button Font Size</label>
+                                                    <input type="text" name="params[ht_view6_sortbutton_font_size]" id="ht_view6_sortbutton_font_size" value="<?php echo $param_values['ht_view6_sortbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view6_sortbutton_font_color">Sort Button Font Color</label>
+                                                    <input name="params[ht_view6_sortbutton_font_color]" type="text" class="color" id="ht_view6_sortbutton_font_color" value="#<?php echo $param_values['ht_view6_sortbutton_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view6_sortbutton_hover_font_color">Sort Button Font Hover Color</label>
+                                                    <input name="params[ht_view6_sortbutton_hover_font_color]" type="text" class="color" id="ht_view6_sortbutton_hover_font_color" value="#<?php echo $param_values['ht_view6_sortbutton_hover_font_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="">
+                                                    <label for="ht_view6_sortbutton_background_color">Sort Button Background Color</label>
+                                                    <input name="params[ht_view6_sortbutton_background_color]" type="text" class="color" id="ht_view6_sortbutton_background_color" value="#<?php echo $param_values['ht_view6_sortbutton_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="has-background">
+                                                    <label for="ht_view6_sortbutton_hover_background_color">Sort Button Background Hover Color</label>
+                                                    <input name="params[ht_view6_sortbutton_hover_background_color]" type="text" class="color" id="ht_view6_sortbutton_hover_background_color" value="#<?php echo $param_values['ht_view6_sortbutton_hover_background_color']; ?>" size="10" />
+                                            </div>
+                                            <div class="" style="display: none;">
+                                                    <label for="ht_view6_sortbutton_border_width">Sort Button Border Width</label>
+                                                    <input type="text" name="params[ht_view6_sortbutton_border_width]" id="ht_view6_sortbutton_border_width" value="<?php echo $param_values['ht_view6_sortbutton_border_width']; ?>" class="text" />
+                                                    <span>px</span>
+                                            </div>
+                                            <div style="display: none;">
+                                                    <input name="params[ht_view6_sortbutton_border_color]" type="text" class="color" id="ht_view6_sortbutton_border_color" value="#<?php echo $param_values['ht_view6_sortbutton_border_color']; ?>" size="10" />
+                                                    <label for="ht_view6_sortbutton_border_color">Sort Button Border Color</label>
+                                            </div>
+                                                <div class="">
+                                                    <label for="ht_view6_sortbutton_border_radius">Sort Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view6_sortbutton_border_radius]" id="ht_view6_sortbutton_border_radius" value="<?php echo $param_values['ht_view6_sortbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view6_sortbutton_border_padding">Sort Button Padding</label>
+                                                    <input type="text" name="params[ht_view6_sortbutton_border_padding]" id="ht_view6_sortbutton_border_padding" value="<?php echo $param_values['ht_view6_sortbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view6_sortbutton_margin">Sort Button Margins</label>
+                                                    <input type="text" name="params[ht_view6_sortbutton_margin]" id="ht_view6_sortbutton_margin" value="<?php echo $param_values['ht_view6_sortbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view6_sorting_float">Sort block Position</label>
+                                                    <select id="ht_view6_sorting_float" name="params[ht_view6_sorting_float]">	
+                                                      <option <?php if($param_values['ht_view6_sorting_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view6_sorting_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view6_sorting_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view6_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<input name="params[ht_view6_sorting_name_by_default]" type="text" id="ht_view6_sorting_name_by_default" value="<?php echo $param_values['ht_view6_sorting_name_by_default']; ?>" size="10" class="text"/>
+						</div>
+						<div class="">
+							<label for="ht_view6_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<input name="params[ht_view6_sorting_name_by_id]" type="text" id="ht_view6_sorting_name_by_id" value="<?php echo $param_values['ht_view6_sorting_name_by_id']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view6_sorting_name_by_name">Sorting By Title Botton Name</label>
+							<input name="params[ht_view6_sorting_name_by_name]" type="text" id="ht_view6_sorting_name_by_name" value="<?php echo $param_values['ht_view6_sorting_name_by_name']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view6_sorting_name_by_random">Random Sorting Botton Name</label>
+							<input name="params[ht_view6_sorting_name_by_random]" type="text" id="ht_view6_sorting_name_by_random" value="<?php echo $param_values['ht_view6_sorting_name_by_random']; ?>" size="10" />
+						</div>
+                                                <div class="has-background">
+							<label for="ht_view6_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<input name="params[ht_view6_sorting_name_by_asc]" type="text" id="ht_view6_sorting_name_by_asc" value="<?php echo $param_values['ht_view6_sorting_name_by_asc']; ?>" size="10" />
+						</div>
+						<div class="">
+							<label for="ht_view6_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<input name="params[ht_view6_sorting_name_by_desc]" type="text" id="ht_view6_sorting_name_by_desc" value="<?php echo $param_values['ht_view6_sorting_name_by_desc']; ?>" size="10" />
+						</div>
+                                        </div>
+                                    
+                                        <div style="margin-top: -600px">
+                                            <h3>Category styles</h3>
+                                                <div style="display: none;">
+                                                    <label for="ht_view6_show_filtering" style="display: none;">Show Filtering</label>
+                                                    <input type="hidden" value="off" name="params[ht_view6_show_filtering]" />
+                                                    <input type="checkbox" id="ht_view6_show_filtering"  <?php if($param_values['ht_view6_show_filtering']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[ht_view6_show_filtering]" value="on" />
+                                                </div>
+
+                                                <div class="has-background">
+                                                    <label for="ht_view6_filterbutton_font_size">Filter Button Font Size</label>
+                                                    <input type="text" name="params[ht_view6_filterbutton_font_size]" id="ht_view6_filterbutton_font_size" value="<?php echo $param_values['ht_view6_filterbutton_font_size']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                        <label for="ht_view6_filterbutton_font_color">Filter Button Font Color</label>
+                                                        <input name="params[ht_view6_filterbutton_font_color]" type="text" class="color" id="ht_view6_filterbutton_font_color" value="#<?php echo $param_values['ht_view6_filterbutton_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div  class="has-background">
+                                                        <label for="ht_view6_filterbutton_hover_font_color">Filter Button Font Hover Color</label>
+                                                        <input name="params[ht_view6_filterbutton_hover_font_color]" type="text" class="color" id="ht_view6_filterbutton_hover_font_color" value="#<?php echo $param_values['ht_view6_filterbutton_hover_font_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view6_filterbutton_background_color">Filter Button Background Color</label>
+                                                    <input name="params[ht_view6_filterbutton_background_color]" type="text" class="color" id="ht_view6_filterbutton_background_color" value="#<?php echo $param_values['ht_view6_filterbutton_background_color']; ?>" size="10" />
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view6_filterbutton_hover_background_color">Filter Button Background Hover Color</label>
+                                                    <input name="params[ht_view6_filterbutton_hover_background_color]" type="text" class="color" id="ht_view6_filterbutton_hover_background_color" value="#<?php echo $param_values['ht_view6_filterbutton_hover_background_color']; ?>" size="10" />
+                                                </div>
+
+                                                <div class="" style="display: none;">
+                                                        <label for="ht_view6_filterbutton_border_width">Filter Button Border Width</label>
+                                                        <input type="text" name="params[ht_view6_filterbutton_border_width]" id="ht_view6_filterbutton_border_width" value="<?php echo $param_values['ht_view6_filterbutton_border_width']; ?>" class="text" />
+                                                        <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                        <input name="params[ht_view6_filterbutton_border_color]" type="text" class="color" id="ht_view6_filterbutton_border_color" value="#<?php echo $param_values['ht_view6_filterbutton_border_color']; ?>" size="10" />
+                                                        <label for="ht_view6_filterbutton_border_color">Filter Button Border Color</label>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view6_filterbutton_border_radius">Filter Button Border Radius</label>
+                                                    <input type="text" name="params[ht_view6_filterbutton_border_radius]" id="ht_view6_filterbutton_border_radius" value="<?php echo $param_values['ht_view6_filterbutton_border_radius']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="has-background">
+                                                    <label for="ht_view6_filterbutton_border_padding">Filter Button Padding</label>
+                                                    <input type="text" name="params[ht_view6_filterbutton_border_padding]" id="ht_view6_filterbutton_border_padding" value="<?php echo $param_values['ht_view6_filterbutton_border_padding']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div style="display: none;">
+                                                    <label for="ht_view6_filterbutton_margin">Filter Button Margins</label>
+                                                    <input type="text" name="params[ht_view6_filterbutton_margin]" id="ht_view6_filterbutton_margin" value="<?php echo $param_values['ht_view6_filterbutton_margin']; ?>" class="text" />
+                                                    <span>px</span>
+                                                </div>
+                                                <div class="">
+                                                    <label for="ht_view6_filtering_float">Filter block Position</label>
+                                                    <select id="ht_view6_filtering_float" name="params[ht_view6_filtering_float]">	
+                                                      <option <?php if($param_values['ht_view6_filtering_float'] == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
+                                                      <option <?php if($param_values['ht_view6_filtering_float'] == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+                                                      <option <?php if($param_values['ht_view6_filtering_float'] == 'top'){ echo 'selected="selected"'; } ?> value="top">Top</option>
+                                                    </select>
+                                                </div>
+                                        </div>                                        
 				</li>
 			</ul>
 

@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.2.6
+Version: 1.2.7
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -183,6 +183,31 @@ function huge_it_portfolio_ShowTinyMCE()
     do_action("admin_print_styles-post-php");
     do_action('admin_print_styles');
 }
+
+function portfolio_frontend_scripts_and_styles() {
+    wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array('jquery'),'1.0.0',true  ); 
+    wp_enqueue_script( 'jquery' );
+    
+    wp_register_script( 'portfolio-all-js', plugins_url('/js/portfolio-all.js', __FILE__), array('jquery'),'1.0.0',true  ); 
+    wp_enqueue_script( 'portfolio-all-js' );
+    
+    wp_register_style( 'portfolio-all-css', plugins_url('/style/portfolio-all.css', __FILE__) );   
+    wp_enqueue_style( 'portfolio-all-css' );
+    
+    wp_register_script( 'jquery.colorbox-js', plugins_url('/js/jquery.colorbox.js', __FILE__), array('jquery'),'1.0.0',true  ); 
+    wp_enqueue_script( 'jquery.colorbox-js' );
+    
+    wp_register_script( 'hugeitmicro-min-js', plugins_url('/js/jquery.hugeitmicro.min.js', __FILE__), array('jquery'),'1.0.0',true  ); 
+    wp_enqueue_script( 'hugeitmicro-min-js' );
+    
+    
+    wp_register_style( 'style2-os-css', plugins_url('/style/style2-os.css', __FILE__) );   
+    wp_enqueue_style( 'style2-os-css' );
+    
+    wp_register_style( 'lightbox-css', plugins_url('/style/lightbox.css', __FILE__) );   
+    wp_enqueue_style( 'lightbox-css' );
+}
+add_action('wp_enqueue_scripts', 'portfolio_frontend_scripts_and_styles');
 
 add_action('admin_menu', 'huge_it_portfolio_options_panel');
 function huge_it_portfolio_options_panel()
@@ -407,6 +432,10 @@ function huge_it_portfolio_activate()
 {
     global $wpdb;
 
+/// creat database tables
+
+
+
     $sql_huge_itportfolio_params = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_params`(
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -431,6 +460,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_images` (
   `ordering` int(11) NOT NULL,
   `published` tinyint(4) unsigned DEFAULT NULL,
   `published_in_sl_width` tinyint(4) unsigned DEFAULT NULL,
+  `category`  varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5";
@@ -448,6 +478,9 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_portfolios` (
   `sl_position` text NOT NULL,
   `ordering` int(11) NOT NULL,
   `published` text,
+  `categories` text,
+  `ht_show_sorting` text,
+  `ht_show_filtering` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ";
@@ -746,7 +779,244 @@ query1;
 	if(end($update_p1)->name=='ht_view6_width'){
 		$wpdb->query($sql_update_p1);
 	}
+        
+$table_name = $wpdb->prefix . "huge_itportfolio_params";
+	    $sql_update_p2 = <<<query2
+INSERT INTO `$table_name` (`name`, `title`,`description`, `value`) VALUES
+('ht_view0_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view0_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view0_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view0_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view0_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view0_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view0_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view0_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view0_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view0_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view0_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view0_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view0_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view0_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view0_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view0_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view0_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view0_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view1_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view1_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view1_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view1_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view1_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view1_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view1_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view1_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view1_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view1_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view1_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view1_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view1_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view1_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view1_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view1_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view1_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view1_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view2_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view2_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view2_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view2_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view2_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view2_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view2_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view2_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view2_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view2_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view2_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view2_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view2_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view2_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view2_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view2_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view2_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view2_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view3_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view3_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view3_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view3_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view3_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view3_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view3_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view3_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view3_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view3_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view3_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view3_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view3_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view3_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view3_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view3_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view3_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view3_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view4_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view4_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view4_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view4_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view4_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view4_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view4_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view4_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view4_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view4_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view4_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view4_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view4_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view4_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view4_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view4_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view4_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view4_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view6_show_sorting', 'Show Sorting', 'Show Sorting', 'on'),
+('ht_view6_sortbutton_font_size', 'Sort Button Font Size', 'Sort Button Font Size', '14'),                   
+('ht_view6_sortbutton_font_color', 'Sort Button Font Color', 'Sort Button Font Color', '555555'),
+('ht_view6_sortbutton_hover_font_color', 'Sort Button Hover Font Color', 'Sort Button Hover Font Color', 'ffffff'),
+('ht_view6_sortbutton_background_color', 'Sort Button Background Color', 'Sort Button Background Color', 'F7F7F7'),
+('ht_view6_sortbutton_hover_background_color', 'Sort Button Hover Background Color', 'Sort Button Hover Background Color', 'FF3845'),
+('ht_view6_sortbutton_border_radius', 'Sort Button Border Radius', 'Sort Button Border Radius', '0'),
+('ht_view6_sortbutton_border_padding', 'Sort Button Padding', 'Sort Button Padding', '3'),
+('ht_view6_sorting_float', 'Sorting Position', 'Sorting Position', 'top'),
+('ht_view6_show_filtering', 'Show Filtering', 'Show Filtering', 'on'),
+('ht_view6_filterbutton_font_size', 'Filter Button Font Size', 'Filter Button Font Size', '14'),
+('ht_view6_filterbutton_font_color', 'Filter Button Font Color', 'Filter Button Font Color', '555555'),
+('ht_view6_filterbutton_background_color', 'Filter Button Background Color', 'Filter Button Background Color', 'F7F7F7'),
+('ht_view6_filterbutton_hover_font_color', 'Filter Button Hover Font Color', 'Filter Button Hover Font Color', 'ffffff'),
+('ht_view6_filterbutton_hover_background_color', 'Filter Button Hover Background Color', 'Filter Button Hover Background Color', 'FF3845'),
+('ht_view6_filterbutton_border_radius', 'Filter Button Border Radius', 'Filter Button Border Radius', '0'),
+('ht_view6_filterbutton_border_padding', 'Filter Button Padding', 'Filter Button Padding', '3'),
+('ht_view6_filtering_float', 'Filtering Position', 'Filtering Position', 'left'),
+('ht_view0_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view0_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view0_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view0_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view0_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view0_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view1_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view1_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view1_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view1_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view1_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view1_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view2_popup_full_width', 'Popup Image Full Width', 'Popup Image Full Width','on'),
+('ht_view2_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view2_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view2_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view2_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view2_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view2_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view3_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view3_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view3_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view3_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view3_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view3_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view4_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view4_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view4_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view4_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view4_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view4_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view5_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view5_sorting_name_by_id', 'Sorting by ID', 'Default Sorting', 'Date'),
+('ht_view5_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view5_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view5_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view5_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding'),
+('ht_view6_sorting_name_by_default', 'Default Sorting', 'Default Sorting', 'Default'),
+('ht_view6_sorting_name_by_id', 'Sorting by date', 'date Sorting', 'Date'),
+('ht_view6_sorting_name_by_name', 'Sorting by Name', 'Sorting by Name', 'Title'),
+('ht_view6_sorting_name_by_random', 'Sorting by Random', 'Sorting by Random', 'Random'),
+('ht_view6_sorting_name_by_asc', 'Asceding Sorting', 'Asceding Sorting', 'Asceding'),
+('ht_view6_sorting_name_by_desc', 'Desceding Sorting', 'Desceding Sorting', 'Desceding');
 
+query2;
+
+
+	global $wpdb;
+	$query="SELECT name FROM ".$wpdb->prefix."huge_itportfolio_params";
+	$update_p2=$wpdb->get_results($query);
+	if(end($update_p2)->name=='light_box_size_fix'){
+		$wpdb->query($sql_update_p2);
+	}
+
+        $imagesAllFieldsInArray = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_itportfolio_images", ARRAY_A);
+        $forUpdate = 0;
+	foreach ($imagesAllFieldsInArray as $portfoliosField) {
+        if ($portfoliosField['Field'] == 'category') {
+            $forUpdate = 1;
+            
+                $catValues = $wpdb->get_results( "SELECT category FROM ".$wpdb->prefix."huge_itportfolio_images" );
+                $needToUpdate=0;
+                foreach($catValues as $catValue){
+                    if($catValue->category !== '') {
+                        $needToUpdate=1;
+                    }
+                }
+                if($needToUpdate == 1){
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,My Third Category,' WHERE id='1'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,' WHERE id='2'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Third Category,' WHERE id='3'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,My Second Category,' WHERE id='4'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,My Third Category,' WHERE id='5'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Third Category,' WHERE id='6'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,' WHERE id='7'");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,' WHERE id='8'");
+                }
+            
+            break;
+        }
+    }
+	if ($forUpdate == '0') {
+            $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_itportfolio_images ADD category text");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,My Third Category,' WHERE id='1'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,' WHERE id='2'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Third Category,' WHERE id='3'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,My Second Category,' WHERE id='4'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,My Third Category,' WHERE id='5'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Third Category,' WHERE id='6'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My Second Category,' WHERE id='7'");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET category = 'My First Category,' WHERE id='8'");
+	}
+        
+        $productPortfolio = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "huge_itportfolio_portfolios", ARRAY_A);
+        $isUpdate = 0;
+	foreach ($productPortfolio as $prodPortfolio) {
+        if ($prodPortfolio['Field'] == 'categories' && $prodPortfolio['Type'] == 'text') {
+            $isUpdate = 1;
+            
+                $allCats = $wpdb->get_results( "SELECT categories FROM ".$wpdb->prefix."huge_itportfolio_portfolios" );
+                $needToUpdateAllCats=0;
+                foreach($allCats as $AllCatsVal){
+                    if($AllCatsVal->category !== '') {
+                        $needToUpdateAllCats=1;
+                    }
+                }
+                if($needToUpdateAllCats == 1){
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET categories = 'My First Category,My Second Category,My Third Category,' ");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET ht_show_sorting = 'off' ");
+                    $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET ht_show_filtering = 'off' ");
+                }
+            
+            break;
+        }
+    }
+	if ($isUpdate == '0') {
+            $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_itportfolio_portfolios ADD categories text");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET categories = 'My First Category,My Second Category,My Third Category,'");
+            
+            $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_itportfolio_portfolios ADD ht_show_sorting text");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET ht_show_sorting = 'off'");
+            
+            $wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_itportfolio_portfolios ADD ht_show_filtering text");
+            $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET ht_show_filtering = 'off'");
+	}
+        
 }
 
 

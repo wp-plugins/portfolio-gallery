@@ -1,4 +1,5 @@
-<?php
+    <?php
+
 function front_end_portfolio($images, $paramssld, $portfolio)
 {
 
@@ -12,6 +13,9 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	$portfoliopauseonhover=$portfolio[0]->pause_on_hover;
 	$portfolioposition=$portfolio[0]->sl_position;
 	$slidechangespeed=$portfolio[0]->param;
+        $portfolioCats=$portfolio[0]->categories;
+        $portfolioShowSorting=$portfolio[0]->ht_show_sorting;
+        $portfolioShowFiltering=$portfolio[0]->ht_show_filtering;
 
 ?>
 <script>
@@ -43,8 +47,12 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	var lightbox_innerHeight = '<?php echo $paramssld['light_box_innerheight'];?>';
 	var lightbox_initialWidth = '<?php echo $paramssld['light_box_initialwidth'];?>';
 	var lightbox_initialHeight = '<?php echo $paramssld['light_box_initialheight'];?>';
-	var lightbox_maxWidth = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo 'false';} else { echo $paramssld['light_box_maxwidth']; } ?>;
-	var lightbox_maxHeight = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo 'false';} else { echo $paramssld['light_box_maxheight']; } ?>;
+	
+        var maxwidth=jQuery(window).width();
+        if(maxwidth><?php echo $paramssld['light_box_maxwidth'];?>){maxwidth=<?php echo $paramssld['light_box_maxwidth'];?>;}
+        var lightbox_maxWidth = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo '"100%"';} else { echo 'maxwidth'; } ?>;
+        var lightbox_maxHeight = <?php if($paramssld['light_box_size_fix'] == 'true'){ echo '"100%"';} else { echo $paramssld['light_box_maxheight']; } ?>;
+        
 	var lightbox_slideshow = <?php echo $paramssld['light_box_slideshow'];?>;
 	var lightbox_slideshowSpeed = <?php echo $paramssld['light_box_slideshowspeed'];?>;
 	var lightbox_slideshowAuto = <?php echo $paramssld['light_box_slideshowauto'];?>;
@@ -142,7 +150,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	var lightbox_retinaSuffix = "<?php echo $paramssld['light_box_retinasuffix'];?>";
 	
 				jQuery(document).ready(function(){
-				jQuery("#huge_it_portfolio_content a[href$='.jpg'], #huge_it_portfolio_content a[href$='.png'], #huge_it_portfolio_content a[href$='.gif']").addClass('group1');
+				jQuery("#huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.jpg'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.png'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.gif']").addClass('group1');
 				jQuery(".group1").colorbox({rel:'group1'});
 				jQuery(".callbacks").colorbox({
 					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
@@ -164,26 +172,17 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 		
 </script>
 	<!--Huge IT portfolio START-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( !(is_plugin_active( 'lightbox/lightbox.php' ) )) { 
 		?>
 	<link href="<?php echo plugins_url('../style/colorbox-'.$paramssld['light_box_style'].'.css', __FILE__);?>" rel="stylesheet" type="text/css" />
 	<?php } ?>
-	<link href="<?php echo plugins_url('../style/portfolio-all.css', __FILE__);?>" rel="stylesheet" type="text/css" />
-	<script src="<?php echo plugins_url('../js/jquery.colorbox.js', __FILE__);?>"></script>
-	<script src="<?php echo plugins_url('../js/portfolio-all.js', __FILE__);?>"></script>
-	<link rel="stylesheet" href="<?php echo plugins_url('../style/style2-os.css', __FILE__);?>" />
-	<script src="<?php echo plugins_url('../js/jquery.hugeitmicro.min.js', __FILE__);?>"></script>
-	<link href="<?php echo plugins_url('../style/lightbox.css', __FILE__);?>" rel="stylesheet" type="text/css" />
-	
-	
+		
 	<?php
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		if ( !(is_plugin_active( 'wp-lightbox-2/wp-lightbox-2.php' ) )) { ?>
 
 	<?php } ?>
-	
 	
 	
 	
@@ -198,8 +197,21 @@ function front_end_portfolio($images, $paramssld, $portfolio)
     case 0:
 	?>
 
-<style type="text/css"> 
-.element {
+<?php
+    if($paramssld["ht_view0_sorting_float"] == "left" && $paramssld["ht_view0_filtering_float"] == "right" ||
+       $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "left" ||
+       $paramssld["ht_view0_sorting_float"] == $paramssld["ht_view0_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $middle_with = "56%"; }
+    else if($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view0_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view0_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view0_sorting_float"] == "top" && $paramssld["ht_view0_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
+<style type="text/css">
+
+.element_<?php echo $portfolioID; ?> {
 	background:#<?php echo $paramssld['ht_view0_element_background_color']?>;
 	width:<?php echo $paramssld['ht_view0_block_width']; ?>px !important;
 	margin: 5px;
@@ -209,27 +221,27 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	border:<?php echo $paramssld['ht_view0_element_border_width']; ?>px solid #<?php echo $paramssld['ht_view0_element_border_color']; ?>;
 }
 
-.element.large,
-.variable-sizes .element.large,
-.variable-sizes .element.large.width2.height2 {
+.element_<?php echo $portfolioID; ?>.large,
+.variable-sizes .element_<?php echo $portfolioID; ?>.large,
+.variable-sizes .element_<?php echo $portfolioID; ?>.large.width2.height2 {
 	width: <?php echo $paramssld['ht_view0_block_width']; ?>px;
 	z-index: 10;
 }
 
-.default-block {
+.default-block_<?php echo $portfolioID; ?> {
 	position:relative;
-	width:<?php echo $paramssld['ht_view0_block_width']; ?>px;
-	height:<?php echo $paramssld['ht_view0_block_height']+45;?>px;
+	width:<?php echo $paramssld['ht_view0_block_width']; ?>px !important;
+	height:<?php echo $paramssld['ht_view0_block_height']+45;?>px !important;
 } 
 
-.default-block .image-block {
+.default-block_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
 	margin:0px;
 	padding:0px;
 	line-height:0px;
 	border-bottom:1px solid #<?php echo $paramssld['ht_view0_element_border_color']; ?>;
 }
 
-.default-block img {
+.default-block_<?php echo $portfolioID; ?> img {
 	margin:0px !important;
 	padding:0px !important;
 	max-width:none !important;
@@ -238,7 +250,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	border-radius:0px;
 }
 
-.default-block .title-block {
+.default-block_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> {
 	position:relative;
 	display:block;
 	height:35px;
@@ -246,7 +258,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	width:<?php echo $paramssld['ht_view0_block_width']; ?>px !important;
 }
 
-.default-block .title-block h3 {
+.default-block_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> h3 {
 	position:relative;
 	margin:0px !important;
 	padding:0px 0px 0px 5px !important;
@@ -260,7 +272,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	line-height:<?php echo $paramssld['ht_view0_title_font_size']+4; ?>px !important;
 }
 
-.element .title-block .open-close-button {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> .open-close-button {
 	width:20px;
 	height:20px;
 	display:block;
@@ -273,13 +285,13 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	opacity:0.33;
 }
 
- .element:hover .title-block .open-close-button {opacity:1;}
+ .element_<?php echo $portfolioID; ?>:hover .title-block_<?php echo $portfolioID; ?> .open-close-button {opacity:1;}
 
-.element.large .open-close-button {
+.element_<?php echo $portfolioID; ?>.large .open-close-button {
 	background:url('<?php echo  plugins_url( '../images/open-close.'.$paramssld['ht_view0_togglebutton_style'].'.png' , __FILE__ ); ?>') left bottom no-repeat;
 }
 
-.wd-portfolio-panel {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> {
 	position: absolute;
 	display:block;
 	width:<?php echo $paramssld['ht_view0_block_width']-10; ?>px !important;
@@ -292,12 +304,12 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 }
 
 
-.wd-portfolio-panel .description-block, .element div.right-block .description-block * {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?>, .element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> * {
 	position:relative;
 	clear:both;
 }
 
-.wd-portfolio-panel .description-block p,.wd-portfolio-panel .description-block * {	
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p,.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> * {	
 	text-align:justify;
 	font-weight:normal;
 	font-size:<?php echo $paramssld['ht_view0_description_font_size']; ?>px;
@@ -308,27 +320,27 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 
 
 
-.wd-portfolio-panel .description-block h1,
-.wd-portfolio-panel .description-block h2,
-.wd-portfolio-panel .description-block h3,
-.wd-portfolio-panel .description-block h4,
-.wd-portfolio-panel .description-block h5,
-.wd-portfolio-panel .description-block h6,
-.wd-portfolio-panel .description-block p, 
-.wd-portfolio-panel .description-block strong,
-.wd-portfolio-panel .description-block span {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h1,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h2,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h3,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h4,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h5,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h6,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p, 
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> strong,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> span {
 	padding:2px !important;
 	margin:0px !important;
 }
 
-.wd-portfolio-panel .description-block ul,
-.wd-portfolio-panel .description-block li {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> ul,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> li {
 	padding:2px 0px 2px 5px;
 	margin:0px 0px 0px 8px;
 }
 
 
-.wd-portfolio-panel .thumbs-list {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> {
 	position:relative;
 	clear:both;
 	list-style:none;
@@ -339,12 +351,12 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	text-align:center;
 }
 
-.wd-portfolio-panel .thumbs-list li {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li {
 	display:inline-block;
 	margin:0px 3px 0px 2px;
 }
 
-.wd-portfolio-panel .thumbs-list li a {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li a {
 	display:block;
 	width:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px;
 	height:<?php echo $paramssld['ht_view0_thumbs_width']; ?>px;
@@ -352,11 +364,11 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	display:table;
 }
 
-.wd-portfolio-panel .thumbs-list li a:hover {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li a:hover {
 	opacity:1;
 }
 
-.wd-portfolio-panel img {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> img {
 	margin:0px !important;
 	padding:0px !important;
 	display:table-cell;
@@ -367,7 +379,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	height:100%;
 }
 
-.wd-portfolio-panel > div {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> > div {
 	position:relative;
 	clear:both;
 	padding-top:10px;
@@ -377,13 +389,13 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	<?php } ?>
 }
 
-.wd-portfolio-panel .button-block {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block {
 	padding-top:10px;
 	margin-bottom:10px;
 	
 }
 
-.wd-portfolio-panel .button-block a, .wd-portfolio-panel .button-block a:link, .wd-portfolio-panel .button-block a:visited {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:link, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:visited {
 	padding:6px 12px;
 	text-decoration:none;
 	display:inline-block;
@@ -392,516 +404,268 @@ function front_end_portfolio($images, $paramssld, $portfolio)
 	color:#<?php echo $paramssld['ht_view0_linkbutton_color']; ?>;
 }
 
-.wd-portfolio-panel .button-block a:hover, .wd-portfolio-panel .button-block a:focus, .wd-portfolio-panel .button-block a:active {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:hover, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:focus, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:active {
 	background:#<?php echo $paramssld['ht_view0_linkbutton_background_hover_color']; ?>;
 	color:#<?php echo $paramssld['ht_view0_linkbutton_font_hover_color']; ?>;
 	text-decoration:none;
 }
 
-</style>
-  <section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  	<?php
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view0_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view0_filtering_float"] == 'left' && $paramssld["ht_view0_sorting_float"] == 'none' && $portfolioShowFiltering == 'on') { echo "margin-left: 31%;"; }
+    else if($paramssld["ht_view0_filtering_float"] == 'right' && $paramssld["ht_view0_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view0_sorting_float"]; ?>;
+    width: <?php echo $sorting_block_width; ?>;
+}
 
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		$descnohtml=strip_tags($row->description);
-		$result = substr($descnohtml, 0, 50);
-		?>
-		<div class="element   " data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="default-block">
-				<div class="image-block">
-					<?php $imgurl=explode(";",$row->image_url); ?>
-					<?php 	if($row->image_url != ';'){ ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
-					<?php
-					} ?>	
-				</div>
-				<div class="title-block">
-					<h3 class="title"><?php echo $row->name; ?></h3>
-					<div class="open-close-button"></div>
-				</div>
-			</div>
-				  
-			<div class="wd-portfolio-panel" id="panel<?php echo $key; ?>">
-			<?php if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="before")
-				{?>
-					<div>
-						<ul class="thumbs-list">
-							<?php
-							$imgurl=explode(";",$row->image_url);
-							array_pop($imgurl);
-							foreach($imgurl as $key1=>$img)
-							{
-							?>
-							<li>
-								<a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-							</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php } 
-				if($paramssld['ht_view0_show_description']=='on'){?>
-					<div class="description-block">
-						<p><?php echo $row->description; ?></p>
-					</div>
-				<?php }
-				if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="after"){?>
-					<div>
-						<ul class="thumbs-list">
-							<?php
-							$imgurl=explode(";",$row->image_url);
-							array_pop($imgurl);
-							foreach($imgurl as $key=>$img)
-							{
-							?>
-							<li>
-								<a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-							</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php } 
-				if($paramssld['ht_view0_show_linkbutton']=='on'){?>
-					<div class="button-block">
-						<a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view0_linkbutton_text']; ?></a>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-		
-		<?php
-	}
-	?>
-  </div>
- </section><script> 
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view0_sorting_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view0_filtering_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view0_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+            
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view0_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
+    <?php
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view0_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view0_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view0_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+/*#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li:hover {
+    
+}*/
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view0_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view0_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view0_filtering_float"]; ?>;
+    width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view0_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view0_filtering_float"] == 'none' && $paramssld["ht_view0_sorting_float"] == 'left' && $portfolioShowSorting == 'on') { echo "margin-left: 31%";} 
+        if(($paramssld["ht_view0_filtering_float"] == 'none' && ($paramssld["ht_view0_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view0_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view0_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view0_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view0_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view0_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view0_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+<?php if($paramssld["ht_view0_sorting_float"] == "left" && $paramssld["ht_view0_filtering_float"] == "right" ||
+         $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "left")
+       { echo "margin: 0px auto;"; }
+?>
+    width: <?php echo $width_middle; ?> !important;
+}
+
+</style>
+
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>">
+      <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="" >
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view0_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view0_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view0_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view0_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view0_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view0_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>" style>
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?>
+        <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view0_sorting_float"] == "top" && $paramssld["ht_view0_filtering_float"] == "top") echo "style='clear: both;'";?>>
+              <?php
+
+              foreach($images as $key=>$row)
+              {
+                      $link = $row->sl_url;
+                      $descnohtml=strip_tags($row->description);
+                      $result = substr($descnohtml, 0, 50);
+                      $catForFilter = explode(",", $row->category);
+                      ?>
+                      <div class="element_<?php echo $portfolioID; ?> <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                              <div class="default-block_<?php echo $portfolioID; ?>">
+                                      <div class="image-block_<?php echo $portfolioID; ?>">
+                                              <?php $imgurl=explode(";",$row->image_url); ?>
+                                              <?php 	if($row->image_url != ';'){ ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <?php } else { ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
+                                              <?php
+                                              } ?>	
+                                      </div>
+                                      <div class="title-block_<?php echo $portfolioID; ?>">
+                                              <h3 class="title"><?php echo $row->name; ?></h3>
+                                              <div class="open-close-button"></div>
+                                      </div>
+                              </div>
+
+                              <div class="wd-portfolio-panel_<?php echo $portfolioID; ?>" id="panel<?php echo $key; ?>">
+                              <?php if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="before")
+                                      {?>
+                                              <div>
+                                                      <ul class="thumbs-list_<?php echo $portfolioID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              foreach($imgurl as $key1=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
+                                      <?php } 
+                                      if($paramssld['ht_view0_show_description']=='on'){?>
+                                              <div class="description-block_<?php echo $portfolioID; ?>">
+                                                      <p><?php echo $row->description; ?></p>
+                                              </div>
+                                      <?php }
+                                      if($paramssld['ht_view0_show_thumbs']=='on' and $paramssld['ht_view0_thumbs_position']=="after"){?>
+                                              <div>
+                                                      <ul class="thumbs-list_<?php echo $portfolioID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              foreach($imgurl as $key=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
+                                      <?php } 
+                                      if($paramssld['ht_view0_show_linkbutton']=='on'){?>
+                                              <div class="button-block">
+                                                      <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view0_linkbutton_text']; ?></a>
+                                              </div>
+                                      <?php } ?>
+                              </div>
+                      </div>
+
+                      <?php
+              }
+              ?>
+        </div>
+</section>
+
+<script>
 jQuery(function(){
 var defaultBlockHeight=<?php echo $paramssld['ht_view0_block_height']; ?>;
 var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
-var $container = jQuery('#huge_it_portfolio_container');
-
-
-  // add randomish size classes
-  $container.find('.element').each(function(){
-	var $this = jQuery(this),
-		number = parseInt( $this.find('.number').text(), 10 );
-		//alert(number);
-	if ( number % 7 % 2 === 1 ) {
-	  $this.addClass('width2');
-	}
-	if ( number % 3 === 0 ) {
-	  $this.addClass('height2');
-	}
-  });
-
-$container.hugeitmicro({
-  itemSelector : '.element',
-  masonry : {
-	columnWidth : <?php echo $paramssld['ht_view0_block_width']; ?>+20+<?php echo $paramssld['ht_view0_border_width']*2; ?>
-  },
-  masonryHorizontal : {
-	rowHeight: 300+20
-  },
-  cellsByRow : {
-	columnWidth : <?php echo $paramssld['ht_view0_block_width']; ?>+20+<?php echo $paramssld['ht_view0_border_width']*2; ?>,
-	rowHeight : 240
-  },
-  cellsByColumn : {
-	columnWidth : 300+20,
-	rowHeight : 240
-  },
-  getSortData : {
-	symbol : function( $elem ) {
-	  return $elem.attr('data-symbol');
-	},
-	category : function( $elem ) {
-	  return $elem.attr('data-category');
-	},
-	number : function( $elem ) {
-	  return parseInt( $elem.find('.number').text(), 10 );
-	},
-	weight : function( $elem ) {
-	  return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
-	},
-	name : function ( $elem ) {
-	  return $elem.find('.name').text();
-	}
-  }
-});
-
-
-  var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
-	  $optionLinks = $optionSets.find('a');
-
-  $optionLinks.click(function(){
-	var $this = jQuery(this);
-
-	if ( $this.hasClass('selected') ) {
-	  return false;
-	}
-	var $optionSet = $this.parents('.option-set');
-	$optionSet.find('.selected').removeClass('selected');
-	$this.addClass('selected');
-
-
-	var options = {},
-		key = $optionSet.attr('data-option-key'),
-		value = $this.attr('data-option-value');
-
-	value = value === 'false' ? false : value;
-	options[ key ] = value;
-	if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
-
-	  changeLayoutMode( $this, options )
-	} else {
-
-	  $container.hugeitmicro( options );
-	}
-	
-	return false;
-  });
-
-
-
-
-  var isHorizontal = false;
-  function changeLayoutMode( $link, options ) {
-	var wasHorizontal = isHorizontal;
-	isHorizontal = $link.hasClass('horizontal');
-
-	if ( wasHorizontal !== isHorizontal ) {
-
-	  var style = isHorizontal ? 
-		{ height: '100%', width: $container.width() } : 
-		{ width: 'auto' };
-
-	  $container.filter(':animated').stop();
-
-	  $container.addClass('no-transition').css( style );
-	  setTimeout(function(){
-		$container.removeClass('no-transition').hugeitmicro( options );
-	  }, 700)
-	} else {
-	  $container.hugeitmicro( options );
-	}
-  }
-
-
-	$container.delegate( '.default-block', 'click', function(){
-		
-		var strheight=0;
-		jQuery(this).parents('.element').find('.wd-portfolio-panel > div').each(function(){
-			strheight+=jQuery(this).outerHeight()+10;
-			//alert(strheight);
-		})
-		strheight+=<?php echo $paramssld['ht_view0_block_height']+45; ?>;
-		
-		if(jQuery(this).parents('.element').hasClass("large")){
-			jQuery(this).parents('.element').animate({
-				height: "<?php echo $paramssld['ht_view0_block_height']+45; ?>px"
-			}, 300, function() {
-				jQuery(this).removeClass('large');
-				$container.hugeitmicro('reLayout');
-			});
-			
-			jQuery(this).parents('.element').removeClass("active");
-			return false;
-		}
-		
-	
-		jQuery(this).parents('.element').css({height:strheight});
-		jQuery(this).parents('.element').addClass('large');
-
-		$container.hugeitmicro('reLayout');
-		jQuery(this).parents('.element').css({height:"<?php echo $paramssld['ht_view0_block_height']+45; ?>px"});		 
-		 
-		//alert(strheight);
-		 
-		 jQuery(this).parents('.element').animate({
-			height:strheight+"px",
-		  }, 300,function(){	$container.hugeitmicro('reLayout');});
-	});
-
-	var $sortBy = jQuery('#sort-by');
-	jQuery('#shuffle a').click(function(){
-	  $container.hugeitmicro('shuffle');
-	  $sortBy.find('.selected').removeClass('selected');
-	  $sortBy.find('[data-option-value="random"]').addClass('selected');
-	  return false;
-	});
-});
-</script>
-	
-<?php        
-        break;
-	
-	///////////////////////////////// VIEW 1 FullHeight Blocks //////////////////////////////////////////////
-	
-	case 1;
-      
-	  
-	  ?>
-<style type="text/css"> 
-.element {
-  width:<?php echo $paramssld['ht_view1_block_width']; ?>px;
-  height:auto;
-  margin: 5px;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  outline:none; 
-  background:#<?php echo $paramssld['ht_view1_element_background_color']?>;
-  border:<?php echo $paramssld['ht_view1_element_border_width']; ?>px solid #<?php echo $paramssld['ht_view1_element_border_color']; ?>;
-}
-
-.default-block {
-	position:relative;;
-	width:<?php echo $paramssld['ht_view1_block_width']; ?>px;
-} 
-
-.default-block .image-block {
-	margin:0px;
-	padding:0px;
-	line-height:0px;
-	border:1px solid #<?php echo $paramssld['ht_view1_element_border_color']; ?>;
-}
-
-.default-block img {
-  margin:0px !important;
-  padding:0px !important;
-  max-width:none !important;
-  width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
-  border-radius:0px;
-}
-
-.default-block .title-block {
-	display:block;
-	height:35px;
-	padding:10px 0px 0px 0px;
-	width:100%;
-}
-
-.default-block .title-block h3 {
-	position:relative;
-	margin:0px !important;
-	padding:0px 5px 0px 5px !important;
-	width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
-	text-overflow: ellipsis;
-	overflow: hidden; 
-	white-space:nowrap;
-	font-weight:normal;
-	color:#<?php echo $paramssld['ht_view1_title_font_color']; ?>;
-	font-size:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
-	line-height:<?php echo $paramssld['ht_view1_title_font_size']+4; ?>px !important;
-}
-
-
-.wd-portfolio-panel {
-	position: relative;
-	display:block;
-	width:<?php echo $paramssld['ht_view1_block_width']-10; ?>px !important;
-	margin:10px 5px 0px 5px;
-	padding:0px;
-	text-align:left;
-}
-
-.wd-portfolio-panel .description-block p,.wd-portfolio-panel .description-block * {	
-	text-align:justify;
-	font-weight:normal;
-	font-size:<?php echo $paramssld['ht_view1_description_font_size']; ?>px !important;
-	color:#<?php echo $paramssld['ht_view1_description_color']; ?>;
-	margin:0px !important;
-	padding:0px !important;
-}
-
-
-.wd-portfolio-panel .description-block h1,
-.wd-portfolio-panel .description-block h2,
-.wd-portfolio-panel .description-block h3,
-.wd-portfolio-panel .description-block h4,
-.wd-portfolio-panel .description-block h5,
-.wd-portfolio-panel .description-block h6,
-.wd-portfolio-panel .description-block p, 
-.wd-portfolio-panel .description-block strong,
-.wd-portfolio-panel .description-block span {
-	padding:2px !important;
-	margin:0px !important;
-}
-
-.wd-portfolio-panel .description-block ul,
-.wd-portfolio-panel .description-block li {
-	padding:2px 0px 2px 5px;
-	margin:0px 0px 0px 8px;
-}
-
-
-.wd-portfolio-panel .thumbs-list {
-	list-style:none;
-	clear:both;
-	display:table;
-	width:100%;
-	padding:0px;
-	margin:3px 0px 0px 0px;
-	text-align:center;
-}
-
-.wd-portfolio-panel .thumbs-list li {
-	display:inline-block;
-	margin:0px 3px 0px 2px;
-}
-
-.wd-portfolio-panel .thumbs-list li a {
-	display:block;
-	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
-	height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
-	opacity:0.7;
-	display:table;
-}
-
-.wd-portfolio-panel .thumbs-list li a:hover {
-	opacity:1;
-}
-
-.wd-portfolio-panel img {
-	margin:0px !important;
-	padding:0px !important;
-	display:table-cell;
-	vertical-align:middle;
-	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
-	max-height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
-	width:100%;
-	height:100%;
-}
-
-.wd-portfolio-panel > div {
-	padding-top:10px;
-	margin-bottom:10px;
-	<?php if($paramssld['ht_view1_show_separator_lines']=="on") {?>
-		background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center top repeat-x;
-	<?php } ?>
-}
-
-.wd-portfolio-panel .button-block {
-	padding-top:10px;
-	margin-bottom:10px;
-	
-}
-
-.wd-portfolio-panel .button-block a, .wd-portfolio-panel .button-block a:link, .wd-portfolio-panel .button-block a:visited {
-	padding:10px;
-	display:inline-block;
-	font-size:<?php echo $paramssld['ht_view1_linkbutton_font_size']; ?>px;
-	background:#<?php echo $paramssld['ht_view1_linkbutton_background_color']; ?>;
-	color:#<?php echo $paramssld['ht_view1_linkbutton_color']; ?>;
-	padding:6px 12px;
-	text-decoration:none;
-}
-
-.wd-portfolio-panel .button-block a:hover, .wd-portfolio-panel .button-block a:focus, .wd-portfolio-panel .button-block a:active {
-	background:#<?php echo $paramssld['ht_view1_linkbutton_background_hover_color']; ?>;
-	color:#<?php echo $paramssld['ht_view1_linkbutton_font_hover_color']; ?>;
-	text-decoration:none;
-}
-
-</style>
-  <section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  	<?php
-
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		$descnohtml=strip_tags($row->description);
-		$result = substr($descnohtml, 0, 50);
-		?>
-		<div class="element   " data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="default-block">
-				<div class="image-block">
-					<?php $imgurl=explode(";",$row->image_url); ?>
-					<?php 	if($row->image_url != ';'){ ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
-					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
-					<?php
-					} ?>	
-				</div>
-				<div class="title-block">
-					<h3 class="title"><?php echo $row->name; ?></h3>
-				</div>
-			</div>
-				  
-			<div class="wd-portfolio-panel" id="panel<?php echo $key; ?>">
-			<?php if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="before")
-				{?>
-					<div>
-						<ul class="thumbs-list">
-							<?php
-							$imgurl=explode(";",$row->image_url);
-							array_pop($imgurl);
-							foreach($imgurl as $key=>$img)
-							{
-							?>
-							<li>
-								<a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-							</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php } 
-				if($paramssld['ht_view1_show_description']=='on'){?>
-					<div class="description-block">
-						<p><?php echo $row->description; ?></p>
-					</div>
-				<?php }
-				if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="after"){?>
-					<div>
-						<ul class="thumbs-list">
-							<?php
-							$imgurl=explode(";",$row->image_url);
-							array_pop($imgurl);
-							foreach($imgurl as $key=>$img)
-							{
-							?>
-							<li>
-								<a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-							</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php } 
-				if($paramssld['ht_view1_show_linkbutton']=='on'){?>
-					<div class="button-block">
-						<a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view1_linkbutton_text']; ?></a>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-		
-		<?php
-	}
-	?>
-  </div>
- </section>
- <script>
-   jQuery(function(){
-    var defaultBlockHeight=<?php echo $paramssld['ht_view1_block_width']; ?>;
-	var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
-    var $container = jQuery('#huge_it_portfolio_container');
+    
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
     
     
       // add randomish size classes
-      $container.find('.element').each(function(){
+      $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
         var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
@@ -914,9 +678,9 @@ $container.hugeitmicro({
       });
     
     $container.hugeitmicro({
-      itemSelector : '.element',
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
       masonry : {
-        columnWidth : <?php echo $paramssld['ht_view1_block_width']; ?>+20+<?php echo $paramssld['ht_view1_border_width']*2; ?>
+        columnWidth :  <?php echo $paramssld['ht_view0_block_width']; ?>+20+<?php echo $paramssld['ht_view0_border_width']*2; ?>
       },
       masonryHorizontal : {
         rowHeight: 300+20
@@ -942,14 +706,620 @@ $container.hugeitmicro({
         weight : function( $elem ) {
           return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
         },
-        name : function ( $elem ) {
-          return $elem.find('.name').text();
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
+        }
+      }
+    });
+        
+
+    var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
+          $optionLinks = $optionSets.find('a');
+
+      $optionLinks.click(function(){
+        var $this = jQuery(this);
+
+        if ( $this.hasClass('selected') ) {
+          return false;
+        }
+        var $optionSet = $this.parents('.option-set');
+        $optionSet.find('.selected').removeClass('selected');
+        $this.addClass('selected');
+  
+
+        var options = {},
+            key = $optionSet.attr('data-option-key'),
+            value = $this.attr('data-option-value');
+
+        value = value === 'false' ? false : value;
+        options[ key ] = value;
+        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+
+          changeLayoutMode( $this, options )
+        } else {
+
+          $container.hugeitmicro( options );
+        }
+        
+        return false;
+      });
+
+      var isHorizontal = false;
+      function changeLayoutMode( $link, options ) {
+        var wasHorizontal = isHorizontal;
+        isHorizontal = $link.hasClass('horizontal');
+
+        if ( wasHorizontal !== isHorizontal ) {
+
+          var style = isHorizontal ? 
+            { height: '75%', width: $container.width() } : 
+            { width: 'auto' };
+
+          $container.filter(':animated').stop();
+
+          $container.addClass('no-transition').css( style );
+          setTimeout(function(){
+            $container.removeClass('no-transition').hugeitmicro( options );
+          }, 100 )
+        } else {
+          $container.hugeitmicro( options );
+        }
+      }
+    
+
+      $container.delegate( '.default-block_<?php echo $portfolioID; ?>', 'click', function(){
+          var strheight=0;
+          jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?> > div').each(function(){
+                strheight+=jQuery(this).outerHeight()+10;
+                //alert(strheight);
+          })
+          strheight+=<?php echo $paramssld['ht_view0_block_height']+45; ?>;
+	  			if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+				height: "<?php echo $paramssld['ht_view0_block_height']+45; ?>px"
+			}, 300, function() {
+				jQuery(this).removeClass('large');
+				$container.hugeitmicro('reLayout');
+			});
+			
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').removeClass("active");
+			return false;
+		}
+		
+	
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:strheight});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
+
+		$container.hugeitmicro('reLayout');
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo $paramssld['ht_view0_block_height']+45; ?>px"});		 
+		 
+		//alert(strheight);
+		 
+		 jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+			height:strheight+"px",
+		  }, 300,function(){	$container.hugeitmicro('reLayout');});
+	});
+
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
+      $container.hugeitmicro('shuffle');
+      $sortBy.find('.selected').removeClass('selected');
+      $sortBy.find('[data-option-value="random"]').addClass('selected');
+      return false;
+    });
+    
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right") && $paramssld["ht_view0_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right") && $paramssld["ht_view0_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
+        
+        jQuery(window).load(function(){
+
+            $container.hugeitmicro({ filter: '*' });
+        });
+  });
+</script>
+	
+<?php        
+        break;
+	
+	///////////////////////////////// VIEW 1 FullHeight Blocks //////////////////////////////////////////////
+	
+	case 1;
+ ?>
+<?php
+    if($paramssld["ht_view1_sorting_float"] == "left" && $paramssld["ht_view1_filtering_float"] == "right" ||
+       $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "left" ||
+       $paramssld["ht_view1_sorting_float"] == $paramssld["ht_view1_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $middle_with = "56%"; }
+    else if($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view1_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view1_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view1_sorting_float"] == "top" && $paramssld["ht_view1_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
+
+<style type="text/css"> 
+.element_<?php echo $portfolioID; ?> {
+  width:<?php echo $paramssld['ht_view1_block_width']; ?>px;
+  height:auto;
+  margin: 5px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  outline:none; 
+  background:#<?php echo $paramssld['ht_view1_element_background_color']?>;
+  border:<?php echo $paramssld['ht_view1_element_border_width']; ?>px solid #<?php echo $paramssld['ht_view1_element_border_color']; ?>;
+}
+
+.default-block_<?php echo $portfolioID; ?> {
+	position:relative;;
+	width:<?php echo $paramssld['ht_view1_block_width']; ?>px;
+} 
+
+.default-block_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
+	margin:0px;
+	padding:0px;
+	line-height:0px;
+	border:1px solid #<?php echo $paramssld['ht_view1_element_border_color']; ?>;
+}
+
+.default-block_<?php echo $portfolioID; ?> img {
+  margin:0px !important;
+  padding:0px !important;
+  max-width:none !important;
+  width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
+  border-radius:0px;
+}
+
+.default-block_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> {
+	display:block;
+	height:35px;
+	padding:10px 0px 0px 0px;
+	width:100%;
+}
+
+.default-block_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> h3 {
+	position:relative;
+	margin:0px !important;
+	padding:0px 5px 0px 5px !important;
+	width:<?php echo $paramssld['ht_view1_block_width']; ?>px !important;
+	text-overflow: ellipsis;
+	overflow: hidden; 
+	white-space:nowrap;
+	font-weight:normal;
+	color:#<?php echo $paramssld['ht_view1_title_font_color']; ?>;
+	font-size:<?php echo $paramssld['ht_view1_title_font_size']; ?>px !important;
+	line-height:<?php echo $paramssld['ht_view1_title_font_size']+4; ?>px !important;
+}
+
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> {
+	position: relative;
+	display:block;
+	width:<?php echo $paramssld['ht_view1_block_width']-10; ?>px !important;
+	margin:10px 5px 0px 5px;
+	padding:0px;
+	text-align:left;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p,.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> * {	
+	text-align:justify;
+	font-weight:normal;
+	font-size:<?php echo $paramssld['ht_view1_description_font_size']; ?>px !important;
+	color:#<?php echo $paramssld['ht_view1_description_color']; ?>;
+	margin:0px !important;
+	padding:0px !important;
+}
+
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h1,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h2,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h3,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h4,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h5,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h6,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p, 
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> strong,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> span {
+	padding:2px !important;
+	margin:0px !important;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> ul,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> li {
+	padding:2px 0px 2px 5px;
+	margin:0px 0px 0px 8px;
+}
+
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> {
+	list-style:none;
+	clear:both;
+	display:table;
+	width:100%;
+	padding:0px;
+	margin:3px 0px 0px 0px;
+	text-align:center;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li {
+	display:inline-block;
+	margin:0px 3px 0px 2px;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li a {
+	display:block;
+	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
+	height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px;
+	opacity:0.7;
+	display:table;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .thumbs-list_<?php echo $portfolioID; ?> li a:hover {
+	opacity:1;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> img {
+	margin:0px !important;
+	padding:0px !important;
+	display:table-cell;
+	vertical-align:middle;
+	width:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
+	max-height:<?php echo $paramssld['ht_view1_thumbs_width']; ?>px !important;
+	width:100%;
+	height:100%;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> > div {
+	padding-top:10px;
+	margin-bottom:10px;
+	<?php if($paramssld['ht_view1_show_separator_lines']=="on") {?>
+		background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center top repeat-x;
+	<?php } ?>
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block {
+	padding-top:10px;
+	margin-bottom:10px;
+	
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:link, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:visited {
+	padding:10px;
+	display:inline-block;
+	font-size:<?php echo $paramssld['ht_view1_linkbutton_font_size']; ?>px;
+	background:#<?php echo $paramssld['ht_view1_linkbutton_background_color']; ?>;
+	color:#<?php echo $paramssld['ht_view1_linkbutton_color']; ?>;
+	padding:6px 12px;
+	text-decoration:none;
+}
+
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:hover, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:focus, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:active {
+	background:#<?php echo $paramssld['ht_view1_linkbutton_background_hover_color']; ?>;
+	color:#<?php echo $paramssld['ht_view1_linkbutton_font_hover_color']; ?>;
+	text-decoration:none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view1_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view1_filtering_float"] == 'left' && $paramssld["ht_view1_sorting_float"] == 'none') { if($portfolioShowFiltering == "on") { echo "margin-left: 31%;"; } else echo "margin-left: 1%;"; }
+    else if($paramssld["ht_view1_filtering_float"] == 'right' && $paramssld["ht_view1_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view1_sorting_float"]; ?>;
+    width:<?php echo $sorting_block_width; ?>;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view1_sorting_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view1_filtering_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view1_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view1_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
+    <?php
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view1_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view1_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view1_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+/*#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li:hover {
+    
+}*/
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view1_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view1_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view1_filtering_float"]; ?>;
+    width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view1_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view1_filtering_float"] == 'none' && $paramssld["ht_view1_sorting_float"] == 'left' ) { if($portfolioShowSorting == 'on') { echo "margin-left: 31%;"; } else echo "margin-left: 1%";} 
+        if(($paramssld["ht_view1_filtering_float"] == 'none' && ($paramssld["ht_view1_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view1_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view1_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view1_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view1_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view1_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view1_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+<?php if($paramssld["ht_view1_sorting_float"] == "left" && $paramssld["ht_view1_filtering_float"] == "right" ||
+         $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "left")
+       { echo "margin: 0px auto;"; }
+?>
+    width: <?php echo $width_middle; ?> !important;
+}
+</style>
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>">
+    <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="">
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view1_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view1_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view1_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view1_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view1_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view1_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>" >
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?>
+        <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view1_sorting_float"] == "top" && $paramssld["ht_view1_filtering_float"] == "top") echo "style='clear: both;'";?>>
+              <?php
+
+              foreach($images as $key=>$row)
+              {
+                      $link = $row->sl_url;
+                      $descnohtml=strip_tags($row->description);
+                      $result = substr($descnohtml, 0, 50);
+                      $catForFilter = explode(",", $row->category);
+                      ?>
+                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                              <div class="default-block_<?php echo $portfolioID; ?>">
+                                      <div class="image-block_<?php echo $portfolioID; ?>">
+                                              <?php $imgurl=explode(";",$row->image_url); ?>
+                                              <?php 	if($row->image_url != ';'){ ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <?php } else { ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
+                                              <?php
+                                              } ?>	
+                                      </div>
+                                      <div class="title-block_<?php echo $portfolioID; ?>">
+                                              <h3 class="title"><?php echo $row->name; ?></h3>
+                                      </div>
+                              </div>
+
+                              <div class="wd-portfolio-panel_<?php echo $portfolioID; ?>" id="panel<?php echo $key; ?>">
+                              <?php if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="before")
+                                      {?>
+                                              <div>
+                                                      <ul class="thumbs-list_<?php echo $portfolioID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              foreach($imgurl as $key=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
+                                      <?php } 
+                                      if($paramssld['ht_view1_show_description']=='on'){?>
+                                              <div class="description-block_<?php echo $portfolioID; ?>">
+                                                      <p><?php echo $row->description; ?></p>
+                                              </div>
+                                      <?php }
+                                      if($paramssld['ht_view1_show_thumbs']=='on' and $paramssld['ht_view1_thumbs_position']=="after"){?>
+                                              <div>
+                                                      <ul class="thumbs-list_<?php echo $portfolioID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              foreach($imgurl as $key=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
+                                      <?php } 
+                                      if($paramssld['ht_view1_show_linkbutton']=='on'){?>
+                                              <div class="button-block">
+                                                      <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view1_linkbutton_text']; ?></a>
+                                              </div>
+                                      <?php } ?>
+                              </div>
+                      </div>
+
+                      <?php
+              }
+              ?>
+        </div>
+ </section>
+    <script>
+jQuery(function(){
+var defaultBlockWidth=<?php echo $paramssld['ht_view1_block_width']; ?>;
+    
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
+    
+    
+      // add randomish size classes
+      $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
+        var $this = jQuery(this),
+            number = parseInt( $this.find('.number').text(), 10 );
+			//alert(number);
+        if ( number % 7 % 2 === 1 ) {
+          $this.addClass('width2');
+        }
+        if ( number % 3 === 0 ) {
+          $this.addClass('height2');
+        }
+      });
+    
+    $container.hugeitmicro({
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
+      masonry : {
+        columnWidth : <?php echo $paramssld['ht_view1_block_width']; ?>+20+<?php echo $paramssld['ht_view1_element_border_width']*2; ?>
+      },
+      masonryHorizontal : {
+        rowHeight: 300+20
+      },
+      cellsByRow : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      cellsByColumn : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      getSortData : {
+        symbol : function( $elem ) {
+          return $elem.attr('data-symbol');
+        },
+        category : function( $elem ) {
+          return $elem.attr('data-category');
+        },
+        number : function( $elem ) {
+          return parseInt( $elem.find('.number').text(), 10 );
+        },
+        weight : function( $elem ) {
+          return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
+        },
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
         }
       }
     });
     
     
-      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
@@ -991,7 +1361,7 @@ $container.hugeitmicro({
         if ( wasHorizontal !== isHorizontal ) {
 
           var style = isHorizontal ? 
-            { height: '100%', width: $container.width() } : 
+            { height: '75%', width: $container.width() } : 
             { width: 'auto' };
 
           $container.filter(':animated').stop();
@@ -1004,23 +1374,46 @@ $container.hugeitmicro({
           $container.hugeitmicro( options );
         }
       }
-     
-    var $sortBy = jQuery('#sort-by');
-    jQuery('#shuffle a').click(function(){
+
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
-	
-	  jQuery(window).load(function(){
-		$container.hugeitmicro('reLayout');
-	  });
+    
+    ////filteringgggggg
 
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right") && $paramssld["ht_view1_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right") && $paramssld["ht_view1_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
+        
+        jQuery(window).load(function(){
 
+            $container.hugeitmicro({ filter: '*' });
+        });
   });
-</script>
-	  
+</script>	  
 	  <?php
 	  
         break;
@@ -1029,15 +1422,29 @@ $container.hugeitmicro({
       
 	
 	  ?>
+<?php
+    if($paramssld["ht_view2_sorting_float"] == "left" && $paramssld["ht_view2_filtering_float"] == "right" ||
+       $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "left" ||
+       $paramssld["ht_view2_sorting_float"] == $paramssld["ht_view2_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $middle_with = "56%"; }
+    else if($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view2_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view2_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view2_sorting_float"] == "top" && $paramssld["ht_view2_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
 
-<script> 
+<script>
 jQuery(function(){
-    var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']+37; ?>;
-	var defaultBlockWidth=<?php echo $paramssld['ht_view2_element_width']; ?>;
-    var $container = jQuery('#huge_it_portfolio_container');
-
+var defaultBlockWidth=<?php echo $paramssld['ht_view2_element_width']; ?>;
+var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
+    
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
+    
+    
       // add randomish size classes
-      $container.find('.element').each(function(){
+      $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
         var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
@@ -1050,20 +1457,20 @@ jQuery(function(){
       });
     
     $container.hugeitmicro({
-      itemSelector : '.element',
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
       masonry : {
-        columnWidth : defaultBlockWidth+20
+        columnWidth : <?php echo $paramssld['ht_view2_element_width']; ?>+20+<?php echo $paramssld['ht_view2_border_width']*2; ?>
       },
       masonryHorizontal : {
-        rowHeight: defaultBlockHeight+20
+        rowHeight: 300+20
       },
       cellsByRow : {
-        columnWidth : defaultBlockWidth+20,
-        rowHeight : defaultBlockHeight
+        columnWidth : 300+20,
+        rowHeight : 240
       },
       cellsByColumn : {
-        columnWidth : defaultBlockWidth+20,
-        rowHeight : defaultBlockHeight
+        columnWidth : 300+20,
+        rowHeight : 240
       },
       getSortData : {
         symbol : function( $elem ) {
@@ -1078,97 +1485,161 @@ jQuery(function(){
         weight : function( $elem ) {
           return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
         },
-        name : function ( $elem ) {
-          return $elem.find('.name').text();
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
         }
       }
-	 
     });
     
     
-	var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
-	$optionLinks = $optionSets.find('a');
+      var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
+          $optionLinks = $optionSets.find('a');
 
-	$optionLinks.click(function(){
-		var $this = jQuery(this);
+      $optionLinks.click(function(){
+        var $this = jQuery(this);
 
-		if ( $this.hasClass('selected') ) {
-		  return false;
+        if ( $this.hasClass('selected') ) {
+          return false;
+        }
+        var $optionSet = $this.parents('.option-set');
+        $optionSet.find('.selected').removeClass('selected');
+        $this.addClass('selected');
+  
+
+        var options = {},
+            key = $optionSet.attr('data-option-key'),
+            value = $this.attr('data-option-value');
+
+        value = value === 'false' ? false : value;
+        options[ key ] = value;
+        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+
+          changeLayoutMode( $this, options )
+        } else {
+
+          $container.hugeitmicro( options );
+        }
+        
+        return false;
+      });
+
+
+    
+
+      var isHorizontal = false;
+      function changeLayoutMode( $link, options ) {
+        var wasHorizontal = isHorizontal;
+        isHorizontal = $link.hasClass('horizontal');
+
+        if ( wasHorizontal !== isHorizontal ) {
+
+          var style = isHorizontal ? 
+            { height: '75%', width: $container.width() } : 
+            { width: 'auto' };
+
+          $container.filter(':animated').stop();
+
+          $container.addClass('no-transition').css( style );
+          setTimeout(function(){
+            $container.removeClass('no-transition').hugeitmicro( options );
+          }, 100 )
+        } else {
+          $container.hugeitmicro( options );
+        }
+      }
+
+
+    
+
+      $container.delegate( '.default-block_<?php echo $portfolioID; ?>', 'click', function(){
+          var strheight=0;
+          jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?> > div').each(function(){
+                strheight+=jQuery(this).outerHeight()+10;
+                //alert(strheight);
+          })
+          strheight+=<?php echo $paramssld['ht_view0_block_height']+45; ?>;
+	  			if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+				height: "<?php echo $paramssld['ht_view0_block_height']+45; ?>px"
+			}, 300, function() {
+				jQuery(this).removeClass('large');
+				$container.hugeitmicro('reLayout');
+			});
+			
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').removeClass("active");
+			return false;
 		}
-		var $optionSet = $this.parents('.option-set');
-		$optionSet.find('.selected').removeClass('selected');
-		$this.addClass('selected');
+		
+	
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:strheight});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
 
-		var options = {},
-			key = $optionSet.attr('data-option-key'),
-			value = $this.attr('data-option-value');
+		$container.hugeitmicro('reLayout');
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo $paramssld['ht_view0_block_height']+45; ?>px"});		 
+		 
+		//alert(strheight);
+		 
+		 jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+			height:strheight+"px",
+		  }, 300,function(){	$container.hugeitmicro('reLayout');});
+	});
 
-		value = value === 'false' ? false : value;
-		options[ key ] = value;
-		if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
-
-		  changeLayoutMode( $this, options )
-		} else {
-
-		  $container.hugeitmicro( options );
-		}
-
-		return false;
-	});    
-
-	var isHorizontal = false;
-	function changeLayoutMode( $link, options ) {
-		var wasHorizontal = isHorizontal;
-		isHorizontal = $link.hasClass('horizontal');
-
-		if ( wasHorizontal !== isHorizontal ) {
-
-		  var style = isHorizontal ? 
-			{ height: '100%', width: $container.width() } : 
-			{ width: 'auto' };
-
-		  $container.filter(':animated').stop();
-
-		  $container.addClass('no-transition').css( style );
-		  setTimeout(function(){
-			$container.removeClass('no-transition').hugeitmicro( options );
-		  }, 100 )
-		} else {
-		  $container.hugeitmicro( options );
-		}
-	}
-
-    var $sortBy = jQuery('#sort-by');
-    jQuery('#shuffle a').click(function(){
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
-});
+    
+    ////filteringgggggg
 
-jQuery(document).ready(function(){
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right") && $paramssld["ht_view2_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right") && $paramssld["ht_view2_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
 
-	jQuery('.element .image-block .image-overlay a').on('click',function(){
+  });
+  jQuery(document).ready(function(){
+
+	jQuery('.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> .image-overlay a').on('click',function(){
 		var strid = jQuery(this).attr('href').replace('#','');
-		jQuery('body').append('<div id="huge-popup-overlay"></div>');
-		jQuery('#huge_it_portfolio_popup_list').insertBefore('#huge-popup-overlay');
+		jQuery('body').append('<div id="huge-popup-overlay_<?php echo $portfolioID; ?>"></div>');
+		jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?>').insertBefore('#huge-popup-overlay_<?php echo $portfolioID; ?>');
 		var height = jQuery(window).height();
 		var width=jQuery(window).width();
 		if(width<=767){
 			jQuery('body').scrollTop(0);
 		}
 		jQuery('#huge_it_portfolio_pupup_element_'+strid).addClass('active').css({height:height*0.7});
-		jQuery('#huge_it_portfolio_popup_list').addClass('active');
+		jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?>').addClass('active');
 		
-		jQuery('#huge_it_portfolio_pupup_element_'+strid+' ul.thumbs-list li:first-child').addClass('active');
-		var strsrc=jQuery('#huge_it_portfolio_pupup_element_'+strid+' ul.thumbs-list li:first-child a img').attr('src');
-		jQuery('#huge_it_portfolio_pupup_element_'+strid+' .image-block img').attr('src',strsrc);
+		jQuery('#huge_it_portfolio_pupup_element_'+strid+' ul.thumbs-list_<?php echo $portfolioID; ?> li:first-child').addClass('active');
+		var strsrc=jQuery('#huge_it_portfolio_pupup_element_'+strid+' ul.thumbs-list_<?php echo $portfolioID; ?> li:first-child a img').attr('src');
+		jQuery('#huge_it_portfolio_pupup_element_'+strid+' .image-block_<?php echo $portfolioID; ?> img').attr('src',strsrc);
 		//alert(strsrc);
 		return false;
 	});
 	
-	jQuery('#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li a').click(function(){
+	jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li a').click(function(){
 		var width=jQuery(window).width();
 		if(width<=767){
 			jQuery('body').scrollTop(0);
@@ -1179,28 +1650,31 @@ jQuery(document).ready(function(){
 		return false;
 	});
 	
-	jQuery('#huge_it_portfolio_popup_list .heading-navigation .close').on('click',function(){
+	jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close').on('click',function(){
 		closePopup();
 		return false;
 	});
 	
-	jQuery('body').on('click','#huge-popup-overlay',function(){
+	jQuery('body').on('click','#huge-popup-overlay_<?php echo $portfolioID; ?>',function(){
 		closePopup();
 		return false;
 	});
 	
 	function closePopup() {
-		jQuery('#huge-popup-overlay').remove();
-		jQuery('#huge_it_portfolio_popup_list li').removeClass('active');
-		jQuery('#huge_it_portfolio_popup_list').removeClass('active');
+		jQuery('#huge-popup-overlay_<?php echo $portfolioID; ?>').remove();
+		jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li').removeClass('active');
+		jQuery('#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?>').removeClass('active');
 	}
 	
+        jQuery(window).load(function(){
+            $container.hugeitmicro({ filter: '*' });
+        });
 }); 
 </script>
 
 <style type="text/css"> 
 
-.element {
+.element_<?php echo $portfolioID; ?> {
 	width:<?php echo $paramssld['ht_view2_element_width']; ?>px;
 	height:<?php echo $paramssld['ht_view2_element_height']+45; ?>px;
 	margin:0px 0px 10px 0px;
@@ -1209,12 +1683,12 @@ jQuery(document).ready(function(){
 	outline:none;
 }
 
-.element .image-block {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
 	position:relative;
 	width:100%;
 }
 
-.element .image-block img {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld['ht_view2_element_width']; ?>px !important;
@@ -1224,7 +1698,7 @@ jQuery(document).ready(function(){
 	box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important; 
 }
 
-.element .image-block .image-overlay {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> .image-overlay {
 	position:absolute;
 	top:0px;
 	left:0px;
@@ -1238,11 +1712,11 @@ jQuery(document).ready(function(){
 	display:none;
 }
 
-.element:hover .image-block  .image-overlay {
+.element_<?php echo $portfolioID; ?>:hover .image-block_<?php echo $portfolioID; ?>  .image-overlay {
 	display:block;
 }
 
-.element .image-block .image-overlay a {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> .image-overlay a {
 	position:absolute;
 	top:0px;
 	left:0px;
@@ -1252,7 +1726,7 @@ jQuery(document).ready(function(){
 	background:url('<?php echo  plugins_url( '../images/zoom.'.$paramssld["ht_view2_zoombutton_style"].'.png' , __FILE__ ); ?>') center center no-repeat;
 }
 
-.element .title-block {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> {
 	position:relative;
 	height: 30px;
 	margin: 0;
@@ -1261,7 +1735,7 @@ jQuery(document).ready(function(){
 	box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 }
 
-.element .title-block h3 {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> h3 {
 	position:relative;
 	margin:0px !important;
 	padding:0px 1% 0px 1% !important;
@@ -1275,7 +1749,7 @@ jQuery(document).ready(function(){
 	color:#<?php echo $paramssld["ht_view2_popup_title_font_color"];?>;
 }
 
-.element .title-block .button-block {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> .button-block {
 	position:absolute;
 	right:0px;
 	top:0px;
@@ -1290,10 +1764,10 @@ jQuery(document).ready(function(){
 	?>;
 	border-left: 1px solid rgba(0,0,0,.05);
 }
-.element:hover .title-block .button-block {display:block;}
+.element_<?php echo $portfolioID; ?>:hover .title-block_<?php echo $portfolioID; ?> .button-block {display:block;}
 
-.element .title-block a,.element .title-block a:link,.element .title-block a:visited,
-.element .title-block a:hover,.element .title-block a:focus,.element .title-block a:active {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a,.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:link,.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:visited,
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:hover,.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:focus,.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:active {
 	position:relative;
 	display:block;
 	vertical-align:middle;
@@ -1307,7 +1781,7 @@ jQuery(document).ready(function(){
 
 /*#####POPUP#####*/
 
-#huge_it_portfolio_popup_list {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> {
 	position:fixed;
 	display:table;
 	width:80%;
@@ -1320,9 +1794,9 @@ jQuery(document).ready(function(){
 	height:90%;
 }
 
-#huge_it_portfolio_popup_list.active {display:table;}
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?>.active {display:table;}
 
-#huge_it_portfolio_popup_list li.pupup-element {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element {
 	position:relative;
 	display:none;
 	width:100%;
@@ -1332,11 +1806,11 @@ jQuery(document).ready(function(){
 	background:#<?php echo $paramssld["ht_view2_popup_background_color"];?>;
 }
 
-#huge_it_portfolio_popup_list li.pupup-element.active {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element.active {
 	display:block;
 }
 
-#huge_it_portfolio_popup_list .heading-navigation {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> {
 	position:absolute;
 	width:100%;
 	height:40px;
@@ -1346,7 +1820,7 @@ jQuery(document).ready(function(){
 	background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center bottom repeat-x;
 }
 
-#huge_it_portfolio_popup_list .heading-navigation .close,#huge_it_portfolio_popup_list .heading-navigation .close:link, #huge_it_portfolio_popup_list .heading-navigation .close:visited {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close,#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close:link, #huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close:visited {
 	position:relative;
 	float:right;
 	width:40px;
@@ -1357,10 +1831,10 @@ jQuery(document).ready(function(){
 	opacity:.65;
 }
 
-#huge_it_portfolio_popup_list .heading-navigation .close:hover, #huge_it_portfolio_popup_list .heading-navigation .close:focus, #huge_it_portfolio_popup_list .heading-navigation .close:active {opacity:1;}
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close:hover, #huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close:focus, #huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .heading-navigation_<?php echo $portfolioID; ?> .close:active {opacity:1;}
 
 
-#huge_it_portfolio_popup_list li.pupup-element .popup-wrapper {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element .popup-wrapper_<?php echo $portfolioID; ?> {
 	overflow-y:scroll;
 	position:relative;
 	width:96%;
@@ -1368,8 +1842,9 @@ jQuery(document).ready(function(){
 	padding:2% 2% 0% 2%;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .image-block {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
 	width:60%;
+        <?php if($paramssld['ht_view2_popup_full_width'] == 'off') { echo "height:100%;"; } ?>
 	position:relative;
 	float:left;
 	margin-right:2%;
@@ -1377,30 +1852,32 @@ jQuery(document).ready(function(){
 	min-width:200px;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .image-block img {
-	width:100% !important;
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> img {
+        <?php
+            if($paramssld['ht_view2_popup_full_width'] == 'off') { echo "max-width:100% !important; max-height:100% !important; margin: 0px auto !important; position:relative;"; }
+            else { echo "width:100% !important;"; }
+        ?>
 	display:block;
-	margin:0px !important;
 	padding:0px !important;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block {
 	width:37%;
 	position:relative;
 	float:left;
 }
 
-#huge_it_portfolio_popup_list li.pupup-element .popup-wrapper .right-block > div {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element .popup-wrapper_<?php echo $portfolioID; ?> .right-block > div {
 	padding-top:10px;
 	margin-bottom:10px;
 	<?php if($paramssld['ht_view2_show_separator_lines']=="on") {?>
 		background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center top repeat-x;
 	<?php } ?>
 }
-#huge_it_portfolio_popup_list li.pupup-element .popup-wrapper .right-block > div:last-child {background:none;}
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element .popup-wrapper_<?php echo $portfolioID; ?> .right-block > div:last-child {background:none;}
 
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .title {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .title {
 	position:relative;
 	display:block;
 	margin:0px 0px 10px 0px !important;
@@ -1409,7 +1886,7 @@ jQuery(document).ready(function(){
 	color:#<?php echo $paramssld["ht_view2_element_title_font_color"];?>;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description {
 	clear:both;
 	position:relative;
 	font-weight:normal;
@@ -1418,26 +1895,26 @@ jQuery(document).ready(function(){
 	color:#<?php echo $paramssld["ht_view2_description_color"];?>;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h1,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h2,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h3,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h4,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h5,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description h6,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description p, 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description strong,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description span {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h1,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h2,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h3,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h4,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h5,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description h6,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description p, 
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description strong,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description span {
 	padding:2px !important;
 	margin:0px !important;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description ul,
-#huge_it_portfolio_popup_list .popup-wrapper .right-block .description li {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description ul,
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block .description li {
 	padding:2px 0px 2px 5px;
 	margin:0px 0px 0px 8px;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> {
 	list-style:none;
 	display:table;
 	position:relative;
@@ -1447,7 +1924,7 @@ jQuery(document).ready(function(){
 	padding:0px;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li {
 	display:block;
 	float:left;
 	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px;
@@ -1456,15 +1933,15 @@ jQuery(document).ready(function(){
 	opacity:0.45;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li.active,#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li:hover {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li.active,#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li:hover {
 	opacity:1;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li a {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li a {
 	display:block;
 }
 
-#huge_it_portfolio_popup_list .popup-wrapper .right-block ul.thumbs-list li img {
+#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block ul.thumbs-list_<?php echo $portfolioID; ?> li img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld["ht_view2_thumbs_width"];?>px !important;
@@ -1492,7 +1969,7 @@ jQuery(document).ready(function(){
 }
 
 
-#huge-popup-overlay {
+#huge-popup-overlay_<?php echo $portfolioID; ?> {
 	position:fixed;
 	top:0px;
 	left:0px;
@@ -1509,7 +1986,7 @@ jQuery(document).ready(function(){
 
 @media only screen and (max-width: 767px) {
 	
-	#huge_it_portfolio_popup_list {
+	#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> {
 		position:absolute;
 		left:0px;
 		top:0px;
@@ -1518,7 +1995,7 @@ jQuery(document).ready(function(){
 		left:0px;
 	}
 	
-	#huge_it_portfolio_popup_list li.pupup-element {
+	#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element {
 		margin:0px;
 		height:auto !important;
 		position:absolute;
@@ -1526,13 +2003,13 @@ jQuery(document).ready(function(){
 		top:0px;
 	}
 
-	#huge_it_portfolio_popup_list li.pupup-element .popup-wrapper {
+	#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> li.pupup-element .popup-wrapper_<?php echo $portfolioID; ?> {
 		height:auto !important;
 		overflow-y:auto;
 	}
 
 
-	#huge_it_portfolio_popup_list .popup-wrapper .image-block {
+	#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
 		width:100%;
 		float:none;
 		clear:both;
@@ -1540,7 +2017,7 @@ jQuery(document).ready(function(){
 		border-right:0px;
 	}
 
-	#huge_it_portfolio_popup_list .popup-wrapper .right-block {
+	#huge_it_portfolio_popup_list_<?php echo $portfolioID; ?> .popup-wrapper_<?php echo $portfolioID; ?> .right-block {
 		width:100%;
 		float:none;
 		clear:both;
@@ -1548,7 +2025,7 @@ jQuery(document).ready(function(){
 		border-right:0px;
 	}
 
-	#huge-popup-overlay {
+	#huge-popup-overlay_<?php echo $portfolioID; ?> {
 		position:fixed;
 		top:0px;
 		left:0px;
@@ -1558,41 +2035,203 @@ jQuery(document).ready(function(){
 	}
 
 }
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view2_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view2_filtering_float"] == 'left' && $paramssld["ht_view2_sorting_float"] == 'none') { if($portfolioShowFiltering == "on") { echo "margin-left: 30%;"; } else { echo "margin-left: 0%;"; } }
+    //else if($paramssld["ht_view2_filtering_float"] == 'right' && $paramssld["ht_view2_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    /*margin-top: 5px;*/
+    float: <?php echo $paramssld["ht_view2_sorting_float"]; ?>;
+    width: <?php echo $sorting_block_width; ?>;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view2_sorting_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view2_filtering_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view2_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+            
+            
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view2_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
+    <?php
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view2_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view2_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view2_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+/*#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li:hover {
+    
+}*/
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view2_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view2_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    /*margin-top: 5px;*/
+    float: <?php echo $paramssld["ht_view2_filtering_float"]; ?>;
+    width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view2_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view2_filtering_float"] == 'top' && ($paramssld["ht_view2_sorting_float"] == 'left') ) { echo "margin-left: 31%";} 
+        //if(($paramssld["ht_view2_filtering_float"] == 'none' && ($paramssld["ht_view2_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view2_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view2_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view2_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view2_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view2_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view2_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+<?php if($paramssld["ht_view2_sorting_float"] == "left" && $paramssld["ht_view2_filtering_float"] == "right" ||
+         $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "left")
+       { echo "margin: 0px auto;"; }
+?>
+    width: <?php echo $width_middle; ?> !important;
+}
 </style>
-<section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  	<?php
-	
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		$descnohtml=strip_tags($row->description);
-		$result = substr($descnohtml, 0, 50);
-		?>
-		<div class="element" tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="image-block">
-				<?php $imgurl=explode(";",$row->image_url); ?>
-					<?php 	if($row->image_url != ';'){ ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" />
-					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
-					<?php
-					} ?>	
-				<div class="image-overlay"><a href="#<?php echo $row->id; ?>"></a></div>
-			</div>
-			<div class="title-block">
-				<h3><?php echo $row->name; ?></h3>
-				<?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){?>
-					<div class="button-block"><a href="<?php echo $row->sl_url; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?></a></div>
-				<?php } ?>
-			</div>
-		</div>	
-		<?php
-	}?>
-	<div style="clear:both;"></div>
-  </div>
+    
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>">
+    <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="">
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view2_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view2_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view2_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view2_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view2_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view2_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>">
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?>
+    <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view2_sorting_float"] == "top" && $paramssld["ht_view2_filtering_float"] == "top") echo "style='clear: both;'";?> style="margin-top: 5px;">
+              <?php
+
+              foreach($images as $key=>$row)
+              {
+                      $link = $row->sl_url;
+                      $descnohtml=strip_tags($row->description);
+                      $result = substr($descnohtml, 0, 50);
+                      $catForFilter = explode(",", $row->category);
+                      ?>
+                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                              <div class="image-block_<?php echo $portfolioID; ?>">
+                                      <?php $imgurl=explode(";",$row->image_url); ?>
+                                              <?php 	if($row->image_url != ';'){ ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" />
+                                              <?php } else { ?>
+                                              <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
+                                              <?php
+                                              } ?>	
+                                      <div class="image-overlay"><a href="#<?php echo $row->id; ?>"></a></div>
+                              </div>
+                              <div class="title-block_<?php echo $portfolioID; ?>">
+                                      <h3><?php echo $row->name; ?></h3>
+                                      <?php if($paramssld["ht_view2_element_show_linkbutton"]=='on'){?>
+                                              <div class="button-block"><a href="<?php echo $row->sl_url; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?> ><?php echo $paramssld["ht_view2_element_linkbutton_text"]; ?></a></div>
+                                      <?php } ?>
+                              </div>
+                      </div>	
+                      <?php
+              }?>
+              <div style="clear:both;"></div>
+        </div>
 </section>
-<ul id="huge_it_portfolio_popup_list">
+<ul id="huge_it_portfolio_popup_list_<?php echo $portfolioID; ?>">
 	<?php
 	foreach($images as $key=>$row)
 	{
@@ -1602,12 +2241,12 @@ jQuery(document).ready(function(){
 		$result = substr($descnohtml, 0, 50);
 		?>
 		<li class="pupup-element" id="huge_it_portfolio_pupup_element_<?php echo $row->id; ?>">
-			<div class="heading-navigation">
+			<div class="heading-navigation_<?php echo $portfolioID; ?>">
 				<a href="#close" class="close"></a>
 				<div style="clear:both;"></div>
 			</div>
-			<div class="popup-wrapper">
-				<div class="image-block">
+			<div class="popup-wrapper_<?php echo $portfolioID; ?>">
+				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
 					<img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" />
 					<?php } else { ?>
@@ -1619,7 +2258,7 @@ jQuery(document).ready(function(){
 					<?php if($paramssld["ht_view2_show_popup_title"]=='on'){?><h3 class="title"><?php echo $row->name; ?></h3><?php } ?>
 					
 					<?php if($paramssld["ht_view2_thumbs_position"]=='before' and $paramssld["ht_view2_show_thumbs"] == 'on'){?>
-					<div><ul class="thumbs-list">
+					<div><ul class="thumbs-list_<?php echo $portfolioID; ?>">
 						<?php   
 								foreach($imgurl as $key=>$img){?>
 									<li><a href="<?php echo $row->sl_url; ?>" class="group1"><img src="<?php echo $img; ?>"></a></li>
@@ -1630,7 +2269,7 @@ jQuery(document).ready(function(){
 					<?php if($paramssld["ht_view2_show_description"]=='on'){?><div class="description"><?php echo $row->description; ?></div><?php } ?>
 					
 					<?php if($paramssld["ht_view2_thumbs_position"]=='after' and $paramssld["ht_view2_show_thumbs"] == 'on'){?>
-					<div><ul class="thumbs-list">
+					<div><ul class="thumbs-list_<?php echo $portfolioID; ?>">
 						<?php   $imgurl=explode(";",$row->image_url);array_pop($imgurl);
 								foreach($imgurl as $key=>$img){?>
 									<li><a href="#" class="group1"><img src="<?php echo $img; ?>"></a></li>
@@ -1656,13 +2295,24 @@ jQuery(document).ready(function(){
 	break;
 	////////////////////////////// VIEW 3 FullWidth ////////////////////////////////////////////// 
 	case 3:
-
-
   ?>
+
+<?php
+    if($paramssld["ht_view3_sorting_float"] == "left" && $paramssld["ht_view3_filtering_float"] == "right" ||
+       $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filtering_float"] == "left" ||
+       $paramssld["ht_view3_sorting_float"] == $paramssld["ht_view3_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $middle_with = "56%"; }
+    else if($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view3_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view3_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view3_sorting_float"] == "top" && $paramssld["ht_view3_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
 
 <style type="text/css"> 
 
-.element {
+.element_<?php echo $portfolioID; ?> {
 	position: relative;
 	width:93%; 
 	margin:5px 0px 5px 0px;
@@ -1673,32 +2323,32 @@ jQuery(document).ready(function(){
 	background:#<?php echo $paramssld['ht_view3_element_background_color']; ?>;
 }
 
-.element > div {
+.element_<?php echo $portfolioID; ?> > div {
 	display:table-cell;
 }
 
-.element div.left-block {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> {
 	padding-right:10px;
 }
 
-.element div.left-block .main-image-block {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .main-image-block_<?php echo $portfolioID; ?> {
 	clear:both;
 	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px; 
 }
 
-.element div.left-block .main-image-block img {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .main-image-block_<?php echo $portfolioID; ?> img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px !important; 
 	height:auto;
 }
 
-.element div.left-block .thumbs-block {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block {
 	position:relative;
 	margin-top:10px;
 }
 
-.element div.left-block .thumbs-block ul {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block ul {
 	width:<?php echo $paramssld['ht_view3_mainimage_width']; ?>px; 
 	height:auto;
 	display:table;
@@ -1707,7 +2357,7 @@ jQuery(document).ready(function(){
 	list-style:none;
 }
 
-.element div.left-block .thumbs-block ul li {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block ul li {
 	margin:0px 3px 0px 2px;
 	padding:0px;
 	width:<?php echo $paramssld['ht_view3_thumbs_width']; ?>px; 
@@ -1715,24 +2365,24 @@ jQuery(document).ready(function(){
 	float:left;
 }
 
-.element div.left-block .thumbs-block ul li a {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block ul li a {
 	display:block;
 	width:<?php echo $paramssld['ht_view3_thumbs_width']; ?>px; 
 	height:<?php echo $paramssld['ht_view3_thumbs_height']; ?>px; 
 }
 
-.element div.left-block .thumbs-block ul li a img {
+.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block ul li a img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld['ht_view3_thumbs_width']; ?>px; 
 	height:<?php echo $paramssld['ht_view3_thumbs_height']; ?>px; 
 }
 
-.element div.right-block {
+.element_<?php echo $portfolioID; ?> div.right-block {
 	vertical-align:top;
 }
 
-.element div.right-block > div {
+.element_<?php echo $portfolioID; ?> div.right-block > div {
 	width:100%;
 	padding-bottom:10px;
 	margin-top:10px;
@@ -1741,15 +2391,15 @@ jQuery(document).ready(function(){
 	<?php } ?>	
 }
 
-.element div.right-block > div:last-child {
+.element_<?php echo $portfolioID; ?> div.right-block > div:last-child {
 	background:none;
 }
 
-.element div.right-block .title-block  {
+.element_<?php echo $portfolioID; ?> div.right-block .title-block_<?php echo $portfolioID; ?>  {
 	margin-top:3px;
 }
 
-.element div.right-block .title-block h3 {
+.element_<?php echo $portfolioID; ?> div.right-block .title-block_<?php echo $portfolioID; ?> h3 {
 	margin:0px;
 	padding:0px;
 	font-weight:normal;
@@ -1758,7 +2408,7 @@ jQuery(document).ready(function(){
 	color:#<?php echo $paramssld['ht_view3_title_font_color']; ?>;
 }
 
-.element div.right-block .description-block p,.element div.right-block .description-block * {
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> p,.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> * {
 	margin:0px;
 	padding:0px;
 	font-weight:normal;
@@ -1767,30 +2417,30 @@ jQuery(document).ready(function(){
 }
 
 
-.element div.right-block .description-block h1,
-.element div.right-block .description-block h2,
-.element div.right-block .description-block h3,
-.element div.right-block .description-block h4,
-.element div.right-block .description-block h5,
-.element div.right-block .description-block h6,
-.element div.right-block .description-block p, 
-.element div.right-block .description-block strong,
-.element div.right-block .description-block span {
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h1,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h2,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h3,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h4,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h5,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> h6,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> p, 
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> strong,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> span {
 	padding:2px !important;
 	margin:0px !important;
 }
 
-.element div.right-block .description-block ul,
-.element div.right-block .description-block li {
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> ul,
+.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> li {
 	padding:2px 0px 2px 5px;
 	margin:0px 0px 0px 8px;
 }
 
-.element .button-block {
+.element_<?php echo $portfolioID; ?> .button-block {
 	position:relative;
 }
 
-.element div.right-block .button-block a,.element div.right-block .button-block a:link,.element div.right-block .button-block a:visited {
+.element_<?php echo $portfolioID; ?> div.right-block .button-block a,.element_<?php echo $portfolioID; ?> div.right-block .button-block a:link,.element_<?php echo $portfolioID; ?> div.right-block .button-block a:visited {
 	position:relative;
 	display:inline-block;
 	padding:6px 12px;
@@ -1800,7 +2450,7 @@ jQuery(document).ready(function(){
 	text-decoration:none;
 }
 
-.element div.right-block .button-block a:hover,.pupup-elemen.element div.right-block .button-block a:focus,.element div.right-block .button-block a:active {
+.element_<?php echo $portfolioID; ?> div.right-block .button-block a:hover,.pupup-elemen.element div.right-block .button-block a:focus,.element_<?php echo $portfolioID; ?> div.right-block .button-block a:active {
 	background:#<?php echo $paramssld["ht_view3_linkbutton_background_hover_color"];?>;
 	color:#<?php echo $paramssld["ht_view3_linkbutton_font_hover_color"];?>;
 }
@@ -1809,116 +2459,284 @@ jQuery(document).ready(function(){
 
 @media only screen and (max-width: 767px) {
 	
-	.element > div {
+	.element_<?php echo $portfolioID; ?> > div {
 		display:block;
 		width:100%;
 		clear:both;
 	}
 
-	.element div.left-block {
+	.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> {
 		padding-right:0px;
 	}
 
-	.element div.left-block .main-image-block {
+	.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .main-image-block_<?php echo $portfolioID; ?> {
 		clear:both;
 		width:100%; 
 	}
 
-	.element div.left-block .main-image-block img {
+	.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .main-image-block_<?php echo $portfolioID; ?> img {
 		margin:0px !important;
 		padding:0px !important;
 		width:100% !important;  
 		height:auto;
 	}
 
-	.element div.left-block .thumbs-block ul {
+	.element_<?php echo $portfolioID; ?> div.left-block_<?php echo $portfolioID; ?> .thumbs-block ul {
 		width:100%; 
 	}
 }
 
-</style>
-  <section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  	<?php
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view3_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view3_filtering_float"] == 'left' && $paramssld["ht_view3_sorting_float"] == 'none' && $portfolioShowFiltering == 'on') { echo "margin-left: 30%;"; }
+//    else if($paramssld["ht_view3_filtering_float"] == 'right' && $paramssld["ht_view3_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view3_sorting_float"]; ?>;
+    width: <?php echo $sorting_block_width; ?>;
+}
 
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		?>
-		<div class="element" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="left-block">
-				<div class="main-image-block">
-					<?php $imgurl=explode(";",$row->image_url); ?>
-					<?php 	if($row->image_url != ';'){ ?>
-						<a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
-					<?php } else { ?>
-						<a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
-					<?php
-					}
-					?>
-				</div>
-				<div class="thumbs-block">
-                                    <?php
-                                    if($paramssld["ht_view3_show_thumbs"] == 'on')
-                                        {
-                                    ?>
-					<ul class="thumbs-list">					
-						<?php
-						$imgurl=explode(";",$row->image_url);
-						array_pop($imgurl);
-						array_shift($imgurl);
-						
-						foreach($imgurl as $key=>$img)
-						{
-							?>
-								<li><a href="<?php echo $img;?>"><img src="<?php echo $img; ?>"></a></li>
-						<?php
-						}
-						?>
-					</ul>
-                                    <?php
-                                    }
-                                    ?>
-				</div>
-			</div>
-			<div class="right-block">
-			  <?php if($row->name!=''){?><div class="title-block"><h3><?php echo $row->name; ?></h3></div><?php } ?>
-			  <?php
-                          if($paramssld["ht_view3_show_description"] == 'on')
-                              {
-                                if($row->description!='')
-                                    { ?>
-                                    <div class="description-block"><p><?php echo $row->description; ?></p></div>
-                              <?php } ?>
-                        <?php }
-                          
-                                if($link!='')
-                                { 
-                                if($paramssld["ht_view3_show_linkbutton"] == 'on') {
-                                ?>
-                                    <div class="button-block">
-                                            <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
-                                    </div>
-                                <?php }
-                                } ?>
-			</div>
-		</div>
-		
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view3_sorting_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view3_filtering_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view3_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view3_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
     <?php
-	}
-	?>
-  
-  </div>
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view3_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view3_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view3_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+/*#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li:hover {
+    
+}*/
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view3_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view3_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view3_filtering_float"]; ?>;
+   width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view3_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view3_filtering_float"] == 'none' && ($paramssld["ht_view3_sorting_float"] == 'left') ) { echo "margin-left: 31%";} 
+//        if(($paramssld["ht_view3_filtering_float"] == 'none' && ($paramssld["ht_view3_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view3_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view3_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view3_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view3_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view3_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view3_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+
+    width: <?php echo $width_middle; ?> !important;
+    <?php
+        if($paramssld["ht_view3_sorting_float"] == "left" && $paramssld["ht_view3_filtering_float"] == "right" ||
+           $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filtering_float"] == "left")
+        { ?>
+            margin-left: 21%;
+  <?php } 
+//        if($paramssld["ht_view3_sorting_float"] == "left" && $paramssld["ht_view3_filtering_float"] == "right" ||
+//           $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filtering_float"] == "left")
+//       { echo "margin: 0px auto;"; }
+?>
+}
+</style>
+      
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>">
+    <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="">
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view3_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view3_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view3_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view3_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view3_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view3_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>">
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?> 
+        <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view3_sorting_float"] == "top" && $paramssld["ht_view3_filtering_float"] == "top") echo "style='clear: both;'";?>>
+              <?php
+
+              foreach($images as $key=>$row)
+              {
+                      $link = $row->sl_url;
+                      $catForFilter = explode(",", $row->category);
+                      ?>
+                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                              <div class="left-block_<?php echo $portfolioID; ?>">
+                                      <div class="main-image-block_<?php echo $portfolioID; ?>">
+                                              <?php $imgurl=explode(";",$row->image_url); ?>
+                                              <?php 	if($row->image_url != ';'){ ?>
+                                                      <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+                                              <?php } else { ?>
+                                                      <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
+                                              <?php
+                                              }
+                                              ?>
+                                      </div>
+                                      <div class="thumbs-block">
+                                          <?php
+                                          if($paramssld["ht_view3_show_thumbs"] == 'on')
+                                              {
+                                          ?>
+                                              <ul class="thumbs-list_<?php echo $portfolioID; ?>">					
+                                                      <?php
+                                                      $imgurl=explode(";",$row->image_url);
+                                                      array_pop($imgurl);
+                                                      array_shift($imgurl);
+
+                                                      foreach($imgurl as $key=>$img)
+                                                      {
+                                                              ?>
+                                                                      <li><a href="<?php echo $img;?>"><img src="<?php echo $img; ?>"></a></li>
+                                                      <?php
+                                                      }
+                                                      ?>
+                                              </ul>
+                                          <?php
+                                          }
+                                          ?>
+                                      </div>
+                              </div>
+                              <div class="right-block">
+                                <?php if($row->name!=''){?><div class="title-block_<?php echo $portfolioID; ?>"><h3><?php echo $row->name; ?></h3></div><?php } ?>
+                                <?php
+                                if($paramssld["ht_view3_show_description"] == 'on')
+                                    {
+                                      if($row->description!='')
+                                          { ?>
+                                          <div class="description-block_<?php echo $portfolioID; ?>"><p><?php echo $row->description; ?></p></div>
+                                    <?php } ?>
+                              <?php }
+
+                                      if($link!='')
+                                      { 
+                                      if($paramssld["ht_view3_show_linkbutton"] == 'on') {
+                                      ?>
+                                          <div class="button-block">
+                                                  <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld["ht_view3_linkbutton_text"]; ?></a>
+                                          </div>
+                                      <?php }
+                                      } ?>
+                              </div>
+                      </div>
+
+          <?php
+              }
+              ?>
+
+        </div>
  </section>
   
- <script>
-  jQuery(function(){
+<script>
+jQuery(function(){
+var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
     
-    var $container = jQuery('#huge_it_portfolio_container');
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
     
     
       // add randomish size classes
-      $container.find('.element').each(function(){
+      $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
         var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
@@ -1931,9 +2749,9 @@ jQuery(document).ready(function(){
       });
     
     $container.hugeitmicro({
-      itemSelector : '.element',
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
       masonry : {
-        columnWidth : 300+20
+        columnWidth : <?php echo $paramssld['ht_view3_width']; ?>+20+<?php echo $paramssld['ht_view3_border_width']*2; ?>
       },
       masonryHorizontal : {
         rowHeight: 300+20
@@ -1959,14 +2777,14 @@ jQuery(document).ready(function(){
         weight : function( $elem ) {
           return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
         },
-        name : function ( $elem ) {
-          return $elem.find('.name').text();
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
         }
       }
     });
     
     
-      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
@@ -2008,7 +2826,7 @@ jQuery(document).ready(function(){
         if ( wasHorizontal !== isHorizontal ) {
 
           var style = isHorizontal ? 
-            { height: '100%', width: $container.width() } : 
+            { height: '75%', width: $container.width() } : 
             { width: 'auto' };
 
           $container.filter(':animated').stop();
@@ -2022,36 +2840,78 @@ jQuery(document).ready(function(){
         }
       }
 
-  
 
-      $container.delegate( '.element', 'click', function(){
-	  	if(jQuery(this).hasClass("large")){
-		 jQuery(this).animate({
-    height: "245px"
-  }, 900, function() {
-     jQuery(this).toggleClass('large');
-        $container.hugeitmicro('reLayout');
-	
-  });
-			 jQuery(this).removeClass("active");
-			 return false;
+    
+
+      $container.delegate( '.default-block_<?php echo $portfolioID; ?>', 'click', function(){
+          var strheight=0;
+          jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?> > div').each(function(){
+                strheight+=jQuery(this).outerHeight()+10;
+                //alert(strheight);
+          })
+          strheight+=<?php echo $paramssld['ht_view0_block_height']+45; ?>;
+	  			if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+				height: "<?php echo $paramssld['ht_view0_block_height']+45; ?>px"
+			}, 300, function() {
+				jQuery(this).removeClass('large');
+				$container.hugeitmicro('reLayout');
+			});
+			
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').removeClass("active");
+			return false;
 		}
+		
 	
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:strheight});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
 
-	$container.hugeitmicro('reLayout');
+		$container.hugeitmicro('reLayout');
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo $paramssld['ht_view0_block_height']+45; ?>px"});		 
+		 
+		//alert(strheight);
+		 
+		 jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+			height:strheight+"px",
+		  }, 300,function(){	$container.hugeitmicro('reLayout');});
+	});
 
-
-      });
-
-    var $sortBy = jQuery('#sort-by');
-    jQuery('#shuffle a').click(function(){
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
-	
-	jQuery(window).load(function(){
+    
+    ////filteringgggggg
+
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right") && $paramssld["ht_view3_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right") && $paramssld["ht_view3_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
+        
+        //end of filtering
+        
+        jQuery(window).load(function(){
 		$container.hugeitmicro('reLayout');
 		jQuery(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
@@ -2065,12 +2925,23 @@ jQuery(document).ready(function(){
 		
 /////////////////////////////////// VIEW 4 FAQ ////////////////////////////////////
 	case 4;
-      
-	  
-	  ?>
+
+?>
+<?php
+    if($paramssld["ht_view4_sorting_float"] == "left" && $paramssld["ht_view4_filtering_float"] == "right" ||
+       $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filtering_float"] == "left" ||
+       $paramssld["ht_view4_sorting_float"] == $paramssld["ht_view4_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $middle_with = "56%"; }
+    else if($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view4_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right" && $paramssld["ht_view4_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view4_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view4_sorting_float"] == "top" && $paramssld["ht_view4_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
 
 <style type="text/css"> 
-.element {
+.element_<?php echo $portfolioID; ?> {
 	background:#<?php echo $paramssld['ht_view4_element_background_color']?>;
 	width:<?php echo $paramssld['ht_view4_block_width']; ?>px;
 	height:45px;
@@ -2082,15 +2953,15 @@ jQuery(document).ready(function(){
 	border:<?php echo $paramssld['ht_view4_element_border_width']; ?>px solid #<?php echo $paramssld['ht_view4_element_border_color']; ?>;
 }
 
-.element.large,
-.variable-sizes .element.large,
-.variable-sizes .element.large.width2.height2 {
+.element_<?php echo $portfolioID; ?>.large,
+.variable-sizes .element_<?php echo $portfolioID; ?>.large,
+.variable-sizes .element_<?php echo $portfolioID; ?>.large.width2.height2 {
 	width: <?php echo $paramssld['ht_view4_block_width']; ?>px;
 	z-index: 10;
 }
 
 
-.title-block {
+.title-block_<?php echo $portfolioID; ?> {
 	position:relative;
 	display:block;
 	height:45px;
@@ -2099,7 +2970,7 @@ jQuery(document).ready(function(){
         max-width: 467px;
 }
 
-.title-block h3 {
+.title-block_<?php echo $portfolioID; ?> h3 {
 	position:relative;
 	margin:0px;
 	padding:0px 5px 0px 5px;
@@ -2112,7 +2983,7 @@ jQuery(document).ready(function(){
 	font-size:<?php echo $paramssld['ht_view4_title_font_size']; ?>;
 }
 
-.element .title-block .open-close-button {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> .open-close-button {
 	width:20px;
 	height:20px;
 	position:absolute;
@@ -2124,13 +2995,13 @@ jQuery(document).ready(function(){
 	opacity:0.33;
 }
 
-.element:hover .title-block .open-close-button {opacity:1;}
+.element_<?php echo $portfolioID; ?>:hover .title-block_<?php echo $portfolioID; ?> .open-close-button {opacity:1;}
 
-.element.large .open-close-button {
+.element_<?php echo $portfolioID; ?>.large .open-close-button {
 	background:url('<?php echo  plugins_url( '../images/open-close.'.$paramssld['ht_view4_togglebutton_style'].'.png' , __FILE__ ); ?>') left bottom no-repeat;
 }
 
-.wd-portfolio-panel {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> {
 	position:relative;
 	clear:both;
 	display:block;
@@ -2141,7 +3012,7 @@ jQuery(document).ready(function(){
 	z-index:6; 
 }
 
-.wd-portfolio-panel .description-block p,.element div.right-block .description-block * {	
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p,.element_<?php echo $portfolioID; ?> div.right-block .description-block_<?php echo $portfolioID; ?> * {	
 	text-align:justify;
 	font-weight:normal;
 	font-size:<?php echo $paramssld['ht_view4_description_font_size']; ?>px;
@@ -2150,27 +3021,27 @@ jQuery(document).ready(function(){
 	padding:0px;
 }
 
-.wd-portfolio-panel .description-block h1,
-.wd-portfolio-panel .description-block h2,
-.wd-portfolio-panel .description-block h3,
-.wd-portfolio-panel .description-block h4,
-.wd-portfolio-panel .description-block h5,
-.wd-portfolio-panel .description-block h6,
-.wd-portfolio-panel .description-block p, 
-.wd-portfolio-panel .description-block strong,
-.wd-portfolio-panel .description-block span {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h1,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h2,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h3,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h4,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h5,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> h6,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> p, 
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> strong,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> span {
 	line-height:auto !important;
 	padding:2px !important;
 	margin:0px !important;
 }
 
-.wd-portfolio-panel .description-block ul,
-.wd-portfolio-panel .description-block li {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> ul,
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .description-block_<?php echo $portfolioID; ?> li {
 	padding:2px 0px 2px 5px;
 	margin:0px 0px 0px 8px;
 }
 
-.wd-portfolio-panel > div {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> > div {
 	padding-top:10px;
 	margin-bottom:10px;
 	<?php if($paramssld['ht_view4_show_separator_lines']=="on") {?>
@@ -2178,11 +3049,11 @@ jQuery(document).ready(function(){
 	<?php } ?>
 }
 
-.wd-portfolio-panel .button-block {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block {
 	padding:10px 0px 10px 0px;
 }
 
-.wd-portfolio-panel .button-block a, .wd-portfolio-panel .button-block a:link, .wd-portfolio-panel .button-block a:visited {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:link, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:visited {
 	padding:6px 12px;
 	display:inline-block;
 	font-size:<?php echo $paramssld['ht_view4_linkbutton_font_size']; ?>px;
@@ -2191,7 +3062,7 @@ jQuery(document).ready(function(){
 	text-decoration:none;
 }
 
-.wd-portfolio-panel .button-block a:hover, .wd-portfolio-panel .button-block a:focus, .wd-portfolio-panel .button-block a:active {
+.wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:hover, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:focus, .wd-portfolio-panel_<?php echo $portfolioID; ?> .button-block a:active {
 	background:#<?php echo $paramssld['ht_view4_linkbutton_background_hover_color']; ?>;
 	color:#<?php echo $paramssld['ht_view4_linkbutton_font_hover_color']; ?>;
 	text-decoration:none;
@@ -2199,88 +3070,249 @@ jQuery(document).ready(function(){
 
 
 @media only screen and (max-width: <?php echo $paramssld['ht_view4_block_width']; ?>px) {
-	.element {
+	.element_<?php echo $portfolioID; ?> {
 	  width:95%;
 	}
 
-	.element.large,
-	.variable-sizes .element.large,
-	.variable-sizes .element.large.width2.height2 {
+	.element_<?php echo $portfolioID; ?>.large,
+	.variable-sizes .element_<?php echo $portfolioID; ?>.large,
+	.variable-sizes .element_<?php echo $portfolioID; ?>.large.width2.height2 {
 	  width: 95%;
 	}
 
 
-	.title-block {
+	.title-block_<?php echo $portfolioID; ?> {
 		width:88%;
 	}
 }
 
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view4_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view4_filtering_float"] == 'left' && $paramssld["ht_view4_sorting_float"] == 'none') { if($portfolioShowFiltering == "on") { echo "margin-left: 31%;"; } else { echo "margin-left: 1%;"; }  }
+    else if($paramssld["ht_view4_filtering_float"] == 'right' && $paramssld["ht_view4_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view4_sorting_float"]; ?>;
+    width: <?php echo $sorting_block_width; ?>;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view4_sorting_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view4_filtering_float"] == 'top') {
+      echo "float:left;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view4_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+            
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view4_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
+    <?php
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view4_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view4_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view4_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+/*#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li:hover {
+    
+}*/
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view4_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view4_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    margin-top: 5px;
+    float: <?php echo $paramssld["ht_view4_filtering_float"]; ?>;
+    width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view4_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view4_filtering_float"] == 'none' && ($paramssld["ht_view4_sorting_float"] == 'left') ) { if($portfolioShowSorting == "on") { echo "margin-left: 31%;"; } else { echo "margin-left: 1%;"; } } 
+        if(($paramssld["ht_view4_filtering_float"] == 'none' && ($paramssld["ht_view4_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view4_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view4_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view4_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view4_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view4_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view4_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+<?php if($paramssld["ht_view4_sorting_float"] == "left" && $paramssld["ht_view4_filtering_float"] == "right" ||
+         $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filtering_float"] == "left")
+       { echo "margin: 0px auto;"; }
+?>
+    width: <?php echo $width_middle; ?> !important;
+}
+
 </style>
-<section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  
-  	<?php
 
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		$descnohtml=strip_tags($row->description);
-		$result = substr($descnohtml, 0, 50);
-		?>
-		<div class="element" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="title-block">
-				<h3 class="title"><?php echo $row->name; ?></h3>
-				<div class="open-close-button"></div>
-			</div>
-				  
-			<div class="wd-portfolio-panel" id="panel<?php echo $key; ?>">
-				<?php
-				if($paramssld['ht_view4_show_description']=='on'){?>
-					<div class="description-block">
-						<p><?php echo $row->description; ?></p>
-					</div>
-				<?php }
-				if($paramssld['ht_view4_show_thumbs']=='on' and $paramssld['ht_view4_thumbs_position']=="after"){?>
-					<div>
-						<ul class="thumbs-list">
-							<?php
-							$imgurl=explode(";",$row->image_url);
-							array_pop($imgurl);
-							foreach($imgurl as $key=>$img)
-							{
-							?>
-							<li>
-								<a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
-							</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				<?php } 
-				if($paramssld['ht_view4_show_linkbutton']=='on'){?>
-					<div class="button-block">
-						<a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view4_linkbutton_text']; ?></a>
-					</div>
-				<?php } ?>
-				<div style="clear:both"></div>
-			</div>
-		</div>
-		
-		<?php
-	}
-	?>
-  
-  </div>
- </section><script> 
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>">
+    <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="">
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view4_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view4_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view4_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view4_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view4_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view4_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>">
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?>
+        <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view4_sorting_float"] == "top" && $paramssld["ht_view4_filtering_float"] == "top") echo "style='clear: both;'";?>>
+              <?php
+
+              foreach($images as $key=>$row)
+              {
+                      $link = $row->sl_url;
+                      $descnohtml=strip_tags($row->description);
+                      $result = substr($descnohtml, 0, 50);
+                      $catForFilter = explode(",", $row->category);
+                      ?>
+                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?> " data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                              <div class="title-block_<?php echo $portfolioID; ?>">
+                                      <h3 class="title"><?php echo $row->name; ?></h3>
+                                      <div class="open-close-button"></div>
+                              </div>
+
+                              <div class="wd-portfolio-panel_<?php echo $portfolioID; ?>" id="panel<?php echo $key; ?>">
+                                      <?php
+                                      if($paramssld['ht_view4_show_description']=='on'){?>
+                                              <div class="description-block_<?php echo $portfolioID; ?>">
+                                                      <p><?php echo $row->description; ?></p>
+                                              </div>
+                                      <?php }
+                                      if($paramssld['ht_view4_show_thumbs']=='on' and $paramssld['ht_view4_thumbs_position']=="after"){?>
+                                              <div>
+                                                      <ul class="thumbs-list_<?php echo $portfolioID; ?>">
+                                                              <?php
+                                                              $imgurl=explode(";",$row->image_url);
+                                                              array_pop($imgurl);
+                                                              foreach($imgurl as $key=>$img)
+                                                              {
+                                                              ?>
+                                                              <li>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                              </li>
+                                                              <?php
+                                                              }
+                                                              ?>
+                                                      </ul>
+                                              </div>
+                                      <?php } 
+                                      if($paramssld['ht_view4_show_linkbutton']=='on'){?>
+                                              <div class="button-block">
+                                                      <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $paramssld['ht_view4_linkbutton_text']; ?></a>
+                                              </div>
+                                      <?php } ?>
+                                      <div style="clear:both"></div>
+                              </div>
+                      </div>
+
+                      <?php
+              }
+              ?>
+
+        </div>
+ </section>
+<script>
 jQuery(function(){
-var defaultBlockHeight=<?php echo $paramssld['ht_view4_block_width']; ?>;
-var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>+20+<?php echo $paramssld['ht_view4_border_width']*2; ?>;
-var $container = jQuery('#huge_it_portfolio_container');
 
+var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 
-  // add randomish size classes
-  $container.find('.element').each(function(){
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
+    
+      // add randomish size classes
+    $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
 	var $this = jQuery(this),
 		number = parseInt( $this.find('.number').text(), 10 );
 		//alert(number);
@@ -2290,26 +3322,26 @@ var $container = jQuery('#huge_it_portfolio_container');
 	if ( number % 3 === 0 ) {
 	  $this.addClass('height2');
 	}
-  });
-
-$container.hugeitmicro({
-  itemSelector : '.element',
-  masonry : {
-	columnWidth : defaultBlockWidth
-  },
-  masonryHorizontal : {
-	rowHeight: 45
-  },
-  cellsByRow : {
-	columnWidth : defaultBlockWidth,
-	rowHeight : 45
-  },
-  cellsByColumn : {
-	columnWidth : defaultBlockWidth,
-	rowHeight : 45
-  },
-  getSortData : {
-	symbol : function( $elem ) {
+    });
+    
+    $container.hugeitmicro({
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
+      masonry : {
+        columnWidth : <?php echo $paramssld['ht_view4_block_width']; ?>+20+<?php echo $paramssld['ht_view4_border_width']*2; ?>
+      },
+      masonryHorizontal : {
+        rowHeight: 300+20
+      },
+      cellsByRow : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      cellsByColumn : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      getSortData : {
+        symbol : function( $elem ) {
 	  return $elem.attr('data-symbol');
 	},
 	category : function( $elem ) {
@@ -2321,14 +3353,14 @@ $container.hugeitmicro({
 	weight : function( $elem ) {
 	  return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
 	},
-	name : function ( $elem ) {
-	  return $elem.find('.name').text();
-	}
-  }
-});
-
-
-  var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
+        }
+      }
+    });
+    
+    
+      var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
 	  $optionLinks = $optionSets.find('a');
 
   $optionLinks.click(function(){
@@ -2360,9 +3392,9 @@ $container.hugeitmicro({
   });
 
 
+    
 
-
-  var isHorizontal = false;
+      var isHorizontal = false;
   function changeLayoutMode( $link, options ) {
 	var wasHorizontal = isHorizontal;
 	isHorizontal = $link.hasClass('horizontal');
@@ -2385,48 +3417,73 @@ $container.hugeitmicro({
   }
 
 
+    
 
-
-	$container.delegate( '.open-close-button', 'click', function(){		
-		if(jQuery(this).parents('.element').hasClass("large")){
-			jQuery(this).parents('.element').animate({
+      $container.delegate( '.open-close-button', 'click', function(){		
+		if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
 				height: "45px"
 			}, 700, function() {
 				jQuery(this).removeClass('large');
 				$container.hugeitmicro('reLayout');
 			});
 			
-			jQuery(this).parents('.element').removeClass("active");
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').removeClass("active");
 			return false;
 		}
 
 
-		jQuery(this).parents('.element').css({height:45+jQuery(this).parents('.element').find('.wd-portfolio-panel').height()});
-		jQuery(this).parents('.element').addClass('large');
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:45+jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?>').height()});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
 
 		$container.hugeitmicro('reLayout');
-		jQuery(this).parents('.element').css({height:"45px"});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"45px"});
 		  
-		 var strheight=(jQuery(this).parents('.element').find('.wd-portfolio-panel').height()+45);
+		 var strheight=(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?>').height()+35);
 		 
 		 
-		 jQuery(this).parents('.element').animate({
+		 jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
 			height:strheight+"px",
 		  }, 700,function(){	$container.hugeitmicro('reLayout');});
 	});
 
-	var $sortBy = jQuery('#sort-by');
-	jQuery('#shuffle a').click(function(){
-	  $container.hugeitmicro('shuffle');
-	  $sortBy.find('.selected').removeClass('selected');
-	  $sortBy.find('[data-option-value="random"]').addClass('selected');
-	  return false;
-	});
-	
-	jQuery(window).load(function(){
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
+      $container.hugeitmicro('shuffle');
+      $sortBy.find('.selected').removeClass('selected');
+      $sortBy.find('[data-option-value="random"]').addClass('selected');
+      return false;
+    });
+    
+    ////filteringgggggg
+
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right") && $paramssld["ht_view4_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right") && $paramssld["ht_view4_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
+
+  });
+  jQuery(window).load(function(){
 		jQuery(window).resize(function(){$container.hugeitmicro('reLayout');});
 	});
-});
 </script>
 	  
 	  <?php
@@ -2443,10 +3500,10 @@ $container.hugeitmicro({
   <link href="<?php echo plugins_url('../style/liquid-slider.css', __FILE__);?>" rel="stylesheet" type="text/css" />
  
 <style>
+#main-slider_<?php echo $portfolioID; ?>-wrapper .ls-nav { display: none; }
+#main-slider_<?php echo $portfolioID; ?> {background:#<?php echo $paramssld["ht_view5_slider_background_color"];?>;}
 
-#main-slider {background:#<?php echo $paramssld["ht_view5_slider_background_color"];?>;}
-
-#main-slider div.slider-content {
+#main-slider_<?php echo $portfolioID; ?> div.slider-content {
 	position:relative;
 	width:100%;
 	padding:0px 0px 0px 0px;
@@ -2464,32 +3521,32 @@ $container.hugeitmicro({
 	background:url(<?php echo plugins_url('../images/menu.'.$paramssld["ht_view5_icons_style"].'.png', __FILE__);?>) right center no-repeat #<?php echo $paramssld["ht_view5_slider_background_color"];?>;
 }
 
-#main-slider-nav-select {
+#main-slider_<?php echo $portfolioID; ?>-nav-select {
 	color:#<?php echo $paramssld["ht_view5_title_font_color"];?>;
 }
 
-#main-slider div.slider-content .slider-content-wrapper {
+#main-slider_<?php echo $portfolioID; ?> div.slider-content .slider-content-wrapper {
 	position:relative;
 	width:100%;
 	padding:0px;
 	display:block;
 }
 
-#main-slider .slider-content-wrapper .image-block {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> {
 	width:<?php echo $paramssld["ht_view5_main_image_width"];?>px;
 	display:table-cell;
 	padding:0px 10px 0px 0px;
 	float:left;
 }
 
-#main-slider .slider-content-wrapper .image-block img.main-image {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> img.main-image {
 	position:relative;
 	width:100%;
 	height:auto;
 	display:block;
 }
 
-#main-slider .slider-content-wrapper .image-block ul.thumbs-list {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> {
 	list-style:none;
 	display:table;
 	position:relative;
@@ -2500,7 +3557,7 @@ $container.hugeitmicro({
 	clear:both;
 }
 
-#main-slider .slider-content-wrapper .image-block ul.thumbs-list li {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> li {
 	display:block;
 	float:left;
 	width:<?php echo $paramssld["ht_view5_thumbs_width"];?>px;
@@ -2509,36 +3566,36 @@ $container.hugeitmicro({
 	opacity:0.45;
 }
 
-#main-slider .slider-content-wrapper .image-block ul.thumbs-list li.active,#main-slider .slider-content-wrapper .image-block ul.thumbs-list li:hover {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> li.active,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> li:hover {
 	opacity:1;
 }
 
-#main-slider .slider-content-wrapper .image-block ul.thumbs-list li a {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> li a {
 	display:block;
 }
 
-#main-slider .slider-content-wrapper .image-block ul.thumbs-list li img {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?> ul.thumbs-list_<?php echo $portfolioID; ?> li img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld["ht_view5_thumbs_width"];?>px !important;
 	height:<?php echo $paramssld["ht_view5_thumbs_height"];?>px !important;
 }
 
-#main-slider .slider-content-wrapper .right-block {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block {
 	display:table-cell;
 }
 
-#main-slider .slider-content-wrapper .right-block > div {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block > div {
 	padding-bottom:10px;
 	margin-top:10px;
 	<?php if($paramssld['ht_view5_show_separator_lines']=="on") {?>
 		background:url('<?php echo  plugins_url( '../images/divider.line.png' , __FILE__ ); ?>') center bottom repeat-x;
 	<?php } ?>
 }
-#main-slider .slider-content-wrapper .right-block > div:last-child {background:none;}
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block > div:last-child {background:none;}
 
 
-#main-slider .slider-content-wrapper .right-block .title {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .title {
 	position:relative;
 	display:block;
 	margin:-10px 0px 0px 0px;
@@ -2547,7 +3604,7 @@ $container.hugeitmicro({
 	color:#<?php echo $paramssld["ht_view5_title_font_color"];?>;
 }
 
-#main-slider .slider-content-wrapper .right-block .description {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description {
 	clear:both;
 	position:relative;
 	font-weight:normal;
@@ -2557,32 +3614,32 @@ $container.hugeitmicro({
 	color:#<?php echo $paramssld["ht_view5_description_color"];?>;
 }
 
-#main-slider .slider-content-wrapper .right-block .description h1,
-#main-slider .slider-content-wrapper .right-block .description h2,
-#main-slider .slider-content-wrapper .right-block .description h3,
-#main-slider .slider-content-wrapper .right-block .description h4,
-#main-slider .slider-content-wrapper .right-block .description h5,
-#main-slider .slider-content-wrapper .right-block .description h6,
-#main-slider .slider-content-wrapper .right-block .description p, 
-#main-slider .slider-content-wrapper .right-block .description strong,
-#main-slider .slider-content-wrapper .right-block .description span {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h1,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h2,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h3,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h4,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h5,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description h6,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description p, 
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description strong,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description span {
 	padding:2px !important;
 	margin:0px !important;
 }
 
-#main-slider .slider-content-wrapper .right-block .description ul,
-#main-slider .slider-content-wrapper .right-block .description li {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description ul,
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block .description li {
 	padding:2px 0px 2px 5px;
 	margin:0px 0px 0px 8px;
 }
 
 
 
-#main-slider .slider-content-wrapper .button-block {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block {
 	position:relative;
 }
 
-#main-slider .slider-content-wrapper .button-block a,#main-slider .slider-content-wrapper .button-block a:link,#main-slider .slider-content-wrapper .button-block a:visited{
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a:link,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a:visited{
 	position:relative;
 	display:inline-block;
 	padding:6px 12px;
@@ -2592,7 +3649,7 @@ $container.hugeitmicro({
 	text-decoration:none;
 }
 
-#main-slider .slider-content-wrapper .button-block a:hover,#main-slider .slider-content-wrapper .button-block a:focus,#main-slider .slider-content-wrapper .button-block a:active {
+#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a:hover,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a:focus,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .button-block a:active {
 	background:#<?php echo $paramssld["ht_view5_linkbutton_background_hover_color"];?>;
 	color:#<?php echo $paramssld["ht_view5_linkbutton_font_hover_color"];?>;
 }
@@ -2605,18 +3662,15 @@ $container.hugeitmicro({
 }
 
 @media only screen and (max-width:500px) {
-	#main-slider .slider-content-wrapper .image-block,#main-slider .slider-content-wrapper .right-block {
+	#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .image-block_<?php echo $portfolioID; ?>,#main-slider_<?php echo $portfolioID; ?> .slider-content-wrapper .right-block {
 		width:100%;
 		display:block;
 		float:none;
 		clear:both;
 	}
 }
-
-
-
 </style>
-<div id="main-slider" class="liquid-slider">
+<div id="main-slider_<?php echo $portfolioID; ?>" class="liquid-slider">
 	<?php
 	
 	foreach($images as $key=>$row)
@@ -2629,7 +3683,7 @@ $container.hugeitmicro({
 		<div class="slider-content">
 			
 			<div class="slider-content-wrapper">
-				<div class="image-block">
+				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
 					<a class="group1" href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
@@ -2638,7 +3692,7 @@ $container.hugeitmicro({
 					} ?>
 					
 					<?php if($paramssld["ht_view5_show_thumbs"]){?>
-					<div><ul class="thumbs-list">
+					<div><ul class="thumbs-list_<?php echo $portfolioID; ?>">
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
@@ -2665,10 +3719,10 @@ $container.hugeitmicro({
    <script>
     /**
      * If you need to access the internal property or methods, use this:
-     * var api = $.data( jQuery('#main-slider')[0], 'liquidSlider');
+     * var api = $.data( jQuery('#main-slider_<?php echo $portfolioID; ?>')[0], 'liquidSlider');
      * console.log(api);
      */
-	 jQuery('#main-slider').liquidSlider();
+	 jQuery('#main-slider_<?php echo $portfolioID; ?>').liquidSlider();
   </script>
 <?php  
         break;
@@ -2677,9 +3731,22 @@ $container.hugeitmicro({
 		case 6:
 ?>
 
-<style type="text/css"> 
+<style type="text/css">
 
-.element {
+<?php
+    if($paramssld["ht_view6_sorting_float"] == "left" && $paramssld["ht_view6_filtering_float"] == "right" ||
+       $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "left" ||
+       $paramssld["ht_view6_sorting_float"] == $paramssld["ht_view6_filtering_float"])
+       { $sorting_block_width ="20%"; $filtering_block_width ="20%"; $width_middle = "56%"; }
+    else if($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "top")
+       { $sorting_block_width ="30%"; $filtering_block_width ="100%"; $paramssld["ht_view6_filtering_float"] = "none"; $width_middle = "65%"; }
+    else if($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right" && $paramssld["ht_view6_sorting_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="30%"; $paramssld["ht_view6_sorting_float"] = "none"; $width_middle = "65%"; }
+    if($paramssld["ht_view6_sorting_float"] == "top" && $paramssld["ht_view6_filtering_float"] == "top")
+       { $sorting_block_width ="100%"; $filtering_block_width ="100%"; $left_to_top = "ok"; }
+?>
+
+.element_<?php echo $portfolioID; ?> {
         max-width: 459px;
 	width:<?php echo $paramssld['ht_view6_width']; ?>px;
 	margin:0px 0px 10px 0px;
@@ -2689,12 +3756,12 @@ $container.hugeitmicro({
 	overflow:hidden;
 }
 
-.element .image-block {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> {
 	position:relative;
 	width:<?php echo $paramssld['ht_view6_width']; ?>px;
 }
 
-.element .image-block img {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> img {
 	margin:0px !important;
 	padding:0px !important;
 	width:<?php echo $paramssld['ht_view6_width']; ?>px !important;
@@ -2704,11 +3771,11 @@ $container.hugeitmicro({
 	box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important; 
 }
 
-.element .image-block img:hover {
+.element_<?php echo $portfolioID; ?> .image-block_<?php echo $portfolioID; ?> img:hover {
 	cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
 }
 
-.element .title-block {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> {
 	position:absolute;
 	
 	left:0px;
@@ -2727,9 +3794,9 @@ $container.hugeitmicro({
      transition: bottom 0.3s ease-out 0.1s;
 }
 
-.element:hover .title-block {bottom:0px;}
+.element_<?php echo $portfolioID; ?>:hover .title-block_<?php echo $portfolioID; ?> {bottom:0px;}
 
-.element .title-block a, .element .title-block a:link, .element .title-block a:visited {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a, .element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:link, .element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:visited {
 	position:relative;
 	margin:0px;
 	padding:0px 1% 0px 2%;
@@ -2746,52 +3813,239 @@ $container.hugeitmicro({
 
 
 
-.element .title-block a:hover, .element .title-block a:focus, .element .title-block a:active {
+.element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:hover, .element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:focus, .element_<?php echo $portfolioID; ?> .title-block_<?php echo $portfolioID; ?> a:active {
 	color:#<?php echo $paramssld["ht_view6_title_font_hover_color"];?>;
 	text-decoration:none;
 }
 
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> {
+    <?php if ($paramssld["ht_view6_show_sorting"] == 'off')
+    echo "display:none;";
+    if($paramssld["ht_view6_filtering_float"] == 'left' && $paramssld["ht_view6_sorting_float"] == 'none' && $portfolioShowFiltering == 'on') { echo "margin-left: 30%;"; }
+//    else if($paramssld["ht_view6_filtering_float"] == 'right' && $paramssld["ht_view6_sorting_float"] == 'none' || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%;"; } ?>
+    overflow: hidden;
+    /*margin-top: 5px;*/
+    float: <?php echo $paramssld["ht_view6_sorting_float"]; ?>;
+    width:<?php echo $sorting_block_width; ?>;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  list-style: none;
+<?php if($paramssld["ht_view6_sorting_float"] == 'top') {
+      echo "display:inline-block;margin-left:1%;";
+      } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden;
+  <?php if($paramssld["ht_view6_filtering_float"] == 'top') {
+      echo "display:inline-block;margin-left:1%;";
+      } ?>
+}
+
+<?php if($paramssld["ht_view6_sorting_float"] == 'top') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+            
+    <?php if($paramssld["ht_view6_sorting_float"] == 'none') { ?>
+            #huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul {
+                float: left;
+            }
+    <?php } ?>
+    
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li {
+    border-radius: <?php echo $paramssld["ht_view6_sortbutton_border_radius"];?>px;
+    list-style-type: none;
+    margin: 0px !important;
+    <?php
+        if($sorting_block_width == "100%" ) {
+            echo "float:left !important;margin: 4px 8px 4px 0px !important;";
+        }
+        if($left_to_top == "ok")
+        { echo "float:left !important;"; }
+        if($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else
+        { echo 'border: 1px solid #ccc;'; }
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a {
+    background-color: #<?php echo $paramssld["ht_view6_sortbutton_background_color"];?> !important;
+    font-size:<?php echo $paramssld["ht_view6_sortbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view6_sortbutton_font_color"];?> !important;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px !important;
+    display: block;
+    padding:3px;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_container_<?php echo $portfolioID; ?> {
+    margin-top: 5px;
+    <?php
+        if($paramssld["ht_view6_sorting_float"] == "left" && $paramssld["ht_view6_filtering_float"] == "right" ||
+           $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "left")
+        { ?>
+            margin-left: 21%;
+  <?php } ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_options_<?php echo $portfolioID; ?> ul li a:hover {
+    background-color: #<?php echo $paramssld["ht_view6_sortbutton_hover_background_color"];?> !important;
+    color:#<?php echo $paramssld["ht_view6_sortbutton_hover_font_color"];?> !important;
+    cursor: pointer;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> {
+    /*margin-top: 5px;*/
+    float: <?php echo $paramssld["ht_view6_filtering_float"]; ?>;
+    width: <?php echo $filtering_block_width; ?>;
+    <?php
+        if ($paramssld["ht_view6_show_filtering"] == 'off') echo "display:none;";
+        if($paramssld["ht_view6_filtering_float"] == 'top' && $paramssld["ht_view6_sorting_float"] == 'left' ) { echo "margin-left: 30%";} 
+//        if(($paramssld["ht_view6_filtering_float"] == 'none' && ($paramssld["ht_view6_sorting_float"] == 'right')) || ($sorting_block_width == '100%' && $filtering_block_width == "100%")) { echo "margin-left: 1%";}
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li {
+    list-style-type: none;
+    <?php
+        if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+        if($left_to_top == "ok") { echo "float:left !important;"; }
+        if($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right")
+        { echo 'border-bottom: 1px solid #ccc;'; }
+        else echo "border: 1px solid #ccc;";
+    ?>
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a {
+    font-size:<?php echo $paramssld["ht_view6_filterbutton_font_size"];?>px !important;
+    color:#<?php echo $paramssld["ht_view6_filterbutton_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view6_filterbutton_background_color"];?> !important;
+    border-radius: <?php echo $paramssld["ht_view6_filterbutton_border_radius"];?>px;
+    padding: 3px;
+    display: block;
+    text-decoration: none;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li a:hover {
+    color:#<?php echo $paramssld["ht_view6_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view6_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
+    position:relative;
+    display:block;
+}
+
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> .huge_it_portfolio_container_styles_<?php echo $portfolioID; ?> {
+<?php if($paramssld["ht_view6_sorting_float"] == "left" && $paramssld["ht_view6_filtering_float"] == "right" ||
+         $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "left")
+       { echo "margin: 0px auto;"; }
+?>
+    width: <?php echo $width_middle; ?> !important;
+    overflow: hidden !important;
+}
+
+#sort-direction {
+    <?php if($paramssld["ht_view6_sorting_float"] == "top")
+       { echo "float: left !important;"; }
+?>
+}
 </style>
-<section id="huge_it_portfolio_content">
-  <div id="huge_it_portfolio_container" class="super-list variable-sizes clearfix">
-  	<?php
-	
-	foreach($images as $key=>$row)
-	{
-		$link = $row->sl_url;
-		$descnohtml=strip_tags($row->description);
-		$result = substr($descnohtml, 0, 50);
-		?>
-		<div class="element" tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
-			<div class="image-block">
-				<?php $imgurl=explode(";",$row->image_url); ?>
-					<?php 	if($row->image_url != ';'){ ?>
-					<a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
-					<?php } else { ?>
-					<img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
-					<?php
-					} ?>	
-			</div>
-			<?php if($row->name!=""){?>
-			<div class="title-block">
-				<a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $row->name; ?></a>
-			</div>
-			<?php } ?>
-		</div>	
-		<?php
-	}?>
-	<div style="clear:both;"></div>
-  </div>
+
+<section id="huge_it_portfolio_content_<?php echo $portfolioID; ?>" class="">
+    <?php if($portfolioShowSorting == "on")
+        { ?>
+          <div id="huge_it_portfolio_options_<?php echo $portfolioID; ?>" class="">
+            <ul id="sort-by" class="option-set clearfix" data-option-key="sortBy">
+                <li><a href="#sortBy=original-order" data-option-value="original-order" class="selected" data><?php echo $paramssld["ht_view6_sorting_name_by_default"]; ?></a></li>
+                <li><a href="#sortBy=id" data-option-value="id"><?php echo $paramssld["ht_view6_sorting_name_by_id"]; ?></a></li>
+                <li><a href="#sortBy=symbol" data-option-value="symbol"><?php echo $paramssld["ht_view6_sorting_name_by_name"]; ?></a></li>
+                <li id="shuffle"><a href='#shuffle'><?php echo $paramssld["ht_view6_sorting_name_by_random"]; ?></a></li>
+            </ul>
+              
+            <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+                <li><a href="#sortAscending=true" data-option-value="true" class="selected"><?php echo $paramssld["ht_view6_sorting_name_by_asc"]; ?></a></li>
+                <li><a href="#sortAscending=false" data-option-value="false"><?php echo $paramssld["ht_view6_sorting_name_by_desc"]; ?></a></li>
+            </ul>
+          </div>
+  <?php }
+   if($portfolioShowFiltering == "on")
+      { ?>
+         <div id="huge_it_portfolio_filters_<?php echo $portfolioID; ?>">
+            <ul>
+                <li rel="*"><a>All</a></li>
+                <?php
+                $portfolioCats = explode(",", $portfolioCats);
+                foreach ($portfolioCats as $portfolioCatsValue) {
+                    if(!empty($portfolioCatsValue))
+                    {
+                ?>
+                <li rel=".<?php echo str_replace(" ","_",$portfolioCatsValue); ?>"><a><?php echo str_replace("_"," ",$portfolioCatsValue); ?></a></li>
+                    <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+<?php } ?>
+        <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view6_sorting_float"] == "top" && $paramssld["ht_view6_filtering_float"] == "top") echo "style='clear: both;'";?>>
+
+          <?php
+
+            foreach($images as $key=>$row)
+            {
+                    $link = $row->sl_url;
+                    $descnohtml=strip_tags($row->description);
+                    $result = substr($descnohtml, 0, 50);
+                    $catForFilter = explode(",", $row->category);
+                    ?>
+                    <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?> " tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                        <p style="display: none;" class="id"><?php echo $row->id; ?></p>
+                            <div class="image-block_<?php echo $portfolioID; ?>">
+                                <?php //echo $row->id; ?>
+                                    <?php $imgurl=explode(";",$row->image_url); ?>
+                                            <?php 	if($row->image_url != ';'){ ?>
+                                            <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
+                                            <?php } else { ?>
+                                            <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
+                                            <?php
+                                            } ?>	
+                            </div>
+                            <?php if($row->name!=""){?>
+                            <div class="title-block_<?php echo $portfolioID; ?>">
+                                    <a href="<?php echo $link; ?>" <?php if ($row->link_target=="on"){echo 'target="_blank"';}?>><?php echo $row->name; ?></a>
+                            </div>
+                            <?php } ?>
+                    </div>	
+                    <?php
+            }?>
+
+            <div style="clear:both;"></div>
+        </div>
+
+    
 </section>
 
-<script> 
- jQuery(function(){
-	var defaultBlockWidth=<?php echo $paramssld['ht_view6_width']; ?>+20+<?php echo $paramssld['ht_view6_width']*2; ?>;
-    var $container = jQuery('#huge_it_portfolio_container');
+<script>
+jQuery(function(){
+    
+var defaultBlockWidth=<?php echo $paramssld['ht_view6_width']; ?>;
+    
+    var $container = jQuery('#huge_it_portfolio_container_<?php echo $portfolioID; ?>');
     
     
       // add randomish size classes
-      $container.find('.element').each(function(){
+      $container.find('.element_<?php echo $portfolioID; ?>').each(function(){
         var $this = jQuery(this),
             number = parseInt( $this.find('.number').text(), 10 );
 			//alert(number);
@@ -2803,43 +4057,43 @@ $container.hugeitmicro({
         }
       });
     
-$container.hugeitmicro({
-  itemSelector : '.element',
-  masonry : {
-	columnWidth : <?php echo $paramssld['ht_view6_width']; ?>+10+<?php echo $paramssld['ht_view6_border_width']*2; ?>
-  },
-  masonryHorizontal : {
-	rowHeight: 'auto'
-  },
-  cellsByRow : {
-	columnWidth : <?php echo $paramssld['ht_view6_width']; ?>,
-	rowHeight : 'auto'
-  },
-  cellsByColumn : {
-	columnWidth : <?php echo $paramssld['ht_view6_width']; ?>,
-	rowHeight : 'auto'
-  },
-  getSortData : {
-	symbol : function( $elem ) {
-	  return $elem.attr('data-symbol');
-	},
-	category : function( $elem ) {
-	  return $elem.attr('data-category');
-	},
-	number : function( $elem ) {
-	  return parseInt( $elem.find('.number').text(), 10 );
-	},
-	weight : function( $elem ) {
-	  return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
-	},
-	name : function ( $elem ) {
-	  return $elem.find('.name').text();
-	}
-  }
-});
+    $container.hugeitmicro({
+      itemSelector : '.element_<?php echo $portfolioID; ?>',
+      masonry : {
+        columnWidth : <?php echo $paramssld['ht_view6_width']; ?>+20+<?php echo $paramssld['ht_view6_border_width']*2; ?>
+      },
+      masonryHorizontal : {
+        rowHeight: 300+20
+      },
+      cellsByRow : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      cellsByColumn : {
+        columnWidth : 300+20,
+        rowHeight : 240
+      },
+      getSortData : {
+        symbol : function( $elem ) {
+          return $elem.attr('data-symbol');
+        },
+        category : function( $elem ) {
+          return $elem.attr('data-category');
+        },
+        number : function( $elem ) {
+          return parseInt( $elem.find('.number').text(), 10 );
+        },
+        weight : function( $elem ) {
+          return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
+        },
+        id : function ( $elem ) {
+          return $elem.find('.id').text();
+        }
+      }
+    });
     
     
-      var $optionSets = jQuery('#huge_it_portfolio_options .option-set'),
+      var $optionSets = jQuery('#huge_it_portfolio_options_<?php echo $portfolioID; ?> .option-set'),
           $optionLinks = $optionSets.find('a');
 
       $optionLinks.click(function(){
@@ -2881,7 +4135,7 @@ $container.hugeitmicro({
         if ( wasHorizontal !== isHorizontal ) {
 
           var style = isHorizontal ? 
-            { height: '100%', width: $container.width() } : 
+            { height: '75%', width: $container.width() } : 
             { width: 'auto' };
 
           $container.filter(':animated').stop();
@@ -2894,21 +4148,82 @@ $container.hugeitmicro({
           $container.hugeitmicro( options );
         }
       }
-     
-    var $sortBy = jQuery('#sort-by');
-    jQuery('#shuffle a').click(function(){
+
+
+    
+
+      $container.delegate('.default-block_<?php echo $portfolioID; ?>', 'click', function(){
+          var strheight=0;
+          jQuery(this).parents('.element_<?php echo $portfolioID; ?>').find('.wd-portfolio-panel_<?php echo $portfolioID; ?> > div').each(function(){
+                strheight+=jQuery(this).outerHeight()+10;
+                //alert(strheight);
+          })
+          strheight+=<?php echo $paramssld['ht_view6_block_height']+45; ?>;
+	  			if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+				height: "<?php echo $paramssld['ht_view6_block_height']+45; ?>px"
+			}, 300, function() {
+				jQuery(this).removeClass('large');
+				$container.hugeitmicro('reLayout');
+			});
+			
+			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').removeClass("active");
+			return false;
+		}
+		
+	
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:strheight});
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
+
+		$container.hugeitmicro('reLayout');
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo $paramssld['ht_view6_block_height']+45; ?>px"});		 
+		 
+		//alert(strheight);
+		 
+		 jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
+			height:strheight+"px",
+		  }, 300,function(){	$container.hugeitmicro('reLayout');});
+	});
+
+    var $sortBy =  jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #sort-by');
+    jQuery('#huge_it_portfolio_content_<?php echo $portfolioID; ?> #shuffle a').click(function(){
       $container.hugeitmicro('shuffle');
       $sortBy.find('.selected').removeClass('selected');
       $sortBy.find('[data-option-value="random"]').addClass('selected');
       return false;
     });
+    
+    ////filteringgggggg
 
-	  jQuery(window).load(function(){
-		$container.hugeitmicro('reLayout');
-	  });
+        // bind filter on select change
+        jQuery(document).ready(function(){
+            jQuery('#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li').click(function() {
+              // get filter value from option value
+              var filterValue = jQuery(this).attr('rel');
+              // use filterFn if matches value
+              filterValue = filterValue;//filterFns[ filterValue ] || 
+              $container.hugeitmicro({ filter: filterValue });
+            });
+            <?php if(($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right") && $paramssld["ht_view6_filtering_float"] == "none")
+                  { ?>
+                        var topmargin = jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul").height();
+                        jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").css({'margin-top':parseInt(topmargin) + 5});
+            <?php }
+            else  {
+                    if(($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right") && $paramssld["ht_view6_sorting_float"] == "none")
+                      { ?>
+                         var topmargin = jQuery("#huge_it_portfolio_options_<?php echo $portfolioID; ?>").height();
+                         jQuery("#huge_it_portfolio_filters_<?php echo $portfolioID; ?>").css({'margin-top':'5px'});
+                <?php }
+                  } ?>
+        });
+        
+        jQuery(window).load(function(){
+
+            $container.hugeitmicro({ filter: '*' });
+        });
+
   });
-  
-
 </script>
 <?php 
 }
@@ -2919,4 +4234,3 @@ $container.hugeitmicro({
 	return ob_get_clean();
 }
 ?>
-

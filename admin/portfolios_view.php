@@ -333,11 +333,13 @@ jQuery(document).ready(function($){
 				
 					</div>
 					<ul id="images-list">
-					
-					<?php
-					$j=2;
-					//$rowim = array_reverse($rowim);
+                                        <?php
+                                        $j=2;
+					                                        
+                                        $myrows = explode(",",$row->categories);
+
 					foreach ($rowim as $key=>$rowimages){ ?>
+                                            
 						<li <?php if($j%2==0){echo "class='has-background'";}$j++; ?>>
 							<input class="order_by" type="hidden" name="order_by_<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
 							<div class="image-container">
@@ -356,12 +358,19 @@ jQuery(document).ready(function($){
 									<?php $i++; } ?>
 
 									<li class="add-image-box">
+										<img src="<?php echo plugins_url( '../images/plus.png', __FILE__ ) ?>" class="plus" alt="" />
 										<input type="hidden" name="imagess<?php echo $rowimages->id; ?>" id="unique_name<?php echo $rowimages->id; ?>" class="all-urls" value="<?php echo $rowimages->image_url; ?>" />
 										<input type="button" class="button<?php echo $rowimages->id; ?> wp-media-buttons-icon add-image"  id="unique_name_button<?php echo $rowimages->id; ?>" value="+" />	
 									</li>
 								</ul>
 								<script>
 									jQuery(document).ready(function($){
+										function secondimageslistlisize(){
+											var lisaze = jQuery('#images-list').width();
+											lisaze=lisaze*0.06;
+											jQuery('#images-list .widget-images-list li').not('.add-image-box').not('.first').height(lisaze);
+										}
+                                                                                secondimageslistlisize();
 										jQuery(".wp-media-buttons-icon").click(function() {
 											jQuery(".attachment-filters").css("display","none");
 										});
@@ -404,10 +413,11 @@ jQuery(document).ready(function($){
 											  if ( _custom_media ) {	 
 												 img.attr('src',attachment.url);
 												 var allurls ='';
-												 img.parents('.widget-images-list').find('img').each(function(){
+												 img.parents('.widget-images-list').find('img').not('.plus').each(function(){
 													allurls = allurls+jQuery(this).attr('src')+';';
 												 });
 												 jQuery("#"+id).val(allurls);
+												 secondimageslistlisize();
 												 //jQuery("#save-buttom").click();
 											  } else {
 												return _orig_send_attachment.apply( this, [props, attachment] );
@@ -434,6 +444,9 @@ jQuery(document).ready(function($){
 													jQuery("#"+id).parent().before('<li class="editthisimage1 "><img src="'+attachment.url+'" alt="" /><input type="button" class="edit-image"  id="" value="Edit" /><a href="#remove" class="remove-image">remove</a></li>');
 													//alert(jQuery("#"+id).val());
 													jQuery("#"+id).val(jQuery("#"+id).val()+attachment.url+';');
+													
+													secondimageslistlisize();
+
 											  } else {
 												return _orig_send_attachment.apply( this, [props, attachment] );
 											  };
@@ -451,10 +464,11 @@ jQuery(document).ready(function($){
 											
 											var allUrls="";
 											
-											jQuery(this).parents('ul.widget-images-list').find('img').each(function(){
+											jQuery(this).parents('ul.widget-images-list').find('img').not('.plus').each(function(){
 												allUrls=allUrls+jQuery(this).attr('src')+';';
 												jQuery(this).parent().parent().parent().find('input.all-urls').val(allUrls);
-											});								
+												secondimageslistlisize();
+											});					
 											jQuery(this).parent().remove();
 											return false;
 										});
@@ -472,27 +486,48 @@ jQuery(document).ready(function($){
 								</script>
 							</div>
 							<div class="image-options">
-								<div>
-									<label for="titleimage<?php echo $rowimages->id; ?>">Title:</label>
-									<input  class="text_area" type="text" id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>" id="titleimage<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->name; ?>">
+								<div class="options-container">
+									<div>
+										<label for="titleimage<?php echo $rowimages->id; ?>">Title:</label>
+										<input  class="text_area" type="text" id="titleimage<?php echo $rowimages->id; ?>" name="titleimage<?php echo $rowimages->id; ?>" id="titleimage<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->name; ?>">
+									</div>
+									<div class="description-block">
+										<label for="im_description<?php echo $rowimages->id; ?>">Description:</label>
+										<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
+									</div>
+									<div class="link-block">
+										<label for="sl_url<?php echo $rowimages->id; ?>">URL:</label>
+										<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
+										<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">
+											<span>Open in new tab</span>
+											<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
+											<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
+										</label>
+									</div>
 								</div>
-								<div class="description-block">
-									<label for="im_description<?php echo $rowimages->id; ?>">Description:</label>
-									<textarea id="im_description<?php echo $rowimages->id; ?>" name="im_description<?php echo $rowimages->id; ?>" ><?php echo $rowimages->description; ?></textarea>
-								</div>
-								<div class="link-block">
-									<label for="sl_url<?php echo $rowimages->id; ?>">URL:</label>
-									<input class="text_area url-input" type="text" id="sl_url<?php echo $rowimages->id; ?>" name="sl_url<?php echo $rowimages->id; ?>"  value="<?php echo $rowimages->sl_url; ?>" >
-									<label class="long" for="sl_link_target<?php echo $rowimages->id; ?>">
-										<span>Open in new tab</span>
-										<input type="hidden" name="sl_link_target<?php echo $rowimages->id; ?>" value="" />
-										<input  <?php if($rowimages->link_target == 'on'){ echo 'checked="checked"'; } ?>  class="link_target" type="checkbox" id="sl_link_target<?php echo $rowimages->id; ?>" name="sl_link_target<?php echo $rowimages->id; ?>" />
-									</label>
+								<div class="category-container" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
+                                                                    <strong>Select Categories</strong>
+                                                                    <em>(Press Ctrl And Select multiply)</em>
+                                                                    <select id="multipleSelect" multiple="multiple" disabled="disabled" >
+                                                                            <?php
+                                                                            $huge_cat = explode(",",$rowimages->category);
+                                                                            foreach ($myrows as $value) {
+                                                                                if(!empty($value))
+                                                                                { ?>
+                                                                                    <option <?php if(in_array(str_replace(' ','_',$value),str_replace(' ','_',$huge_cat))) { echo "selected='selected' "; } ?> value="<?php echo str_replace(' ','_',$value); ?>" > <!-- attrForDelete="<?php// echo str_replace(" ","_",$value); ?>" -->
+                                                                                        <?php echo str_replace('_',' ',$value); ?>
+                                                                                    </option>
+                                                                                <?php
+                                                                                }
+                                                                            }     ?>
+                                                                    }
+                                                                    </select>
+                                                                    <input type="hidden" id="category<?php echo $rowimages->id; ?>" name="category<?php echo $rowimages->id; ?>" value="<?php echo str_replace(' ','_',$rowimages->category); ?>"/>
 								</div>
 								<div class="remove-image-container">
 									<a class="button remove-image" href="admin.php?page=portfolios_huge_it_portfolio&id=<?php echo $row->id; ?>&task=apply&removeslide=<?php echo $rowimages->id; ?>">Remove Project</a>
 								</div>
-							</div>
+							</div>                 
 							<div class="clear"></div>
 						</li>
 					<?php } ?>
@@ -501,6 +536,89 @@ jQuery(document).ready(function($){
 
 			</div>
 				
+                        <script>
+//                                    jQuery('.category-container select').change(function(){
+//                                    var cat_new_val = jQuery(this).val();
+//                                    var new_cat_name = jQuery(this).parent().find('input').attr('name');
+//                                    jQuery('#'+new_cat_name).attr('value',cat_new_val+',');
+//                                    //console.log(cat_new_val);  console.log(new_cat_name);
+//                                    });
+                                      //ok  
+//                                    jQuery(document).on('click', '#add_new_cat_buddon', function () {
+//                                       var newCatVal =  jQuery('.inside #add_cat_input input').val(); 
+//                                       if(newCatVal !== "") {
+//                                           var oldValue = jQuery('.inside input:hidden').val()
+//                                           var newValue = oldValue + newCatVal + ',';
+//                                           //console.log(newCatVal); console.log(newValue); console.log(oldValue);
+//                                           jQuery('.inside input:hidden').val(newValue.replace(/ /g,"_"));
+//                                           jQuery('.inside #add_cat_input input').val('');
+//                                           jQuery('.inside ul').find('#allCategories').before("\n\
+//                                                        <span style='display: block;'>\n\
+//                                                            <li class='hndle'>\n\
+//                                                                <input class='del_val' value='"+newCatVal+"' style=''>\n\
+//                                                                <span id='delete_cat' style='' value='a'>\n\
+//                                                                    <img src='../wp-content/plugins/portfolio-gallery/images/delete1.png' width='9' height='9' value='a'>\n\
+//                                                                </span>\n\
+//                                                                <span id='edit_cat' style=''>\n\
+//                                                                    <img src='../wp-content/plugins/portfolio-gallery/images/edit3.png' width='10' height='10'>\n\
+//                                                                </span>\n\
+//                                                            </li>\n\
+//                                                       </span>");
+//                                                                
+//                                          jQuery('.category-container #multipleSelect').each(function(){
+//                                              jQuery(this).append("<option attrForDelete='"+newCatVal+"'>"+newCatVal+"</option>");
+//                                          });
+//                                       }
+//                                       else { alert("Please fill the line"); }
+//                                    });
+
+//                                        jQuery(document).on('click', '#delete_cat', function (){
+//                                            var del_val = jQuery(this).parent().find('.del_val').val().replace(/ /g, '_');
+//                                            del_val = del_val + ",";
+//                                            var old_val_for_delete = jQuery('.inside input:hidden').val();
+//                                            var newValue = old_val_for_delete.replace(del_val, "");
+//                                            jQuery('.inside input:hidden').val(newValue);
+//                                            jQuery(this).parent().parent().find('.hndle').remove();
+//                                            var valForDelete = del_val.replace(',', '').replace(/ /g, '_');
+//                                            jQuery('.category-container').each(function(){
+//                                                jQuery(this).find('option[value='+valForDelete+']').remove();
+//                                            });
+//                                             //console.log(del_val); console.log(old_val_for_delete); console.log(newValue); console.log(valForDelete);
+//                                        });
+
+
+//                                        jQuery(document).on('click', '#edit_cat', function (){
+//                                            jQuery(this).parent().find('.del_val').focus();
+//                                            var changing_val = jQuery(this).parent().find('.del_val').val().replace(/ /g, '_');
+//                                            jQuery('#changing_val').removeAttr('value').attr('value',changing_val);
+//                                            //console.log(changing_val);
+//                                        });
+//
+                                        
+                                        jQuery(document).on('click', '#portfolios-list .active', function (){
+                                            jQuery(this).find('input').focus();                                         
+                                        });
+                                        
+                                        //getting category old name
+//                                        jQuery(document).on('focus', '.del_val', function (){ // Know which category we want to change 
+//                                                var changing_val = jQuery(this).val().replace(/ /g,"_");  //console.log(changing_val);
+//                                                jQuery('#changing_val').removeAttr('value').attr('value',changing_val);
+//                                        });
+                                        
+//                                        jQuery(document).on('change', '.del_val', function (){
+//                                            //alert("ok")
+//                                                var no_edited_cats = jQuery("#allCategories").val().replace(/ /g,"_");
+//                                                var old_name = jQuery('#changing_val').val();
+//                                                var edited_cat = jQuery(this).val();
+//                                                edited_cat = edited_cat.replace(/ /g,"_");
+//                                                var new_cat = no_edited_cats.replace(old_name,edited_cat);
+//                                                jQuery('#allCategories').val(new_cat);  // console.log(no_edited_cats); console.log(old_name); console.log(edited_cat); console.log(new_cat);
+//                                        });
+                                        jQuery(document).on('click', '.allowIsotope input', function (){
+                                            
+                                        });
+                        </script>
+                        
 			<!-- SIDEBAR -->
 			<div id="postbox-container-1" class="postbox-container">
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
@@ -559,6 +677,63 @@ jQuery(document).ready(function($){
 							<!--<input type="button" onclick="window.location.href='admin.php?page=portfolios_huge_it_portfolio'" value="Cancel" class="button-secondary action">-->
 						</div>
 					</div>
+                                    
+                                        <div class="postbox">
+                                            <div class="inside2">
+                                                <ul>
+                                                    <li class="allowIsotope">
+                                                        Show Sorting Buttons :
+                                                        <input type="hidden" value="off" name="ht_show_sorting" />
+							<input type="checkbox" id="ht_show_sorting"  <?php if($row->ht_show_sorting  == 'on'){ echo 'checked="checked"'; } ?>  name="ht_show_sorting" value="on" />
+                                                    </li>
+                                                    <li class="allowIsotope" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
+                                                        Show Categorie Buttons :
+                                                        <input type="hidden" value="off" name=" " />
+                                                        <input type="checkbox" id=" " name=" " value="off" disabled="disabled" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.');" />
+                                                        ( <span style="color: red;"> PRO </span> )
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="postbox" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
+                                            <h3 class="hndle"><span>Categories</span></h3>
+                                            <div class="inside">
+                                                <ul>
+                                                <?php
+                                                $ifforempty= $row->categories;
+                                                $ifforempty= stripslashes($ifforempty);
+                                                $ifforempty= esc_html($ifforempty);
+                                                $ifforempty= empty($ifforempty);				
+                                                if(!($ifforempty))
+                                                {
+                                                    foreach ($myrows as $value) {
+                                                        if(!empty($value))
+                                                        {
+                                                        ?>
+                                                            <span>
+                                                                <li class="hndle">
+                                                                    <input class="del_val" value="<?php echo str_replace("_", " ", $value); ?>" style="" disabled="disabled">
+                                                                    <span id="delete_cat" style="" value="a"><img src="../wp-content/plugins/portfolio-gallery/images/delete1.png" width="9" height="9" value="a"></span>
+                                                                    <span id="edit_cat" style=""><img src="../wp-content/plugins/portfolio-gallery/images/edit3.png" width="10" height="10"></span>
+                                                                </li>
+                                                            </span>
+                                                        <?php
+                                                        }
+                                                    }
+                                                }
+
+                                                    ?>
+                                                    <input type="hidden" value="<?php if (strpos($row->categories,',,') !== false)  { $row->categories = str_replace(",,",",",$row->categories); }echo $row->categories; ?>" id="allCategories" name="allCategories">
+                                                    <li id="add_cat_input" style="">
+                                                        <input type="text" size="12" disabled="disabled">
+                                                        <a style="" id="add_new_cat_buddon">+ Add New Category	</a>
+                                                    </li>
+                                                </ul>
+                                                <input type="hidden" value="" id="changing_val">
+                                            </div>
+                                        </div>
+                                        
 					<div id="portfolio-shortcode-box" class="postbox shortcode ms-toggle">
 					<h3 class="hndle"><span>Usage</span></h3>
 					<div class="inside">

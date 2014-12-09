@@ -152,13 +152,14 @@ INSERT INTO
   
 function add_portfolio()
 {
-	global $wpdb;	
+	global $wpdb;
+	
 	$table_name = $wpdb->prefix . "huge_itportfolio_portfolios";
     $sql_2 = "
 INSERT INTO 
 
-`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `portfolio_list_effects_s`, `description`, `param`, `sl_position`, `ordering`, `published`) VALUES
-( 'New portfolio', '375', '600', 'on', 'cubeH', '4000', '1000', 'center', '1', '300')";
+`" . $table_name . "` ( `name`, `sl_height`, `sl_width`, `pause_on_hover`, `portfolio_list_effects_s`, `description`, `param`, `sl_position`, `ordering`, `published`, `categories`, `ht_show_sorting`, `ht_show_filtering`) VALUES
+( 'New portfolio', '375', '600', 'on', 'cubeH', '4000', '1000', 'center', '1', '300', 'My First Category,My Second Category,My Third Category,', 'off', 'off')";
 
       $wpdb->query($sql_2);
 
@@ -166,13 +167,12 @@ INSERT INTO
 			   $rowsldcc=$wpdb->get_results($query);
 			   $last_key = key( array_slice( $rowsldcc, -1, 1, TRUE ) );
 			   
+			   
 	foreach($rowsldcc as $key=>$rowsldccs){
 		if($last_key == $key){
 			header('Location: admin.php?page=portfolios_huge_it_portfolio&id='.$rowsldccs->id.'&task=apply');
 		}
-	}
-
-	
+	}	
 }
 
 function removeportfolio($id)
@@ -225,6 +225,9 @@ function apply_cat($id)
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  param = %s  WHERE id = %d ", $_POST["sl_changespeed"], $id));
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  sl_position = %s  WHERE id = %d ", $_POST["sl_position"], $id));
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ordering = '1'  WHERE id = %d ", $id));
+        $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  categories = '".$_POST["allCategories"]."'  WHERE id = '".$id."' ");
+                        $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ht_show_sorting = '".$_POST["ht_show_sorting"]."'  WHERE id = '".$id."' ");
+                        $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ht_show_filtering = '".$_POST["ht_show_filtering"]."'  WHERE id = '".$id."' ");
 
 		
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE id = %d", $id);

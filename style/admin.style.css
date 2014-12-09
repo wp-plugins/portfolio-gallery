@@ -19,6 +19,7 @@
 
 #portfolios-list-page table tr.has-background {background:#f9f9f9;}
 
+/*portfolioS TABS*/
  #portfolios-list  {
 	width:100%;
 	margin:0px 0px 20px 0px;
@@ -73,6 +74,10 @@
 	width: 90px;
 }
 
+
+
+/*SIDEBAR*/
+
 #portfolio-unique-options-list li label {
 	display:inline-block;
 	width:100px;
@@ -95,6 +100,35 @@
 #side-sortables.portfolio-custom-options {
 	min-height:10px !important;
 }
+
+.del_val {
+	width: 100%;
+        padding-right: 40px;
+        border: none;
+}
+#delete_cat {
+	position: absolute;
+        right: 10px;
+        top: 4px;
+}
+#edit_cat {
+	float: right;
+        position: absolute;
+        right: 21px;
+        top: 4px;
+}
+#add_cat_input {
+    margin-top: 6px;
+}
+
+#add_cat_input a {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.inside ul span input { cursor: pointer !important; }
 
 
 /*CONTENT*/
@@ -190,7 +224,7 @@
 
 #images-list .image-container {
 	display: block;
-	width:200px;
+	width:20%;
 	float:left;
 }
 
@@ -204,10 +238,9 @@
 	position:relative;
 	display:table;
 	float:left;
-	width:61px;
-	height:50px;
+	width:30%;
 	border-radius:5px;
-	margin:5px 2px 0px 3px;
+	margin:5px 2% 0px 1%;
 	overflow:hidden;
 	clear:none;
 	padding:0px;
@@ -216,7 +249,7 @@
 }
 
 #images-list .widget-images-list li.first, #images-list .widget-images-list li:first-child {
-	width:200px;
+	width:100%;
 	clear:both;
 	margin:0px 0px 0px 0px;
 }
@@ -248,45 +281,78 @@
 
 #images-list .widget-images-list li:hover  .edit-image,#images-list .widget-images-list li:hover  .remove-image  {display:block}
 
-#images-list .widget-images-list li .add-image, #images-list .widget-images-list li .add-image:link, #images-list .widget-images-list li .add-image:visited {
-	text-indent:-9999px;
-	display:block;
-	width:61px;
-	height:52px;
-	background:url(../images/plus.png)  center top no-repeat;
-	border:1px dotted #0074a2;
-	border-radius:5px;
-	cursor:pointer;
-}
-
-
-#images-list .widget-images-list li .add-image:hover, #images-list .widget-images-list li .add-image:focus, #images-list .widget-images-list li .add-image:active {
-	background:url(../images/plus.png)  center bottom no-repeat;
-}
-
 #images-list .widget-images-list li img { 
 	position:relative;
 	display:block;
-	width:61px;
-	height:50px;
-	vertical-align:middel;
+	width:100%;
+	height:100%;
+	vertical-align:middle !important;
 }
 
+
+#images-list .widget-images-list li.add-image-box {
+	border:1px dotted #0074a2;
+	border-radius:5px;
+	display:table-cell;
+	vertical-align:middle !important;
+	opacity:0.6;
+}
+
+#images-list .widget-images-list li.add-image-box:hover {
+	opacity:1;
+}
+
+#images-list .widget-images-list li.add-image-box img{
+	display:block;
+	width:50%;
+	height:50%;
+	margin:0px auto;
+	margin-top:20%;
+	margin-bottom:20%;
+	vertical-align:middle !important;
+}
+
+
+
+#images-list .widget-images-list li .add-image, #images-list .widget-images-list li .add-image:link, #images-list .widget-images-list li .add-image:visited,
+#images-list .widget-images-list li .add-image:hover, #images-list .widget-images-list li .add-image:focus, #images-list .widget-images-list li .add-image:active {
+	position:absolute;
+	text-indent:-9999px;
+	display:block;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0px;
+	cursor:pointer;
+	background:none;
+	outline:none;
+}
+
+
 #images-list .widget-images-list li.first  img,#images-list .widget-images-list li:first-child  img {
-	width:200px;
+	width:100%;
 	height:auto;
 }
 
 #images-list .image-options {
-	margin-left:210px;
+	margin-left:1%;
+	width: 79%;
+	float: left;
 }
 
-#images-list .image-options > div {
+#images-list .image-options .options-container {
+	width:70%;
+	float:left;
+}
+
+
+#images-list .image-options .options-container > div {
 	width:100%;
 	margin:0px 0px 10px 0px;
 }
 
-#images-list .image-options label {
+#images-list .image-options .options-container label {
 	display: inline-block;
 	float:left;
 	width: 16%;
@@ -294,28 +360,56 @@
 	vertical-align: middle;
 } 
 
-#images-list .description-block label {padding:10px 0px 0px 0px;}
+#images-list .image-options .options-container label {padding:10px 0px 0px 0px;}
 
-#images-list .image-options input[type='text'], #images-list .image-options select, #images-list .image-options textarea {
+#images-list .image-options .options-container input[type='text'],
+ #images-list .image-options .options-container select,
+#images-list .image-options .options-container textarea {
 	width: 83%;
 }
 
-#images-list .image-options .link-block label.long {
+#images-list .image-options .options-container .link-block label.long {
 	width: 21%;
 	padding:3px 0px 0px 1%;
 }
 
-#images-list .image-options .link-block   input.url-input  {
+#images-list .image-options .options-container .link-block   input.url-input  {
 	float:left;
 	width:61%;
 }
 
-#images-list .image-options .link-block   input.link_target {
+#images-list .image-options .options-container .link-block   input.link_target {
 	margin:-2px 0px 0px 3px;
 }
 
 
-#images-list .image-options textarea {resize:none;}
+#images-list .image-options .options-container textarea {resize:none;}
+
+
+
+/* category container */
+
+
+#images-list .image-options  .category-container {
+	width:29%;
+	margin-left:1%;
+	float:left;
+}
+
+#images-list .category-container strong,
+#images-list .category-container em {
+	width:100%;
+	clear:both;
+	display:block;
+}
+
+#multipleSelect {
+     width: 100%;
+}
+
+
+
+
 
 #images-list .image-options .remove-image-container {
 	position:relative;
@@ -326,9 +420,8 @@
 
 #images-list .image-options .remove-image {
 	float:right;
-	margin:-30px 10px 0px 0px;
+	margin: 20px 0px 0px 0px;
 }
-
 
 /*  OPTIONS PAGE  */
 
@@ -735,3 +828,21 @@
 }
 
 .lightbox-options-block  > div.fixed-size {display:none;}
+
+.postbox .hndle {
+    /*cursor: auto !important;*/
+    position: relative;
+}
+
+.allowIsotope {
+    border-bottom: 1px solid #eee;
+    padding: 6px 16px;
+    font-size: 14px;
+    color: #000;
+    //margin-left: 15px;
+   
+}
+
+.postbox .inside ul li span {
+    cursor: pointer !important;
+}
