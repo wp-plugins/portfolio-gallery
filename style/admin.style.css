@@ -26,7 +26,10 @@
 	border-bottom:1px solid #ccc;
 	height:30px;
 }
- 
+ #poststuff img {
+	position: relative;
+	right: 22px;
+ }
 #portfolios-list  li {	
 	position:relative;
 	display:block;
