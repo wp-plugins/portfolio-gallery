@@ -505,7 +505,7 @@ jQuery(document).ready(function($){
 										</label>
 									</div>
 								</div>
-								<div class="category-container" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
+								<div class="category-container">
                                                                     <strong>Select Categories</strong>
                                                                     <em>(Press Ctrl And Select multiply)</em>
                                                                     <select id="multipleSelect" multiple="multiple" disabled="disabled" >
@@ -686,18 +686,18 @@ jQuery(document).ready(function($){
                                                         <input type="hidden" value="off" name="ht_show_sorting" />
 							<input type="checkbox" id="ht_show_sorting"  <?php if($row->ht_show_sorting  == 'on'){ echo 'checked="checked"'; } ?>  name="ht_show_sorting" value="on" />
                                                     </li>
-                                                    <li class="allowIsotope" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
+                                                    <li class="allowIsotope">
                                                         Show Categorie Buttons :
                                                         <input type="hidden" value="off" name=" " />
-                                                        <input type="checkbox" id=" " name=" " value="off" disabled="disabled" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.');" />
-                                                        ( <span style="color: red;"> PRO </span> )
+                                                        <input type="checkbox" id=" " name=" " value="off" disabled="disabled" />
+                                                        <a class="probuttonlink" href="http://huge-it.com/portfolio-gallery/">( <span style="color: red;"> PRO </span> )</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                         
-                                        <div class="postbox" onclick="alert('This Option Are Disable In Free Version,IF you Neet This Function,You Need To Buy The Commercial Version.')">
-                                            <h3 class="hndle"><span>Categories</span></h3>
+                                        <div class="postbox">
+                                            <h3 class="hndle"><span>Categories</span><a class="probuttonlink" href="http://huge-it.com/portfolio-gallery/">( <span style="color: red;"> PRO </span> )</a></h3>
                                             <div class="inside">
                                                 <ul>
                                                 <?php

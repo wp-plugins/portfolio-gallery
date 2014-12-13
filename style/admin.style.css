@@ -28,7 +28,7 @@
 }
  #poststuff img {
 	position: relative;
-	right: 22px;
+	/*right: 22px;*/
  }
 #portfolios-list  li {	
 	position:relative;
@@ -78,7 +78,9 @@
 }
 
 
-
+.probuttonlink span {
+	font-size: 15px;
+}
 /*SIDEBAR*/
 
 #portfolio-unique-options-list li label {

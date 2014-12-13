@@ -39,6 +39,7 @@ jQuery(document).ready(function () {
 		<div style="float: left;">
 			<div><a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">User Manual</a></div>
 			<div>This section allows you to configure the Portfolio/Gallery options. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">More...</a></div>
+			<div>This options are disabled in free version. Get full version to customize them. <a href="http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/" target="_blank">Get full Version</a></div>
 		</div>
 		<div style="float: right;">
 			<a class="header-logo-text" href="http://huge-it.com/portfolio-gallery/" target="_blank">
