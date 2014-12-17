@@ -1237,7 +1237,7 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
 <?php if($paramssld["ht_view0_sorting_float"] == "left" && $paramssld["ht_view0_filtering_float"] == "right" ||
          $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if(($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right" && $paramssld["ht_view0_sorting_float"] == "top") || ($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right" && $paramssld["ht_view0_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -1851,7 +1851,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 <?php if($paramssld["ht_view1_sorting_float"] == "left" && $paramssld["ht_view1_filtering_float"] == "right" ||
          $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if(($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right" && $paramssld["ht_view1_sorting_float"] == "top") || ($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right" && $paramssld["ht_view1_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        {
 ?>
     width: <?php echo $width_middle; ?> !important;
@@ -2870,7 +2870,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 <?php if($paramssld["ht_view2_sorting_float"] == "left" && $paramssld["ht_view2_filtering_float"] == "right" ||
          $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if(($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right" && $paramssld["ht_view2_sorting_float"] == "top") || ($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right" && $paramssld["ht_view2_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -3325,7 +3325,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         { ?>
             margin-left: 21%;
   <?php } 
-  if(($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+  if((($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right" && $paramssld["ht_view3_sorting_float"] == "top") || ($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right" && $paramssld["ht_view3_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        { ?>
         width: <?php echo $width_middle; ?> !important;
  <?php } ?>
@@ -3920,7 +3920,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
 <?php if($paramssld["ht_view4_sorting_float"] == "left" && $paramssld["ht_view4_filtering_float"] == "right" ||
          $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if(($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right" && $paramssld["ht_view4_sorting_float"] == "top") || ($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filting_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right" && $paramssld["ht_view4_sorting_float"] == "top") || ($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right" && $paramssld["ht_view4_filting_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
@@ -4667,7 +4667,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 <?php if($paramssld["ht_view6_sorting_float"] == "left" && $paramssld["ht_view6_filtering_float"] == "right" ||
          $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "left")
        { echo "margin: 0px auto;"; }
-       if(($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right" && $paramssld["ht_view6_sorting_float"] == "top") || ($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "top") && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
+       if((($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right" && $paramssld["ht_view6_sorting_float"] == "top") || ($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right" && $paramssld["ht_view6_filtering_float"] == "top")) && $portfolioShowFiltering == "on" && $portfolioShowSorting == "on")
        {
 ?>
         width: <?php echo $width_middle; ?> !important;
