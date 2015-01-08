@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Portfolio Gallery
 Plugin URI: http://huge-it.com/portfolio-gallery
 Description: Portfolio Gallery is a great plugin for adding specialized portfolios or gallery to your site. There are various view options for the images to choose from.
-Version: 1.3.0
+Version: 1.3.1
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -447,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_images` (
   `ordering` int(11) NOT NULL,
   `published` tinyint(4) unsigned DEFAULT NULL,
   `published_in_sl_width` tinyint(4) unsigned DEFAULT NULL,
-  `category`  varchar(200) DEFAULT NULL,
+  `category`  varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5";
@@ -465,9 +465,9 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_itportfolio_portfolios` (
   `sl_position` text NOT NULL,
   `ordering` int(11) NOT NULL,
   `published` text,
-  `categories` text,
-  `ht_show_sorting` text,
-  `ht_show_filtering` text,
+  `categories` text NOT NULL,
+  `ht_show_sorting` text NOT NULL,
+  `ht_show_filtering` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ";
