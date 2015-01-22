@@ -6,14 +6,7 @@ function showPublishedportfolios_1($id)
 	$images=$wpdb->get_results($query);
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios where id = '%d' order by id ASC",$id);
 	$portfolio=$wpdb->get_results($query);
-	$query="SELECT * FROM ".$wpdb->prefix."huge_itportfolio_params";
-    $rowspar = $wpdb->get_results($query);
-    $paramssld = array();
-    foreach ($rowspar as $rowpar) {
-        $key = $rowpar->name;
-        $value = $rowpar->value;
-        $paramssld[$key] = $value;
-    }
+        $paramssld = '';
 	return front_end_portfolio($images, $paramssld, $portfolio);
 }
 ?>

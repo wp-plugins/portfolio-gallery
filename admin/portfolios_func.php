@@ -119,16 +119,8 @@ INSERT INTO
 	   $query="SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios order by id ASC";
 			   $rowsld=$wpdb->get_results($query);
 			  
-			    $query = "SELECT *  from " . $wpdb->prefix . "huge_itportfolio_params ";
 
-    $rowspar = $wpdb->get_results($query);
-
-    $paramssld = array();
-    foreach ($rowspar as $rowpar) {
-        $key = $rowpar->name;
-        $value = $rowpar->value;
-        $paramssld[$key] = $value;
-    }
+        $paramssld = '';
 	
 	 $query="SELECT * FROM ".$wpdb->prefix."posts where post_type = 'post' and post_status = 'publish' order by id ASC";
 			   $rowsposts=$wpdb->get_results($query);
@@ -247,17 +239,6 @@ $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET
 
 }
 
-if (isset($_POST['params'])) {
-      $params = $_POST['params'];
-      foreach ($params as $key => $value) {
-          $wpdb->update($wpdb->prefix . 'huge_itportfolio_params',
-              array('value' => $value),
-              array('name' => $key),
-              array('%s')
-          );
-      }
-     
-    }
 	
 				   if($_POST["imagess"] != ''){
 				   		   $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_images where portfolio_id = %d order by id ASC", $row->id);
