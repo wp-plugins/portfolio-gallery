@@ -14,6 +14,7 @@ Portfolio Gallery is a great plugin for adding specialized portfolios or gallery
 
 ### Wordpress Portfolio Gallery
 
+[Wordpress Portfolio Gallery](http://huge-it.com/portfolio-gallery/)  
 [Demo Portfolio Gallery](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo/)  
 [Demo Portfolio Gallery Admin](http://huge-it.com/wordpress-plugins-portfolio-gallery-demo-admin/)   
 [User Portfolio Gallery Manual](http://huge-it.com/wordpress-plugins-portfolio-gallery-user-manual/)  
@@ -22,7 +23,7 @@ Portfolio Gallery is a great plugin for adding specialized portfolios or gallery
 
 You can use **portfolio gallery** plugin to make your portfolio's projects as well as to create your own image gallery, It has also the ability to create nicely designed FAQ system. 
 You can can use portfolio gallery on different pages so if you need to create portfolio, gallery, gallery with description, faq, slider and content slider you can install only portfolio gallery plugin.
-With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 71,653 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
+With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 74,943 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
 
 Portfolio Gallery uses 7 view options and can be customized using the General Options. Almost all kind of texts are customizable in terms of text and color.
 
