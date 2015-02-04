@@ -1085,7 +1085,7 @@
 	// A method for fetching the current element Colorbox is referencing.
 	// returns a jQuery object.
 	publicMethod.element = function () {
-		return jQuery(settings.el);
+//		return jQuery(settings.el);
 	};
 
 	publicMethod.settings = defaults;
