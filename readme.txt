@@ -3,7 +3,7 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/portfolio-gallery/
 Tags: Portfolio Gallery, portfolio, portfolios, page, pages, picture, pictures, album, custom fields, image, image description, images, image display, image-size, images gallery, gallery, labels, posts, post, visual items, thumbnails, screenshots, screenshot, image gallery, FAQ, FAQ widget, answers, wordpress FAQ, questions, list, grid, web designer, slider, sliders, wordpress slider, wordpress slideshow, wp slider, slide, slide show, slider, slider plugin, slider widget, slides, slideshow, slideshow manager, gallery description, slideshow plugin, gallery slider,  galeri, galerie, widget slider, widget slideshow, widgets, foto, responsive, responsive slider, responsive slideshow, Photo Slider, plugin, Image Rotator, carousel, wordpress gallery, wordpress gallery plugin, banner rotator, best gallery, best gallery plugin, image album, image gallery plugin, images gallery, media, photo, photo album, photo albums, photo gallery, nextgen, nextgen gallery, photoset, picture, pictures, Simple gallery, website gallery, widget gallery, wp gallery plugins, wp gallery, photoalbum, view images, multiple pictures, plugin, plugins, thumbs, shortcode, lightbox, lightbox photo, image lightbox, gallery lightbox, content slider, wordpress portfolio, galleries, galleria, wordpress portfolio plugin, project, photography, dashboard, projects, custom, filterable gallery, filterable portfolio, jquery portfolio, jquery gallery, sortable portfolio, prettyphoto, picture gallery, picture portfolio,  fullscreen, thumbnail, iphone gallery, free photo gallery, widget portfolio, fullscreen photo, free gallery, best portfolio plugin, free gallery, fullscreen slider, gallery shortcode, pretty photo, free slider, showcase, categories, clients,
 Requires at least: 3.0.1
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=uq6Cw3ou-gM
 
 You can use **portfolio gallery** plugin to make your portfolio's projects as well as to create your own image gallery, It has also the ability to create nicely designed FAQ system. 
 You can can use portfolio gallery on different pages so if you need to create portfolio, gallery, gallery with description, faq, slider and content slider you can install only portfolio gallery plugin.
-With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 77,871 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
+With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 82,376 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
 
 Portfolio Gallery uses 7 view options and can be customized using the General Options. Almost all kind of texts are customizable in terms of text and color.
 
@@ -122,6 +122,13 @@ Set “show the title” from Lightbox Options
 **I have already purchased Multi Site version, how do I upgrade it to Developer version, without buying it again?**
 If you have any pro version of our products and want to upgrade it, you do not need to buy the new one again, you only need to pay the difference price.
 For example, if you have personal version and need to upgrade to Multi Site, just buy one more personal, and contact us by info@huge-it.com, send the receipt and we will send Multi Site version, from Multi Site to Developer, just buy one personal, and ask us for Developer version.
+
+**I’ve bought the commercial license,  installed the file but the Plugin seems to be still in free version, what to do?**
+After installation of pro version, in General Options all your changes will be saved!
+If you still see "free version" notification after installation of pro version
+1) try to clean your cache files
+if this will not help
+2) delete, and install the plugin again
 
 ### If you think, that you found a bug in our [WordPress Portfolio Gallery](http://huge-it.com/portfolio-gallery) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
