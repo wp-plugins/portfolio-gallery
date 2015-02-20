@@ -193,27 +193,27 @@ jQuery(document).ready(function () {
                                                     </select>
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view0_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<label for="ht_view0_sorting_name_by_default">Sort By Default Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_default]" type="text" id="ht_view0_sorting_name_by_default" value="Default" size="10" class="text">
 						</div>
 						<div class="">
-							<label for="ht_view0_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<label for="ht_view0_sorting_name_by_id">Sorting By ID Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_id]" type="text" id="ht_view0_sorting_name_by_id" value="Date" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view0_sorting_name_by_name">Sorting By ID Botton Name</label>
+							<label for="ht_view0_sorting_name_by_name">Sorting By ID Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_name]" type="text" id="ht_view0_sorting_name_by_name" value="Title" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view0_sorting_name_by_random">Random Sorting Botton Name</label>
+							<label for="ht_view0_sorting_name_by_random">Random Sorting Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_random]" type="text" id="ht_view0_sorting_name_by_random" value="Random" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view0_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<label for="ht_view0_sorting_name_by_asc">Ascedding Sorting Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_asc]" type="text" id="ht_view0_sorting_name_by_asc" value="Asceding" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view0_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<label for="ht_view0_sorting_name_by_desc">Descedding Sorting Button Name</label>
 							<input name="params[ht_view0_sorting_name_by_desc]" type="text" id="ht_view0_sorting_name_by_desc" value="Desceding" size="10">
 						</div>
                                             </div>
@@ -267,6 +267,10 @@ jQuery(document).ready(function () {
                                                     <input type="checkbox" id="ht_view0_show_filtering" checked="checked" name="params[ht_view0_show_filtering]" value="on">
                                                 </div>
 
+                                                <div class="">
+                                                    <label for="ht_view0_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view0_cat_all]" id="ht_view0_cat_all" value="All" class="text" />
+                                                </div>
                                                 <div class="has-background">
                                                     <label for="ht_view0_filterbutton_font_size">Filter Button Font Size</label>
                                                     <input type="text" name="params[ht_view0_filterbutton_font_size]" id="ht_view0_filterbutton_font_size" value="14" class="text">
@@ -482,7 +486,10 @@ jQuery(document).ready(function () {
                                                     <input type="hidden" value="off" name="params[ht_view1_show_filtering]">
                                                     <input type="checkbox" id="ht_view1_show_filtering" checked="checked" name="params[ht_view1_show_filtering]" value="on">
                                                 </div>
-
+                                                <div class="">
+                                                    <label for="ht_view1_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view1_cat_all]" id="ht_view1_cat_all" value="All" class="text" />
+                                                </div>
                                                 <div class="has-background">
                                                     <label for="ht_view1_filterbutton_font_size">Filter Button Font Size</label>
                                                     <input type="text" name="params[ht_view1_filterbutton_font_size]" id="ht_view1_filterbutton_font_size" value="14" class="text">
@@ -537,27 +544,27 @@ jQuery(document).ready(function () {
                                                     </select>
                                                 </div>
                                                 <div class="has-background">
-							<label for="ht_view1_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<label for="ht_view1_sorting_name_by_default">Sort By Default Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_default]" type="text" id="ht_view1_sorting_name_by_default" value="Default" size="10" class="text">
 						</div>
 						<div class="">
-							<label for="ht_view1_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<label for="ht_view1_sorting_name_by_id">Sorting By ID Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_id]" type="text" id="ht_view1_sorting_name_by_id" value="Date" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view1_sorting_name_by_name">Sorting By ID Botton Name</label>
+							<label for="ht_view1_sorting_name_by_name">Sorting By ID Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_name]" type="text" id="ht_view1_sorting_name_by_name" value="Title" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view1_sorting_name_by_random">Random Sorting Botton Name</label>
+							<label for="ht_view1_sorting_name_by_random">Random Sorting Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_random]" type="text" id="ht_view1_sorting_name_by_random" value="Random" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view1_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<label for="ht_view1_sorting_name_by_asc">Ascedding Sorting Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_asc]" type="text" id="ht_view1_sorting_name_by_asc" value="Asceding" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view1_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<label for="ht_view1_sorting_name_by_desc">Descedding Sorting Button Name</label>
 							<input name="params[ht_view1_sorting_name_by_desc]" type="text" id="ht_view1_sorting_name_by_desc" value="Desceding" size="10">
 						</div>
                                         </div>
@@ -771,34 +778,37 @@ jQuery(document).ready(function () {
                                                     </select>
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view2_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<label for="ht_view2_sorting_name_by_default">Sort By Default Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_default]" type="text" id="ht_view2_sorting_name_by_default" value="Default" size="10" class="text">
 						</div>
 						<div class="">
-							<label for="ht_view2_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<label for="ht_view2_sorting_name_by_id">Sorting By ID Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_id]" type="text" id="ht_view2_sorting_name_by_id" value="Date" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view2_sorting_name_by_name">Sorting By ID Botton Name</label>
+							<label for="ht_view2_sorting_name_by_name">Sorting By ID Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_name]" type="text" id="ht_view2_sorting_name_by_name" value="Title" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view2_sorting_name_by_random">Random Sorting Botton Name</label>
+							<label for="ht_view2_sorting_name_by_random">Random Sorting Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_random]" type="text" id="ht_view2_sorting_name_by_random" value="Random" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view2_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<label for="ht_view2_sorting_name_by_asc">Ascedding Sorting Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_asc]" type="text" id="ht_view2_sorting_name_by_asc" value="Asceding" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view2_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<label for="ht_view2_sorting_name_by_desc">Descedding Sorting Button Name</label>
 							<input name="params[ht_view2_sorting_name_by_desc]" type="text" id="ht_view2_sorting_name_by_desc" value="Desceding" size="10">
 						</div>
                                         </div>
                                         
                                         <div style="margin-top: 14px;">
                                             <h3>Category styles</h3>
-                                            
+                                                <div class="">
+                                                    <label for="ht_view2_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view2_cat_all]" id="ht_view0_cat_all" value="All" class="text" />
+                                                </div>                                            
                                             <div style="display: none;">
                                                     <label for="ht_view2_show_filtering" style="display: none;">Show Filtering</label>
                                                     <input type="hidden" value="off" name="params[ht_view2_show_filtering]">
@@ -1109,34 +1119,37 @@ jQuery(document).ready(function () {
                                                     </select>
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view3_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<label for="ht_view3_sorting_name_by_default">Sort By Default Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_default]" type="text" id="ht_view3_sorting_name_by_default" value="Default" size="10" class="text">
 						</div>
 						<div class="">
-							<label for="ht_view3_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<label for="ht_view3_sorting_name_by_id">Sorting By ID Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_id]" type="text" id="ht_view3_sorting_name_by_id" value="Date" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view3_sorting_name_by_name">Sorting By ID Botton Name</label>
+							<label for="ht_view3_sorting_name_by_name">Sorting By ID Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_name]" type="text" id="ht_view3_sorting_name_by_name" value="Title" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view3_sorting_name_by_random">Random Sorting Botton Name</label>
+							<label for="ht_view3_sorting_name_by_random">Random Sorting Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_random]" type="text" id="ht_view3_sorting_name_by_random" value="Random" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view3_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<label for="ht_view3_sorting_name_by_asc">Ascedding Sorting Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_asc]" type="text" id="ht_view3_sorting_name_by_asc" value="Asceding" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view3_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<label for="ht_view3_sorting_name_by_desc">Descedding Sorting Button Name</label>
 							<input name="params[ht_view3_sorting_name_by_desc]" type="text" id="ht_view3_sorting_name_by_desc" value="Desceding" size="10">
 						</div>
                                         </div>
                                         
                                         <div style="margin-top: 14px;">
                                             <h3>Category styles</h3>
-                                            
+                                                 <div class="">
+                                                    <label for="ht_view3_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view3_cat_all]" id="ht_view3_cat_all" value="All" class="text" />
+                                                </div>                                           
                                             <div style="display: none;">
                                                     <label for="ht_view3_show_filtering" style="display: none;">Show Filtering</label>
                                                     <input type="hidden" value="off" name="params[ht_view3_show_filtering]">
@@ -1355,27 +1368,27 @@ jQuery(document).ready(function () {
                                                     </select>
 						</div>
                                                 <div class="has-background">
-                                                        <label for="ht_view4_sorting_name_by_default">Sort By Default Bottom Name</label>
+                                                        <label for="ht_view4_sorting_name_by_default">Sort By Default Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_default]" type="text" id="ht_view4_sorting_name_by_default" value="Default" size="10" class="text">
                                                 </div>
                                                 <div class="">
-                                                        <label for="ht_view4_sorting_name_by_id">Sorting By ID Botton Name</label>
+                                                        <label for="ht_view4_sorting_name_by_id">Sorting By ID Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_id]" type="text" id="ht_view4_sorting_name_by_id" value="Date" size="10">
                                                 </div>
                                                 <div class="has-background">
-                                                        <label for="ht_view4_sorting_name_by_name">Sorting By ID Botton Name</label>
+                                                        <label for="ht_view4_sorting_name_by_name">Sorting By ID Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_name]" type="text" id="ht_view4_sorting_name_by_name" value="Title" size="10">
                                                 </div>
                                                 <div class="">
-                                                        <label for="ht_view4_sorting_name_by_random">Random Sorting Botton Name</label>
+                                                        <label for="ht_view4_sorting_name_by_random">Random Sorting Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_random]" type="text" id="ht_view4_sorting_name_by_random" value="Random" size="10">
                                                 </div>
                                                 <div class="has-background">
-                                                        <label for="ht_view4_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+                                                        <label for="ht_view4_sorting_name_by_asc">Ascedding Sorting Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_asc]" type="text" id="ht_view4_sorting_name_by_asc" value="Asceding" size="10">
                                                 </div>
                                                 <div class="">
-                                                        <label for="ht_view4_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+                                                        <label for="ht_view4_sorting_name_by_desc">Descedding Sorting Button Name</label>
                                                         <input name="params[ht_view4_sorting_name_by_desc]" type="text" id="ht_view4_sorting_name_by_desc" value="Desceding" size="10">
                                                 </div>
                                             </div>
@@ -1387,6 +1400,10 @@ jQuery(document).ready(function () {
                                                     <input type="hidden" value="off" name="params[ht_view4_show_filtering]">
                                                     <input type="checkbox" id="ht_view4_show_filtering" checked="checked" name="params[ht_view4_show_filtering]" value="on">
                                                 </div>
+                                                <div class="">
+                                                    <label for="ht_view4_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view4_cat_all]" id="ht_view4_cat_all" value="All" class="text" />
+                                                </div>												
                                                 <div class="has-background">
                                                         <label for="ht_view4_filterbutton_font_size">Filter Button Font Size</label>
                                                         <input type="text" name="params[ht_view4_filterbutton_font_size]" id="ht_view4_filterbutton_font_size" value="14" class="text">
@@ -1717,27 +1734,27 @@ jQuery(document).ready(function () {
                                                     </select>
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view6_sorting_name_by_default">Sort By Default Bottom Name</label>
+							<label for="ht_view6_sorting_name_by_default">Sort By Default Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_default]" type="text" id="ht_view6_sorting_name_by_default" value="Default" size="10" class="text">
 						</div>
 						<div class="">
-							<label for="ht_view6_sorting_name_by_id">Sorting By ID Botton Name</label>
+							<label for="ht_view6_sorting_name_by_id">Sorting By ID Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_id]" type="text" id="ht_view6_sorting_name_by_id" value="Date" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view6_sorting_name_by_name">Sorting By ID Botton Name</label>
+							<label for="ht_view6_sorting_name_by_name">Sorting By ID Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_name]" type="text" id="ht_view6_sorting_name_by_name" value="Title" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view6_sorting_name_by_random">Random Sorting Botton Name</label>
+							<label for="ht_view6_sorting_name_by_random">Random Sorting Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_random]" type="text" id="ht_view6_sorting_name_by_random" value="Random" size="10">
 						</div>
                                                 <div class="has-background">
-							<label for="ht_view6_sorting_name_by_asc">Ascedding Sorting Botton Name</label>
+							<label for="ht_view6_sorting_name_by_asc">Ascedding Sorting Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_asc]" type="text" id="ht_view6_sorting_name_by_asc" value="Asceding" size="10">
 						</div>
 						<div class="">
-							<label for="ht_view6_sorting_name_by_desc">Descedding Sorting Botton Name</label>
+							<label for="ht_view6_sorting_name_by_desc">Descedding Sorting Button Name</label>
 							<input name="params[ht_view6_sorting_name_by_desc]" type="text" id="ht_view6_sorting_name_by_desc" value="Desceding" size="10">
 						</div>
                                         </div>
@@ -1749,7 +1766,10 @@ jQuery(document).ready(function () {
                                                     <input type="hidden" value="off" name="params[ht_view6_show_filtering]">
                                                     <input type="checkbox" id="ht_view6_show_filtering" checked="checked" name="params[ht_view6_show_filtering]" value="on">
                                                 </div>
-
+                                                <div class="">
+                                                    <label for="ht_view6_cat_all">Show All Category Button Name</label>
+                                                    <input type="text" name="params[ht_view6_cat_all]" id="ht_view6_cat_all" value="All" class="text" />
+                                                </div>
                                                 <div class="has-background">
                                                     <label for="ht_view6_filterbutton_font_size">Filter Button Font Size</label>
                                                     <input type="text" name="params[ht_view6_filterbutton_font_size]" id="ht_view6_filterbutton_font_size" value="14" class="text">

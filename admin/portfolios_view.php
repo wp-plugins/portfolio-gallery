@@ -687,7 +687,7 @@ jQuery(document).ready(function($){
 							<input type="checkbox" id="ht_show_sorting"  <?php if($row->ht_show_sorting  == 'on'){ echo 'checked="checked"'; } ?>  name="ht_show_sorting" value="on" />
                                                     </li>
                                                     <li class="allowIsotope">
-                                                        Show Categorie Buttons :
+                                                        Show Category Buttons :
                                                         <input type="hidden" value="off" name=" " />
                                                         <input type="checkbox" id=" " name=" " value="off" disabled="disabled" />
                                                         <a class="probuttonlink" href="http://huge-it.com/portfolio-gallery/">( <span style="color: red;"> PRO </span> )</a>

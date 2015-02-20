@@ -724,6 +724,12 @@ $paramssld["ht_view6_sorting_name_by_name"] = "Title";
 $paramssld["ht_view6_sorting_name_by_random"] = "Random";
 $paramssld["ht_view6_sorting_name_by_asc"] = "Asceding";
 $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
+$paramssld["ht_view0_cat_all"] = "All";
+$paramssld["ht_view1_cat_all"] = "All";
+$paramssld["ht_view2_cat_all"] = "All";
+$paramssld["ht_view3_cat_all"] = "All";
+$paramssld["ht_view4_cat_all"] = "All";
+$paramssld["ht_view6_cat_all"] = "All";
 ?>
 <script>
 	var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
@@ -856,9 +862,30 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
 	var lightbox_retinaUrl = <?php echo $paramssld['light_box_retinaurl'];?>;
 	var lightbox_retinaSuffix = "<?php echo $paramssld['light_box_retinasuffix'];?>";
 	
-				jQuery(document).ready(function(){
-				jQuery("#huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.jpg'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.png'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.gif']").addClass('group1');
-				jQuery(".group1").colorbox({rel:'group1'});
+jQuery(document).ready(function(){
+				//jQuery("#huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.jpg'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.png'], #huge_it_portfolio_content_<?php echo $portfolioID; ?> a[href$='.gif']").addClass('group1');
+				                         var group_count = 0;
+										 var groups = <?php echo $portfolioID; ?>;
+                                jQuery(".element_<?php echo $portfolioID; ?>").each(function(){
+                                    group_count++;
+                                });
+                                for(var i = 1; i <= group_count; i++){
+                                    jQuery(".portfolio-group" + i+"-"+groups).colorbox({rel:'portfolio-group' + i+"-"+groups});
+                                }
+									jQuery(".portfolio-lightbox-group").colorbox({rel:"portfolio-lightbox-group"});
+									jQuery(".portfolio-lightbox a[href$='.png'],.portfolio-lightbox a[href$='.jpg'],.portfolio-lightbox a[href$='.gif'],.portfolio-lightbox a[href$='.jpeg']").addClass("portfolio-lightbox-group");
+											var groups = <?php echo $portfolioID; ?>;
+											var group_count_slider = 0;					 
+                                jQuery(".slider-content").each(function(){
+                                    group_count_slider++;
+                                });
+								var group_count_slider_clone = 0;
+								jQuery(".portfolio-group-slider"+i).colorbox({rel:'portfolio-group-slider'+i});
+								for(var i = 1; i <= group_count_slider; i++){                                    
+													jQuery(".portfolio-group-slider"+i).colorbox({rel:'portfolio-group-slider'+i});
+													jQuery(".clone .slide_number"+i+" a").removeClass("portfolio-group-slider"+i+" cboxElement");
+
+								}
 				jQuery(".callbacks").colorbox({
 					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
 					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
@@ -874,6 +901,12 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
 				jQuery("#click").click(function(){ 
 					jQuery('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
 					return false;
+				});
+				jQuery("huge_it_portfolio_filters_<?php $portfolioID;?>")
+				jQuery("#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li a").click(function(){
+					jQuery("#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li").removeClass("active");
+						jQuery(this).parent().addClass("active");
+	
 				});
 			});
 		
@@ -1156,6 +1189,7 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
     border-radius: <?php echo $paramssld["ht_view0_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -1227,7 +1261,16 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
     background-color: #<?php echo $paramssld["ht_view0_filterbutton_hover_background_color"];?> !important;
     cursor: pointer;
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view0_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view0_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -1284,15 +1327,19 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
 <?php } ?>
         <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view0_sorting_float"] == "top" && $paramssld["ht_view0_filtering_float"] == "top") echo "style='clear: both;'";?>>
               <?php
-
+			    $group_key1= 0;
               foreach($images as $key=>$row)
               {
-                      $link = $row->sl_url;
+                      $group_key1++;
+                      $group_key = (string)$group_key1;
+					  $portfolioID1 = (string)$portfolioID;
+					  $group_key =$group_key."-".$portfolioID;
+					  $link = $row->sl_url;
                       $descnohtml=strip_tags($row->description);
                       $result = substr($descnohtml, 0, 50);
                       $catForFilter = explode(",", $row->category);
                       ?>
-                      <div class="element_<?php echo $portfolioID; ?> <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                      <div class="element_<?php echo $portfolioID; ?> colorbox_grouping <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
                               <div class="default-block_<?php echo $portfolioID; ?>">
                                       <div class="image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
@@ -1321,7 +1368,7 @@ $paramssld["ht_view6_sorting_name_by_desc"] = "Desceding";
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "><img src="<?php echo $img; ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1770,6 +1817,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
     border-radius: <?php echo $paramssld["ht_view1_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -1841,7 +1889,16 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
     background-color: #<?php echo $paramssld["ht_view1_filterbutton_hover_background_color"];?> !important;
     cursor: pointer
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view1_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view1_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -1896,15 +1953,19 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
 <?php } ?>
         <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view1_sorting_float"] == "top" && $paramssld["ht_view1_filtering_float"] == "top") echo "style='clear: both;'";?>>
               <?php
-
+			    $group_key1 = 0;
               foreach($images as $key=>$row)
               {
-                      $link = $row->sl_url;
+                      $group_key1++;
+                      $group_key = (string)$group_key1;
+					  $portfolioID1 = (string)$portfolioID;
+					  $group_key =$group_key."-".$portfolioID;                     
+					  $link = $row->sl_url;
                       $descnohtml=strip_tags($row->description);
                       $result = substr($descnohtml, 0, 50);
                       $catForFilter = explode(",", $row->category);
                       ?>
-                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                      <div class="element_<?php echo $portfolioID; ?> colorbox_grouping <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
                               <div class="default-block_<?php echo $portfolioID; ?>">
                                       <div class="image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
@@ -1932,7 +1993,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"><img src="<?php echo $img; ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -2789,6 +2850,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     border-radius: <?php echo $paramssld["ht_view2_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -2860,7 +2922,16 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     background-color: #<?php echo $paramssld["ht_view2_filterbutton_hover_background_color"];?> !important;
     cursor: pointer
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view2_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view2_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -3241,6 +3312,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     border-radius: <?php echo $paramssld["ht_view3_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -3312,7 +3384,16 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     background-color: #<?php echo $paramssld["ht_view3_filterbutton_hover_background_color"];?> !important;
     cursor: pointer;
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view3_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view3_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -3370,20 +3451,24 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 <?php } ?> 
         <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view3_sorting_float"] == "top" && $paramssld["ht_view3_filtering_float"] == "top") echo "style='clear: both;'";?>>
               <?php
-
+				$group_key1=0;
               foreach($images as $key=>$row)
               {
+                      $group_key1++;
+                      $group_key = (string)$group_key1;
+					  $portfolioID1 = (string)$portfolioID;
+					  $group_key =$group_key."-".$portfolioID;
                       $link = $row->sl_url;
                       $catForFilter = explode(",", $row->category);
                       ?>
-                      <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                      <div class="element_<?php echo $portfolioID; ?> colorbox_grouping <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?>" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
                               <div class="left-block_<?php echo $portfolioID; ?>">
                                       <div class="main-image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                                      <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>"><img id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
                                               <?php } else { ?>
-                                                      <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
+                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
                                               <?php
                                               }
                                               ?>
@@ -3402,7 +3487,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                       foreach($imgurl as $key=>$img)
                                                       {
                                                               ?>
-                                                                      <li><a href="<?php echo $img;?>"><img src="<?php echo $img; ?>"></a></li>
+                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"><img src="<?php echo $img; ?>"></a></li>
                                                       <?php
                                                       }
                                                       ?>
@@ -3839,6 +3924,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
     border-radius: <?php echo $paramssld["ht_view4_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -3910,7 +3996,16 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
     background-color: #<?php echo $paramssld["ht_view4_filterbutton_hover_background_color"];?> !important;
     cursor: pointer
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view4_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view4_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -4389,9 +4484,11 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 </style>
 <div id="main-slider_<?php echo $portfolioID; ?>" class="liquid-slider">
 	<?php
-	
+	$group_key = 0;
 	foreach($images as $key=>$row)
 	{
+	    $group_key++;
+        $group_key1 = (string)$group_key;
 		$imgurl=explode(";",$row->image_url);array_pop($imgurl);
 		$link = $row->sl_url;
 		$descnohtml=strip_tags($row->description);
@@ -4399,10 +4496,10 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 		?>
 		<div class="slider-content">
 			
-			<div class="slider-content-wrapper">
+			<div class="slider-content-wrapper slide_number<?php echo $group_key1;?>">
 				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="group1" href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
+					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>"><img class="main-image" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
 					<?php } else { ?>
 					<img class="main-image" src="images/noimage.jpg" alt="" />
 					<?php
@@ -4413,7 +4510,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
-									<li><a class="group1" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
+									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
 								<?php } ?>
 					</ul></div>
 					<?php } ?>					
@@ -4580,6 +4677,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
     border-radius: <?php echo $paramssld["ht_view6_sortbutton_border_radius"];?>px;
     list-style-type: none;
     margin: 0px !important;
+	padding: 0;
     <?php
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
@@ -4657,7 +4755,16 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
     background-color: #<?php echo $paramssld["ht_view6_filterbutton_hover_background_color"];?> !important;
     cursor: pointer
 }
-
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:link,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?> ul li.active a:visited,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:hover,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:focus,
+#huge_it_portfolio_content_<?php echo $portfolioID; ?> #huge_it_portfolio_filters_<?php echo $portfolioID; ?>  ul li.active a:active {
+    color:#<?php echo $paramssld["ht_view6_filterbutton_hover_font_color"];?> !important;
+    background-color: #<?php echo $paramssld["ht_view6_filterbutton_hover_background_color"];?> !important;
+    cursor: pointer;
+}
 #huge_it_portfolio_content_<?php echo $portfolioID; ?> section {
     position:relative;
     display:block;
@@ -4721,7 +4828,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
         <div id="huge_it_portfolio_container_<?php echo $portfolioID; ?>" class="super-list variable-sizes clearfix" <?php if($paramssld["ht_view6_sorting_float"] == "top" && $paramssld["ht_view6_filtering_float"] == "top") echo "style='clear: both;'";?>>
 
           <?php
-
+	
             foreach($images as $key=>$row)
             {
                     $link = $row->sl_url;
@@ -4729,13 +4836,13 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
                     $result = substr($descnohtml, 0, 50);
                     $catForFilter = explode(",", $row->category);
                     ?>
-                    <div class="element_<?php echo $portfolioID; ?>  <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?> " tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
+                    <div class="element_<?php echo $portfolioID; ?> portfolio-lightbox <?php foreach ($catForFilter as $catForFilterValue) { echo str_replace(" ","_",$catForFilterValue)." ";} ?> " tabindex="0" data-symbol="<?php echo $row->name; ?>" data-category="alkaline-earth">
                         <p style="display: none;" class="id"><?php echo $row->id; ?></p>
                             <div class="image-block_<?php echo $portfolioID; ?>">
                                 <?php //echo $row->id; ?>
                                     <?php $imgurl=explode(";",$row->image_url); ?>
                                             <?php 	if($row->image_url != ';'){ ?>
-                                            <a href="<?php echo $imgurl[0]; ?>"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
+                                            <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-lightbox-group"><img id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" alt="" /></a>
                                             <?php } else { ?>
                                             <img id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" alt="" />
                                             <?php
