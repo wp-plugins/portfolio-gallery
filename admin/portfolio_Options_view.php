@@ -666,7 +666,8 @@ jQuery(document).ready(function () {
 						<div class="has-background">
 							<label for="ht_view2_zoombutton_style">Element's Image Overlay Transparency</label>
 							<div class="slider-container">
-								<div class="slider" id="ht_view2_element_overlay_transparency-slider" style="position: relative; -webkit-user-select: none; box-sizing: border-box; min-height: 14px; margin-left: 7px; margin-right: 7px;"><div class="track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 100%; margin-top: -3px;"></div><div class="highlight-track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 66.5px; margin-top: -3px;"></div><div class="dragger" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; margin-top: -7px; margin-left: -7px; left: 66.5px;"></div></div><input name="params[ht_view2_element_overlay_transparency]" id="ht_view2_element_overlay_transparency" data-slider-highlight="true" data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="70" style="display: none;">
+								<div class="track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 100%; margin-top: -3px;"></div><div class="highlight-track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 66.5px; margin-top: -3px;"></div>
+								<input name="params[ht_view2_element_overlay_transparency]" id="ht_view2_element_overlay_transparency" data-slider-highlight="true" data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="70" style="display: none;">
 								<span>70%</span>
 							</div>
 						</div>
@@ -909,7 +910,7 @@ jQuery(document).ready(function () {
 							<span>px</span>
 						</div>
 					</div>
-                                        <div style="margin-top: -224px;">
+                                        <div style="margin-top: 14px;">
 						<h3>Popup Description</h3>
 						<div class="has-background">
 							<label for="ht_view2_show_description">Show Description</label>
@@ -926,7 +927,7 @@ jQuery(document).ready(function () {
 							<input name="params[ht_view2_description_color]" type="text" class="color" id="ht_view2_description_color" value="#222222" size="10" autocomplete="off" style="color: rgb(255, 255, 255); background-color: rgb(34, 34, 34);">
 						</div>
 					</div>
-					<div style="margin-top: -10px;">
+					<div style="margin-top: 14px;">
 						<h3>Popup Link Button</h3>
 						<div class="has-background">
 							<label for="ht_view2_show_popup_linkbutton">Show Link Button</label>
@@ -960,7 +961,7 @@ jQuery(document).ready(function () {
 						</div>
 					</div>
                                     
-                                        <div style="margin-top: 14px;">
+                                        <div style="margin-top: -360px;">
 						<h3>Popup Styles</h3>
                                                 <div class="has-background">
 							<label for="ht_view2_popup_full_width">Popup Image Full Width</label>
@@ -978,7 +979,8 @@ jQuery(document).ready(function () {
 						<div class="">
 							<label for="ht_view2_popup_overlay_transparency_color">Popup Overlay Transparency</label>
 							<div class="slider-container">
-								<div class="slider" id="ht_view2_popup_overlay_transparency_color-slider" style="position: relative; -webkit-user-select: none; box-sizing: border-box; min-height: 14px; margin-left: 7px; margin-right: 7px;"><div class="track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 100%; margin-top: -3px;"></div><div class="highlight-track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 66.5px; margin-top: -3px;"></div><div class="dragger" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; margin-top: -7px; margin-left: -7px; left: 66.5px;"></div></div><input name="params[ht_view2_popup_overlay_transparency_color]" id="ht_view2_popup_overlay_transparency_color" data-slider-highlight="true" data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="70" style="display: none;">
+								<div class="highlight-track" style="position: absolute; top: 50%; -webkit-user-select: none; cursor: pointer; width: 66.5px; margin-top: -3px;"></div>
+								<input name="params[ht_view2_popup_overlay_transparency_color]" id="ht_view2_popup_overlay_transparency_color" data-slider-highlight="true" data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="70" style="display: none;">
 								<span>70%</span>
 							</div>
 						</div>
