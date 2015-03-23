@@ -3466,7 +3466,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                       <div class="main-image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
                                               <?php } else { ?>
                                                       <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
                                               <?php
@@ -4499,7 +4499,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 			<div class="slider-content-wrapper slide_number<?php echo $group_key1;?>">
 				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo $imgurl[0]; ?>" /></a>
+					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo $imgurl[0]; ?>" /></a>
 					<?php } else { ?>
 					<img alt="<?php echo $row->name; ?>" class="main-image" src="images/noimage.jpg" />
 					<?php
@@ -4842,7 +4842,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
                                 <?php //echo $row->id; ?>
                                     <?php $imgurl=explode(";",$row->image_url); ?>
                                             <?php 	if($row->image_url != ';'){ ?>
-                                            <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-lightbox-group"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" /></a>
+                                            <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-lightbox-group" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" /></a>
                                             <?php } else { ?>
                                             <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
                                             <?php
