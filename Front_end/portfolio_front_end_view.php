@@ -730,6 +730,68 @@ $paramssld["ht_view2_cat_all"] = "All";
 $paramssld["ht_view3_cat_all"] = "All";
 $paramssld["ht_view4_cat_all"] = "All";
 $paramssld["ht_view6_cat_all"] = "All";
+							/***<optimize_images>***/
+							
+			$view0_width = $paramssld['ht_view0_block_width']; 
+			$view1_width = $paramssld['ht_view1_block_width']; 
+			$view2_width = $paramssld['ht_view2_element_width']; 
+			$view3_width = $paramssld['ht_view3_mainimage_width']; 
+			$view4_width = $paramssld["ht_view5_main_image_width"]; 
+			$view6_width = $paramssld["ht_view6_width"];
+		$cropwidth = max($view0_width,$view1_width,$view2_width ,$view3_width,$view4_width,$view6_width);
+		$image_prefix = "_huge_it_small_portfolio";
+		if(!function_exists('huge_it_copy_image_to_small')) {
+		function huge_it_copy_image_to_small($imgurl,$image_prefix,$width1 = "275") { 
+				if($width1 < 32) {
+					$width1 = "32";
+				}
+				$pathinfo = pathinfo($imgurl);
+				$filename = $pathinfo["filename"];//get image's name
+				$extension = $pathinfo["extension"];//get image,s extension
+				set_time_limit (0);
+				if(!getimagesize($imgurl)) {
+					return;
+				}
+				$size = getimagesize ($imgurl);
+				$Width = $size[0];//old image's width
+				$Height = $size[1];//old image's height
+				if ($width1 < $Width) {
+					$width = $width1;
+					$height = (int)(($width * $Height)/$Width);//get new height
+				}
+				else {
+					$width = $Width;
+					$height = $Height;
+				}
+				$img = wp_get_image_editor( $imgurl);
+				$upload_dir = wp_upload_dir(); 
+				if ( ! is_wp_error( $img ) ) {
+					$img->resize( $width, $height, true );
+					$url = $upload_dir["path"];//get upload path
+					$copy_image = $url.'/'.$filename.$image_prefix.".".$extension;
+					if(!file_exists($copy_image)) {
+						$img->save($copy_image);//save new image if not exist
+					}
+				}
+			}
+		}
+	if(!function_exists('get_huge_image')) {
+		function get_huge_image($image_url,$img_prefix) {
+			$pathinfo = pathinfo($image_url);
+			$upload_dir = wp_upload_dir();
+			return $upload_dir["url"].'/'.$pathinfo["filename"].$img_prefix.'.'.$pathinfo["extension"];
+		}
+	}
+		foreach($images as $key=>$row) {
+			$imgurl = explode(";",$row->image_url);
+			$count = count($imgurl);$count = $count - 1;
+			for($i = 0;$i < $count; $i++) {
+				huge_it_copy_image_to_small($imgurl[$i],$image_prefix,$cropwidth);		
+			}
+
+		}
+						/***</optimize_images>***/
+
 ?>
 <script>
 	var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
@@ -1344,7 +1406,7 @@ jQuery(document).ready(function(){
                                       <div class="image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" />
                                               <?php } else { ?>
                                               <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
                                               <?php
@@ -1368,7 +1430,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1391,7 +1453,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1970,7 +2032,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                       <div class="image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" />
                                               <?php } else { ?>
                                               <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
                                               <?php
@@ -1993,7 +2055,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"><img src="<?php echo $img; ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -2999,7 +3061,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                               <div class="image-block_<?php echo $portfolioID; ?>">
                                       <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" />
+                                              <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" />
                                               <?php } else { ?>
                                               <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
                                               <?php
@@ -3466,7 +3528,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                       <div class="main-image-block_<?php echo $portfolioID; ?>">
                                               <?php $imgurl=explode(";",$row->image_url); ?>
                                               <?php 	if($row->image_url != ';'){ ?>
-                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>"src="<?php echo $imgurl[0]; ?>"></a>
+                                                      <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>"src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>"></a>
                                               <?php } else { ?>
                                                       <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-group<?php echo $group_key; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg"></a>
                                               <?php
@@ -3487,7 +3549,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                       foreach($imgurl as $key=>$img)
                                                       {
                                                               ?>
-                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"><img src="<?php echo $img; ?>"></a></li>
+                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
                                                       <?php
                                                       }
                                                       ?>
@@ -4499,7 +4561,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 			<div class="slider-content-wrapper slide_number<?php echo $group_key1;?>">
 				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo $imgurl[0]; ?>" /></a>
+					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" /></a>
 					<?php } else { ?>
 					<img alt="<?php echo $row->name; ?>" class="main-image" src="images/noimage.jpg" />
 					<?php
@@ -4510,7 +4572,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
-									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"><img src="<?php echo $img; ?>"></a></li>
+									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
 								<?php } ?>
 					</ul></div>
 					<?php } ?>					
@@ -4842,7 +4904,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
                                 <?php //echo $row->id; ?>
                                     <?php $imgurl=explode(";",$row->image_url); ?>
                                             <?php 	if($row->image_url != ';'){ ?>
-                                            <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-lightbox-group" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo $imgurl[0]; ?>" /></a>
+                                            <a href="<?php echo $imgurl[0]; ?>" class=" portfolio-lightbox-group" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" /></a>
                                             <?php } else { ?>
                                             <img alt="<?php echo $row->name; ?>" id="wd-cl-img<?php echo $key; ?>" src="images/noimage.jpg" />
                                             <?php
