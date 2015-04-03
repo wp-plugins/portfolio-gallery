@@ -749,9 +749,6 @@ $paramssld["ht_view6_cat_all"] = "All";
 				$filename = $pathinfo["filename"];//get image's name
 				$extension = $pathinfo["extension"];//get image,s extension
 				set_time_limit (0);
-				if(!getimagesize($imgurl)) {
-					return;
-				}
 				$size = getimagesize ($imgurl);
 				$Width = $size[0];//old image's width
 				$Height = $size[1];//old image's height
@@ -2795,7 +2792,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	padding:6px 12px;
 	background:#<?php echo $paramssld["ht_view2_popup_linkbutton_background_color"];?>;
 	color:#<?php echo $paramssld["ht_view2_popup_linkbutton_color"];?>;
-	font-size:<?php echo $paramssld["ht_view2_popup_linkbutton_font_size"];?>;
+	font-size:<?php echo $paramssld["ht_view2_popup_linkbutton_font_size"];?>px;
 	text-decoration:none;
 }
 
@@ -3295,7 +3292,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
 	padding:6px 12px;
 	background:#<?php echo $paramssld["ht_view3_linkbutton_background_color"];?>;
 	color:#<?php echo $paramssld["ht_view3_linkbutton_color"];?>;
-	font-size:<?php echo $paramssld["ht_view3_linkbutton_font_size"];?>;
+	font-size:<?php echo $paramssld["ht_view3_linkbutton_font_size"];?>px;
 	text-decoration:none;
 }
 
