@@ -742,16 +742,29 @@ $paramssld["ht_view6_cat_all"] = "All";
 		$image_prefix = "_huge_it_small_portfolio";
 		if(!function_exists('huge_it_copy_image_to_small')) {
 		function huge_it_copy_image_to_small($imgurl,$image_prefix,$width1 = "275") { 
-				if($width1 < 32) {
+		$pathinfo = pathinfo($imgurl);
+		$extension = $pathinfo["extension"];
+		$extension = strtolower($extension);
+		$ext = array("png","jpg","jpeg","gif","psd","swf","bmp","wbmp","tiff_ll","tiff_mm","jpc","iff","ico");
+		if((strlen($imgurl) < 3) || (!in_array($extension,$ext))){ 
+			return false;
+		}		
+		if($width1 < 32) {
 					$width1 = "32";
 				}
 				$pathinfo = pathinfo($imgurl);
 				$filename = $pathinfo["filename"];//get image's name
 				$extension = $pathinfo["extension"];//get image,s extension
-				set_time_limit (0);
-				$size = getimagesize ($imgurl);
-				$Width = $size[0];//old image's width
-				$Height = $size[1];//old image's height
+				//set_time_limit (0);
+				$upload_dir = wp_upload_dir(); 
+				$path = parse_url($imgurl, PHP_URL_PATH);
+				//$path = substr($path,1);
+				$imgurl = $_SERVER['DOCUMENT_ROOT'].$path;
+				$size = wp_get_image_editor($imgurl);
+				$old_size = $size ->get_size();
+
+				$Width = $old_size['width'];//old image's width
+				$Height =$old_size['height'];//old image's height
 				if ($width1 < $Width) {
 					$width = $width1;
 					$height = (int)(($width * $Height)/$Width);//get new height
@@ -770,13 +783,17 @@ $paramssld["ht_view6_cat_all"] = "All";
 						$img->save($copy_image);//save new image if not exist
 					}
 				}
+				return true;
 			}
 		}
 	if(!function_exists('get_huge_image')) {
 		function get_huge_image($image_url,$img_prefix) {
-			$pathinfo = pathinfo($image_url);
-			$upload_dir = wp_upload_dir();
-			return $upload_dir["url"].'/'.$pathinfo["filename"].$img_prefix.'.'.$pathinfo["extension"];
+			if(huge_it_copy_image_to_small($image_url,$image_prefix,$cropwidth)) {
+				$pathinfo = pathinfo($image_url);
+				$upload_dir = wp_upload_dir();
+				return $upload_dir["url"].'/'.$pathinfo["filename"].$img_prefix.'.'.$pathinfo["extension"];
+			}
+			else return $image_url;
 		}
 	}
 		foreach($images as $key=>$row) {
