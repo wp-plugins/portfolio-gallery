@@ -749,7 +749,20 @@ $paramssld["ht_view6_cat_all"] = "All";
 		}
 	}
 			/***</optimize_images>***/
-
+			
+			/***<title display>***/
+		function huge_it_title_img_display($image_name,$title) {
+			for($i = 0;$i < count($title);$i++) {
+				$title_explode = explode("_-_-_",$title[$i]);
+				if($title_explode[1] == $image_name) {
+					echo $title_explode[0];  
+				}
+				else { 
+					echo "" ;
+				}
+			}
+		}
+		 	/***</title display>***/
 ?>
 <script>
 	var lightbox_transition = '<?php echo $paramssld['light_box_transition'];?>';
@@ -1388,7 +1401,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1411,7 +1424,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="group1"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -2013,7 +2026,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -3507,7 +3520,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                       foreach($imgurl as $key=>$img)
                                                       {
                                                               ?>
-                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
+                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
                                                       <?php
                                                       }
                                                       ?>
@@ -4530,7 +4543,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
-									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
+									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
 								<?php } ?>
 					</ul></div>
 					<?php } ?>					
