@@ -219,7 +219,7 @@ function apply_cat($id)
 	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ordering = '1'  WHERE id = %d ", $id));
         $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  categories = '".$_POST["allCategories"]."'  WHERE id = '".$id."' ");
                         $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ht_show_sorting = '".$_POST["ht_show_sorting"]."'  WHERE id = '".$id."' ");
-                        $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ht_show_filtering = '".$_POST["ht_show_filtering"]."'  WHERE id = '".$id."' ");
+//                        $wpdb->query("UPDATE ".$wpdb->prefix."huge_itportfolio_portfolios SET  ht_show_filtering = '".$_POST["ht_show_filtering"]."'  WHERE id = '".$id."' ");
 
 		
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE id = %d", $id);
