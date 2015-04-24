@@ -321,13 +321,13 @@ jQuery(document).ready(function($){
   });
   
   	/*#####HIDE NEW UPLOADER'S LEFT MENU######*/  
-										jQuery(".wp-media-buttons-icon").click(function() {
+										/*jQuery(".wp-media-buttons-icon").click(function() {
 											jQuery(".media-menu .media-menu-item").css("display","none");
 											jQuery(".media-menu-item:first").css("display","block");
 											jQuery(".separator").next().css("display","none");
 											jQuery('.attachment-filters').val('image').trigger('change');
 											jQuery(".attachment-filters").css("display","none");
-										});
+										});*/
 
 });
 </script>
@@ -482,13 +482,13 @@ jQuery(document).ready(function($){
 										
 
 										/*#####HIDE NEW UPLOADER'S LEFT MENU######*/  
-										jQuery(".wp-media-buttons-icon").click(function() {
+										/*jQuery(".wp-media-buttons-icon").click(function() {
 											jQuery(".media-menu .media-menu-item").css("display","none");
 											jQuery(".media-menu-item:first").css("display","block");
 											jQuery(".separator").next().css("display","none");
 											jQuery('.attachment-filters').val('image').trigger('change');
 											jQuery(".attachment-filters").css("display","none");
-										});
+										});*/
 									});
 								</script>
 							</div>

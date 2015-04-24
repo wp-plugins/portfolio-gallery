@@ -18,6 +18,7 @@ function front_end_portfolio($images, $paramssld, $portfolio)
     $portfolioShowFiltering=$portfolio[0]->ht_show_filtering;
 
 
+$paramssld['ht_view0_border_width'] = "1";
 $paramssld["ht_view0_togglebutton_style"] = "dark";
 $paramssld["ht_view0_show_separator_lines"] = "on";
 $paramssld["ht_view0_linkbutton_text"] = "View More";
@@ -751,17 +752,7 @@ $paramssld["ht_view6_cat_all"] = "All";
 			/***</optimize_images>***/
 			
 			/***<title display>***/
-		function huge_it_title_img_display($image_name,$title) {
-			for($i = 0;$i < count($title);$i++) {
-				$title_explode = explode("_-_-_",$title[$i]);
-				if($title_explode[1] == $image_name) {
-					echo $title_explode[0];  
-				}
-				else { 
-					echo "" ;
-				}
-			}
-		}
+	
 		 	/***</title display>***/
 ?>
 <script>
@@ -1227,8 +1218,10 @@ jQuery(document).ready(function(){
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view0_sorting_float"] == "left" || $paramssld["ht_view0_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -1272,7 +1265,9 @@ jQuery(document).ready(function(){
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view0_filtering_float"] == "left" || $paramssld["ht_view0_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
@@ -1401,7 +1396,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?> "  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="portfolio-group<?php echo $group_key;?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -1855,8 +1850,10 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view1_sorting_float"] == "left" || $paramssld["ht_view1_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -1900,7 +1897,9 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view1_filtering_float"] == "left" || $paramssld["ht_view1_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
@@ -2026,7 +2025,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view0_block_width']; ?>;
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class=" portfolio-group<?php echo $group_key;?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -2888,8 +2887,10 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view2_sorting_float"] == "left" || $paramssld["ht_view2_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -2933,7 +2934,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view2_filtering_float"] == "left" || $paramssld["ht_view2_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
@@ -3350,8 +3353,10 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view3_sorting_float"] == "left" || $paramssld["ht_view3_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -3395,7 +3400,9 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view3_filtering_float"] == "left" || $paramssld["ht_view3_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
@@ -3520,7 +3527,7 @@ var defaultBlockHeight=<?php echo $paramssld['ht_view2_element_height']; ?>;
                                                       foreach($imgurl as $key=>$img)
                                                       {
                                                               ?>
-                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
+                                                                      <li><a href="<?php echo $img;?>" class=" portfolio-group<?php echo $group_key; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
                                                       <?php
                                                       }
                                                       ?>
@@ -3962,8 +3969,10 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view4_sorting_float"] == "left" || $paramssld["ht_view4_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -4007,7 +4016,9 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view4_filtering_float"] == "left" || $paramssld["ht_view4_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
@@ -4543,7 +4554,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 						<?php  
 						array_shift($imgurl);
 								foreach($imgurl as $key=>$img){?>
-									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
+									<li><a class="portfolio-group-slider<?php echo $group_key1; ?>" href="<?php echo $img; ?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a></li>
 								<?php } ?>
 					</ul></div>
 					<?php } ?>					
@@ -4715,8 +4726,10 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
         if($sorting_block_width == "100%" ) {
             echo "float:left !important;margin: 4px 8px 4px 0px !important;";
         }
+		if(isset($left_to_top)){
         if($left_to_top == "ok")
         { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view6_sorting_float"] == "left" || $paramssld["ht_view6_sorting_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else
@@ -4766,7 +4779,9 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
     list-style-type: none;
     <?php
         if($filtering_block_width == "100%") { echo "float:left !important;margin: 4px 8px 4px 0px !important;"; }
+		if(isset($left_to_top)){
         if($left_to_top == "ok") { echo "float:left !important;"; }
+		}
         if($paramssld["ht_view6_filtering_float"] == "left" || $paramssld["ht_view6_filtering_float"] == "right")
         { echo 'border-bottom: 1px solid #ccc;'; }
         else echo "border: 1px solid #ccc;";
