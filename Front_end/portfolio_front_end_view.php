@@ -751,8 +751,18 @@ $paramssld["ht_view6_cat_all"] = "All";
 	}
 			/***</optimize_images>***/
 			
-			/***<title display>***/
-	
+			/***<title display>***   free has not this option   /
+		function huge_it_title_img_display($image_name,$title) {
+			for($i = 0;$i < count($title);$i++) {
+				$title_explode = explode("_-_-_",$title[$i]);
+				if($title_explode[1] == $image_name) {
+					echo $title_explode[0];  
+				}
+				else { 
+					echo "" ;
+				}
+			}
+		}
 		 	/***</title display>***/
 ?>
 <script>
@@ -1419,7 +1429,7 @@ jQuery(document).ready(function(){
                                                               {
                                                               ?>
                                                               <li>
-                                                                      <a href="<?php echo $img; ?>" class="group1"  title = "<?php huge_it_title_img_display($img,$title);?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
+                                                                      <a href="<?php echo $img; ?>" class="group1"  title = "<?php echo $img;?>"><img src="<?php echo get_huge_image($img,$image_prefix); ?>"></a>
                                                               </li>
                                                               <?php
                                                               }
@@ -3589,8 +3599,8 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
     
     $container.hugeitmicro({
       itemSelector : '.element_<?php echo $portfolioID; ?>',
-      masonry : {
-        columnWidth : <?php echo $paramssld['ht_view3_width']; ?>+20+<?php echo $paramssld['ht_view3_border_width']*2; ?>
+      masonry : { 
+        columnWidth : <?php echo $paramssld["ht_view3_mainimage_width"]; ?>+20+<?php echo $paramssld["ht_view3_element_border_width"]*2; ?>
       },
       masonryHorizontal : {
         rowHeight: 300+20
@@ -4127,7 +4137,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view3_mainimage_width']; ?>;
                                                       <p><?php echo $row->description; ?></p>
                                               </div>
                                       <?php }
-                                      if($paramssld['ht_view4_show_thumbs']=='on' and $paramssld['ht_view4_thumbs_position']=="after"){?>
+                                      if(isset($paramssld['ht_view4_show_thumbs']) && $paramssld['ht_view4_show_thumbs']=='on' and $paramssld['ht_view4_thumbs_position']=="after"){?>
                                               <div>
                                                       <ul class="thumbs-list_<?php echo $portfolioID; ?>">
                                                               <?php
@@ -4183,7 +4193,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
     $container.hugeitmicro({
       itemSelector : '.element_<?php echo $portfolioID; ?>',
       masonry : {
-        columnWidth : <?php echo $paramssld['ht_view4_block_width']; ?>+20+<?php echo $paramssld['ht_view4_border_width']*2; ?>
+        columnWidth : <?php echo $paramssld['ht_view4_block_width']; ?>+20+<?php echo (isset($paramssld['ht_view4_element_border_width'])?$paramssld['ht_view4_element_border_width']:1)*2; ?>
       },
       masonryHorizontal : {
         rowHeight: 300+20
@@ -4543,7 +4553,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view4_block_width']; ?>;
 			<div class="slider-content-wrapper slide_number<?php echo $group_key1;?>">
 				<div class="image-block_<?php echo $portfolioID; ?>">
 					<?php 	if($row->image_url != ';'){ ?>
-					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo get_huge_image($imgurl[0],$image_prefix); ?>" /></a>
+					<a class="portfolio-group-slider<?php  echo $group_key1; ?>" href="<?php echo $imgurl[0]; ?>" title = "<?php echo $row->name; ?>"><img alt="<?php echo $row->name; ?>" class="main-image" src="<?php echo $imgurl[0]; ?>" /></a>
 					<?php } else { ?>
 					<img alt="<?php echo $row->name; ?>" class="main-image" src="images/noimage.jpg" />
 					<?php
@@ -5033,10 +5043,10 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view6_width']; ?>;
                 strheight+=jQuery(this).outerHeight()+10;
                 //alert(strheight);
           })
-          strheight+=<?php echo $paramssld['ht_view6_block_height']+45; ?>;
+          strheight+=<?php echo (isset($paramssld['ht_view6_block_height'])?$paramssld['ht_view6_block_height']:0)+45; ?>;
 	  			if(jQuery(this).parents('.element_<?php echo $portfolioID; ?>').hasClass("large")){
 			jQuery(this).parents('.element_<?php echo $portfolioID; ?>').animate({
-				height: "<?php echo $paramssld['ht_view6_block_height']+45; ?>px"
+				height: "<?php echo (isset($paramssld['ht_view6_block_height'])?$paramssld['ht_view6_block_height']:0)+45; ?>px"
 			}, 300, function() {
 				jQuery(this).removeClass('large');
 				$container.hugeitmicro('reLayout');
@@ -5051,7 +5061,7 @@ var defaultBlockWidth=<?php echo $paramssld['ht_view6_width']; ?>;
 		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').addClass('large');
 
 		$container.hugeitmicro('reLayout');
-		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo $paramssld['ht_view6_block_height']+45; ?>px"});		 
+		jQuery(this).parents('.element_<?php echo $portfolioID; ?>').css({height:"<?php echo (isset($paramssld['ht_view6_block_height'])?$paramssld['ht_view6_block_height']:0)+45; ?>px"});		 
 		 
 		//alert(strheight);
 		 
