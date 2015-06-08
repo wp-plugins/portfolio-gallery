@@ -93,6 +93,8 @@ If you think, that you found a bug in our [WordPress Portfolio Gallery](http://h
 9.  WordPress Portfolio Gallery view 7.2 - Lightbox / Gallery - popup
 10.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page  
 11.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
+12.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
+13.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
 
 == Frequently Asked Questions ==
 
