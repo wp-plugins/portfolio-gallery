@@ -95,6 +95,7 @@ If you think, that you found a bug in our [WordPress Portfolio Gallery](http://h
 11.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
 12.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
 13.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
+14.  [WordPress Portfolio Gallery](http://wordpress.org/plugins/portfolio-gallery/) - Portfolio Gallery admin page
 
 == Frequently Asked Questions ==
 
