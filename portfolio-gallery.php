@@ -72,7 +72,6 @@ function add_portfolio_inline_popup_content() {
 }
 ///////////////////////////////////shortcode update/////////////////////////////////////////////
 
-
 add_action('init', 'hugesl_portfolio_do_output_buffer');
 function hugesl_portfolio_do_output_buffer() {
         ob_start();
@@ -82,7 +81,6 @@ add_action('init', 'portfolio_lang_load');
 function portfolio_lang_load()
 {
     load_plugin_textdomain('sp_portfolio', false, basename(dirname(__FILE__)) . '/Languages');
-
 }
 
 function huge_it_portfolio_images_list_shotrcode($atts)

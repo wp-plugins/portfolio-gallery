@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=uq6Cw3ou-gM
 
 You can use **portfolio gallery** plugin to make your portfolio's projects as well as to create your own image gallery, It has also the ability to create nicely designed FAQ system. 
 You can can use portfolio gallery on different pages so if you need to create portfolio, gallery, gallery with description, faq, slider and content slider you can install only portfolio gallery plugin.
-With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 171,693 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
+With nicely designed user friendly admin panel of portfolio gallery It will take you 2 minutes to create your portfolio or gallery on your website. Over 182,910 our users who tried Portfolio Gallery, can prove it's great functionality and utility. So try an enjoy!
 
 Portfolio Gallery uses 7 view options and can be customized using the General Options. Almost all kind of texts are customizable in terms of text and color.
 
@@ -239,7 +239,7 @@ If you still see "free version" notification after installation of pro version
 *  Bug fixed.
 
 = 1.1.9 =
-* SQL Injection bag fixed in portfolio gallery.
+* SQL Injection bug fixed in portfolio gallery.
 
 = 1.1.8 =
 *  Add image Bug fixed in portfolio gallery.
