@@ -7,6 +7,25 @@
 if(!function_exists('current_user_can')){
 	die('Access Denied');
 }
+/****<add>****/
+
+function youtube_or_vimeo($url){
+	if(strpos($url,'youtube') !== false || strpos($url,'youtu') !== false){	
+		if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match)) {
+			return 'youtube';
+		}
+	}
+	elseif(strpos($url,'vimeo') !== false) {
+		$explode = explode("/",$url);
+		$end = end($explode);
+		if(strlen($end) == 8 || strlen($end) == 9 )
+			return 'vimeo';
+	}
+	return 'image';
+}
+
+/****</add>****/
+
 function showportfolio() 
   {
 	  
@@ -175,6 +194,81 @@ INSERT INTO
 	}	
 }
 
+/***<add>***/
+function portfolio_video($id)
+{
+	global $wpdb;
+
+
+	if(isset($_POST["huge_it_add_video_input"]) && $_POST["huge_it_add_video_input"] != '' ) {			
+		if(!isset($_GET['thumb_parent']) || $_GET['thumb_parent'] == null) {
+			
+			$table_name = $wpdb->prefix . "huge_itportfolio_images";
+			$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE id= %d",$id);
+			$row=$wpdb->get_row($query);
+			$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_images where portfolio_id = %s ", $row->id);
+			$rowplusorder=$wpdb->get_results($query);
+
+			foreach ($rowplusorder as $key=>$rowplusorders){
+
+				if($rowplusorders->ordering == 0){				
+					$rowplusorderspl = 1;
+					$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET ordering = '".$rowplusorderspl."' WHERE id = %s ", $rowplusorders->id));
+				}
+				else { 
+					$rowplusorderspl=$rowplusorders->ordering+1;
+					$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET ordering = '".$rowplusorderspl."' WHERE id = %s ", $rowplusorders->id));
+				}
+
+			}
+			$_POST["huge_it_add_video_input"] .=";";
+			$sql_video = "INSERT INTO 
+			`" . $table_name . "` ( `name`, `portfolio_id`, `description`, `image_url`, `sl_url`, `sl_type`, `link_target`, `ordering`, `published`, `published_in_sl_width`,`category`) VALUES 
+			( '".$_POST["show_title"]."', '".$id."', '".$_POST["show_description"]."', '".$_POST["huge_it_add_video_input"]."', '".$_POST["show_url"]."', 'video', 'on', '0', '1', '1','' )";
+		   $wpdb->query($sql_video);
+	    }
+	  
+
+		else {
+		    $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_portfolios WHERE id= %d",$id);
+		    $row=$wpdb->get_row($query);
+			$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_images where portfolio_id = %s and id = %d", $row->id,$_GET['thumb_parent']);
+			$get_proj_image=$wpdb->get_row($query);
+			$get_proj_image->image_url .= $_POST["huge_it_add_video_input"].";";
+			//$get_proj_image->image_url .= ";";
+			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET image_url = '".$get_proj_image->image_url."' where portfolio_id = %s and id = %d", $row->id,$_GET['thumb_parent']));
+		}
+
+	}
+   Html_portfolio_video();
+}
+function  portfolio_video_edit($id) {
+	global $wpdb;
+	$thumb = $_GET["thumb"];
+	$portfolio_id = $_GET["portfolio_id"];
+	$id = $_GET["id"];
+	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_itportfolio_images where portfolio_id = %s and id = %d", $portfolio_id,$id);
+			$get_proj_image=$wpdb->get_row($query);
+		$input_edit_video = explode(";", $get_proj_image->image_url);//var_dump($input_edit_video );exit;
+		$input_edit_video_thumb = $input_edit_video[$thumb];
+		$video = youtube_or_vimeo($input_edit_video_thumb);
+
+	if( isset($_POST["huge_it_add_video_input"]) && $_POST["huge_it_add_video_input"] != '') {
+		$input_edit_video[$thumb] = $_POST["huge_it_add_video_input"];
+		$new_url = implode(";", $input_edit_video);
+		$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_itportfolio_images SET image_url = '".$new_url."' where portfolio_id = %s and id = %d",$portfolio_id,$id));
+	}
+
+	if(isset($_POST["huge_it_edit_video_input"]) && $_POST["huge_it_edit_video_input"] != '')
+		$edit = $_POST["huge_it_edit_video_input"];
+	else  $edit = '';
+		
+	Html_portfolio_video_edit($thumb,$portfolio_id,$id,$input_edit_video_thumb,$video,$edit);
+
+}
+
+/***</add>***/
+
 function removeportfolio($id)
 {
 
@@ -256,6 +350,8 @@ function apply_cat($id)
 		$image_prefix = "_huge_it_small_portfolio";
 		if(!function_exists('huge_it_copy_image_to_small')) {
 			function huge_it_copy_image_to_small($imgurl,$image_prefix,$width1) {
+				if(youtube_or_vimeo($imgurl) !== 'image')
+					return;
 				$pathinfo = pathinfo($imgurl);
 				$extension = $pathinfo["extension"];
 				$extension = strtolower($extension);
