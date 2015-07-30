@@ -137,7 +137,7 @@ If you still see "free version" notification after installation of pro version
 == Changelog ==
 
 = 1.5.5 =
-*  Bug fixed in Portfolio Gallery.
+*  Added ability to add Videos instead of images.
 
 = 1.5.4 =
 *  Bug fixed in Portfolio Gallery.
